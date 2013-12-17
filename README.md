@@ -7,7 +7,7 @@ Geodrop is a provider of services and applications for the mobile market. You ca
 How to run
 -----
 Download the folder [geodrop](https://github.com/geodrop/geodrop-sdk-php/tree/master/geodrop). 
-Each php file that uses the SDK must include the path of the SDK:
+Each php file that uses the SDK must include the path of the geodrop folder:
 ```php
 set_include_path('geodrop_sdk_path/');
 ```
