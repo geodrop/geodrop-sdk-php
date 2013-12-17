@@ -47,7 +47,7 @@ if($session->runMethod($requestChallenge))
     $pin = ""; /*retrieve the pin*/
     $order = $requestChallenge->getResponse()->get_order();
     $requestChargeOnDemand = new PortChargeOnDemandPurchases(
-                      $port,$recipient,$text,$order,$pin);
+                                            $port,$recipient,$text,$order,$pin);
     $session->runMethod($requestChargeOnDemand);
     echo "Response: ".$requestChargeOnDemand->getResponse()->toString()."\n";
 }
