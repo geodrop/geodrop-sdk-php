@@ -1,0 +1,689 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Tue, 17 Dec 2013 10:25:39 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>Port (PHP GeodropSDK)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../geodropsdk/droppay/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../geodropsdk/droppay/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../geodropsdk/droppay/port.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">GeodropSDK\DropPay\Port</div>
+<a href="../../source/droppay/port.php.html#line9" class="location">dropPay/Port.php at line 9</a>
+
+<h1>Class Port</h1>
+
+<pre class="tree"><strong>Port</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>Port</strong></p>
+
+<div class="comment" id="overview_description"><p>Port configuration's properties</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>A-Tono s.r.l.</dd>
+<dt>Since:</dt>
+<dd>1.0</dd>
+</dl>
+<hr>
+
+<table id="summary_field">
+<tr><th colspan="2">Field Summary</th></tr>
+<tr>
+<td class="type">private  string</td>
+<td class="description"><p class="name"><a href="#alias">$alias</a></p><p class="description">An unique name you can assign to port, suitable as keyword in alternative to port number (id).</p></td>
+</tr>
+<tr>
+<td class="type">private  string</td>
+<td class="description"><p class="name"><a href="#drop">$drop</a></p><p class="description">Specifies the port type (pay or premium).</p></td>
+</tr>
+<tr>
+<td class="type">private  <a href="../../geodropsdk/droppay/listener.html">Listener[]</a></td>
+<td class="description"><p class="name"><a href="#listener_list">$listener_list</a></p><p class="description">Settings that content provider can modify during the lifetime of the service,
+regarding event notification receiving.</p></td>
+</tr>
+<tr>
+<td class="type">private  <a href="../../geodropsdk/droppay/mno.html">Mno[]</a></td>
+<td class="description"><p class="name"><a href="#mno_list">$mno_list</a></p><p class="description">Each of MNO item indicates MNO settings for which the payment port is enabled.</p></td>
+</tr>
+<tr>
+<td class="type">private  date</td>
+<td class="description"><p class="name"><a href="#open_since">$open_since</a></p><p class="description">Date and time since when port results active.</p></td>
+</tr>
+<tr>
+<td class="type">private  string</td>
+<td class="description"><p class="name"><a href="#open_state">$open_state</a></p><p class="description">State of port, can be ACTIVE or SUSPENDED if any compliance issues have been raised.</p></td>
+</tr>
+<tr>
+<td class="type">private  date</td>
+<td class="description"><p class="name"><a href="#open_until">$open_until</a></p><p class="description">Date and time when port will be disabled.</p></td>
+</tr>
+<tr>
+<td class="type">private  string</td>
+<td class="description"><p class="name"><a href="#price_tag">$price_tag</a></p><p class="description">Identifier of price valid for this port.</p></td>
+</tr>
+<tr>
+<td class="type">private  float</td>
+<td class="description"><p class="name"><a href="#price_value">$price_value</a></p><p class="description">Price value corresponding to the tag.</p></td>
+</tr>
+<tr>
+<td class="type">private  float</td>
+<td class="description"><p class="name"><a href="#subscription_max">$subscription_max</a></p><p class="description">Max amount of money the customer can be charged within the "period".</p></td>
+</tr>
+<tr>
+<td class="type">private  int</td>
+<td class="description"><p class="name"><a href="#subscription_period">$subscription_period</a></p><p class="description">Time window that limit the "max" amount of money the customer can be charged in days.</p></td>
+</tr>
+<tr>
+<td class="type">private  string</td>
+<td class="description"><p class="name"><a href="#type">$type</a></p><p class="description">Type of port that can be ONDEMAND or SUBSCRIPTION.</p></td>
+</tr>
+</table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#toString()">toString</a>()</p><p class="description">Returns a string representation of the object;
+in general, the toString method returns a string that "textually represents" this object;
+the result should be a concise but informative representation that is easy for a person to read.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_drop()">set_drop</a>(string drop)</p><p class="description">Set the drop.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_alias()">set_alias</a>(string alias)</p><p class="description">Set the alias.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_price_tag()">set_price_tag</a>(string price_tag)</p><p class="description">Set the price tag.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_price_value()">set_price_value</a>(float price_value)</p><p class="description">Set the price value.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_type()">set_type</a>(string type)</p><p class="description">Set the type.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_open_since()">set_open_since</a>(date open_since)</p><p class="description">Set open since.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_open_until()">set_open_until</a>(date open_until)</p><p class="description">Set Open until.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_open_state()">set_open_state</a>(string open_state)</p><p class="description">Set the open state.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_mno_list()">set_mno_list</a>(<a href="../../geodropsdk/droppay/mno.html">Mno</a> mno_list)</p><p class="description">Set the mno array.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_subscription_max()">set_subscription_max</a>(float subscription_max)</p><p class="description">Set the subscription max.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_subscription_period()">set_subscription_period</a>(int subscription_period)</p><p class="description">Set the subscription period.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_listener_list()">set_listener_list</a>(<a href="../../geodropsdk/droppay/listener.html">Listener</a> listener_list)</p><p class="description">Set the listener array.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#get_drop()">get_drop</a>()</p><p class="description">Returns the drop.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#get_alias()">get_alias</a>()</p><p class="description">Returns the alias.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#get_price_tag()">get_price_tag</a>()</p><p class="description">Returns the price tag.</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#get_price_value()">get_price_value</a>()</p><p class="description">Returns the price value.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#get_type()">get_type</a>()</p><p class="description">Returns the type.</p></td>
+</tr>
+<tr>
+<td class="type"> date</td>
+<td class="description"><p class="name"><a href="#get_open_since()">get_open_since</a>()</p><p class="description">Returns the open since.</p></td>
+</tr>
+<tr>
+<td class="type"> date</td>
+<td class="description"><p class="name"><a href="#get_open_until()">get_open_until</a>()</p><p class="description">Returns the open until.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#get_open_state()">get_open_state</a>()</p><p class="description">Returns the open state.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../geodropsdk/droppay/mno.html">Mno[]</a></td>
+<td class="description"><p class="name"><a href="#get_mno_list()">get_mno_list</a>()</p><p class="description">Returns the mno array.</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#get_subscription_max()">get_subscription_max</a>()</p><p class="description">Returns the subscription max.</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#get_subscription_period()">get_subscription_period</a>()</p><p class="description">Returns the subscription period.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../geodropsdk/droppay/listener.html">Listener[]</a></td>
+<td class="description"><p class="name"><a href="#get_listener_list()">get_listener_list</a>()</p><p class="description">Returns the listener array.</p></td>
+</tr>
+</table>
+
+<h2 id="detail_field">Field Detail</h2>
+<a href="../../source/droppay/port.php.html#line20" class="location">dropPay/Port.php at line 20</a>
+
+<h3 id="alias">alias</h3>
+<code class="signature">private  string <strong>$alias</strong></code>
+<div class="details">
+<p>An unique name you can assign to port, suitable as keyword in alternative to port number (id)</p></div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line15" class="location">dropPay/Port.php at line 15</a>
+
+<h3 id="drop">drop</h3>
+<code class="signature">private  string <strong>$drop</strong></code>
+<div class="details">
+<p>Specifies the port type (pay or premium)</p></div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line71" class="location">dropPay/Port.php at line 71</a>
+
+<h3 id="listener_list">listener_list</h3>
+<code class="signature">private  <a href="../../geodropsdk/droppay/listener.html">Listener[]</a> <strong>$listener_list</strong></code>
+<div class="details">
+<p>Settings that content provider can modify during the lifetime of the service,
+regarding event notification receiving</p></div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line55" class="location">dropPay/Port.php at line 55</a>
+
+<h3 id="mno_list">mno_list</h3>
+<code class="signature">private  <a href="../../geodropsdk/droppay/mno.html">Mno[]</a> <strong>$mno_list</strong></code>
+<div class="details">
+<p>Each of MNO item indicates MNO settings for which the payment port is enabled</p></div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line40" class="location">dropPay/Port.php at line 40</a>
+
+<h3 id="open_since">open_since</h3>
+<code class="signature">private  date <strong>$open_since</strong></code>
+<div class="details">
+<p>Date and time since when port results active</p></div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line50" class="location">dropPay/Port.php at line 50</a>
+
+<h3 id="open_state">open_state</h3>
+<code class="signature">private  string <strong>$open_state</strong></code>
+<div class="details">
+<p>State of port, can be ACTIVE or SUSPENDED if any compliance issues have been raised</p></div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line45" class="location">dropPay/Port.php at line 45</a>
+
+<h3 id="open_until">open_until</h3>
+<code class="signature">private  date <strong>$open_until</strong></code>
+<div class="details">
+<p>Date and time when port will be disabled</p></div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line25" class="location">dropPay/Port.php at line 25</a>
+
+<h3 id="price_tag">price_tag</h3>
+<code class="signature">private  string <strong>$price_tag</strong></code>
+<div class="details">
+<p>Identifier of price valid for this port</p></div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line30" class="location">dropPay/Port.php at line 30</a>
+
+<h3 id="price_value">price_value</h3>
+<code class="signature">private  float <strong>$price_value</strong></code>
+<div class="details">
+<p>Price value corresponding to the tag</p></div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line60" class="location">dropPay/Port.php at line 60</a>
+
+<h3 id="subscription_max">subscription_max</h3>
+<code class="signature">private  float <strong>$subscription_max</strong></code>
+<div class="details">
+<p>Max amount of money the customer can be charged within the "period"</p></div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line65" class="location">dropPay/Port.php at line 65</a>
+
+<h3 id="subscription_period">subscription_period</h3>
+<code class="signature">private  int <strong>$subscription_period</strong></code>
+<div class="details">
+<p>Time window that limit the "max" amount of money the customer can be charged in days</p></div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line35" class="location">dropPay/Port.php at line 35</a>
+
+<h3 id="type">type</h3>
+<code class="signature">private  string <strong>$type</strong></code>
+<div class="details">
+<p>Type of port that can be ONDEMAND or SUBSCRIPTION</p></div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../source/droppay/port.php.html#line96" class="location">dropPay/Port.php at line 96</a>
+
+<h3 id="toString()">toString</h3>
+<code class="signature">public  string <strong>toString</strong>()</code>
+<div class="details">
+<p>Returns a string representation of the object;
+in general, the toString method returns a string that "textually represents" this object;
+the result should be a concise but informative representation that is easy for a person to read</p><dl>
+<dt>Returns:</dt>
+<dd>A string rapresentation of the object</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line139" class="location">dropPay/Port.php at line 139</a>
+
+<h3 id="set_drop()">set_drop</h3>
+<code class="signature">public  void <strong>set_drop</strong>(string drop)</code>
+<div class="details">
+<p>Set the drop</p><dl>
+<dt>Parameters:</dt>
+<dd>drop - Drop</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line150" class="location">dropPay/Port.php at line 150</a>
+
+<h3 id="set_alias()">set_alias</h3>
+<code class="signature">public  void <strong>set_alias</strong>(string alias)</code>
+<div class="details">
+<p>Set the alias</p><dl>
+<dt>Parameters:</dt>
+<dd>alias - Alias</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line161" class="location">dropPay/Port.php at line 161</a>
+
+<h3 id="set_price_tag()">set_price_tag</h3>
+<code class="signature">public  void <strong>set_price_tag</strong>(string price_tag)</code>
+<div class="details">
+<p>Set the price tag</p><dl>
+<dt>Parameters:</dt>
+<dd>price_tag - Price tag</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line172" class="location">dropPay/Port.php at line 172</a>
+
+<h3 id="set_price_value()">set_price_value</h3>
+<code class="signature">public  void <strong>set_price_value</strong>(float price_value)</code>
+<div class="details">
+<p>Set the price value</p><dl>
+<dt>Parameters:</dt>
+<dd>price_value - Price value</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line183" class="location">dropPay/Port.php at line 183</a>
+
+<h3 id="set_type()">set_type</h3>
+<code class="signature">public  void <strong>set_type</strong>(string type)</code>
+<div class="details">
+<p>Set the type</p><dl>
+<dt>Parameters:</dt>
+<dd>type - Type</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line194" class="location">dropPay/Port.php at line 194</a>
+
+<h3 id="set_open_since()">set_open_since</h3>
+<code class="signature">public  void <strong>set_open_since</strong>(date open_since)</code>
+<div class="details">
+<p>Set open since</p><dl>
+<dt>Parameters:</dt>
+<dd>open_since - Open since</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line205" class="location">dropPay/Port.php at line 205</a>
+
+<h3 id="set_open_until()">set_open_until</h3>
+<code class="signature">public  void <strong>set_open_until</strong>(date open_until)</code>
+<div class="details">
+<p>Set Open until</p><dl>
+<dt>Parameters:</dt>
+<dd>open_until - Open until</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line216" class="location">dropPay/Port.php at line 216</a>
+
+<h3 id="set_open_state()">set_open_state</h3>
+<code class="signature">public  void <strong>set_open_state</strong>(string open_state)</code>
+<div class="details">
+<p>Set the open state</p><dl>
+<dt>Parameters:</dt>
+<dd>open_state - Open state</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line227" class="location">dropPay/Port.php at line 227</a>
+
+<h3 id="set_mno_list()">set_mno_list</h3>
+<code class="signature">public  void <strong>set_mno_list</strong>(<a href="../../geodropsdk/droppay/mno.html">Mno</a> mno_list)</code>
+<div class="details">
+<p>Set the mno array</p><dl>
+<dt>Parameters:</dt>
+<dd>mno_list - Mno array</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line238" class="location">dropPay/Port.php at line 238</a>
+
+<h3 id="set_subscription_max()">set_subscription_max</h3>
+<code class="signature">public  void <strong>set_subscription_max</strong>(float subscription_max)</code>
+<div class="details">
+<p>Set the subscription max</p><dl>
+<dt>Parameters:</dt>
+<dd>subscription_max - Subscription max</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line249" class="location">dropPay/Port.php at line 249</a>
+
+<h3 id="set_subscription_period()">set_subscription_period</h3>
+<code class="signature">public  void <strong>set_subscription_period</strong>(int subscription_period)</code>
+<div class="details">
+<p>Set the subscription period</p><dl>
+<dt>Parameters:</dt>
+<dd>subscription_period - Subscription period</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line260" class="location">dropPay/Port.php at line 260</a>
+
+<h3 id="set_listener_list()">set_listener_list</h3>
+<code class="signature">public  void <strong>set_listener_list</strong>(<a href="../../geodropsdk/droppay/listener.html">Listener</a> listener_list)</code>
+<div class="details">
+<p>Set the listener array</p><dl>
+<dt>Parameters:</dt>
+<dd>listener_list - Listener array</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line271" class="location">dropPay/Port.php at line 271</a>
+
+<h3 id="get_drop()">get_drop</h3>
+<code class="signature">public  string <strong>get_drop</strong>()</code>
+<div class="details">
+<p>Returns the drop</p><dl>
+<dt>Returns:</dt>
+<dd>Drop</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line281" class="location">dropPay/Port.php at line 281</a>
+
+<h3 id="get_alias()">get_alias</h3>
+<code class="signature">public  string <strong>get_alias</strong>()</code>
+<div class="details">
+<p>Returns the alias</p><dl>
+<dt>Returns:</dt>
+<dd>Alias</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line291" class="location">dropPay/Port.php at line 291</a>
+
+<h3 id="get_price_tag()">get_price_tag</h3>
+<code class="signature">public  string <strong>get_price_tag</strong>()</code>
+<div class="details">
+<p>Returns the price tag</p><dl>
+<dt>Returns:</dt>
+<dd>Price tag</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line301" class="location">dropPay/Port.php at line 301</a>
+
+<h3 id="get_price_value()">get_price_value</h3>
+<code class="signature">public  float <strong>get_price_value</strong>()</code>
+<div class="details">
+<p>Returns the price value</p><dl>
+<dt>Returns:</dt>
+<dd>Price value</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line311" class="location">dropPay/Port.php at line 311</a>
+
+<h3 id="get_type()">get_type</h3>
+<code class="signature">public  string <strong>get_type</strong>()</code>
+<div class="details">
+<p>Returns the type</p><dl>
+<dt>Returns:</dt>
+<dd>Type</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line321" class="location">dropPay/Port.php at line 321</a>
+
+<h3 id="get_open_since()">get_open_since</h3>
+<code class="signature">public  date <strong>get_open_since</strong>()</code>
+<div class="details">
+<p>Returns the open since</p><dl>
+<dt>Returns:</dt>
+<dd>Open since</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line331" class="location">dropPay/Port.php at line 331</a>
+
+<h3 id="get_open_until()">get_open_until</h3>
+<code class="signature">public  date <strong>get_open_until</strong>()</code>
+<div class="details">
+<p>Returns the open until</p><dl>
+<dt>Returns:</dt>
+<dd>Open until</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line341" class="location">dropPay/Port.php at line 341</a>
+
+<h3 id="get_open_state()">get_open_state</h3>
+<code class="signature">public  string <strong>get_open_state</strong>()</code>
+<div class="details">
+<p>Returns the open state</p><dl>
+<dt>Returns:</dt>
+<dd>Open state</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line351" class="location">dropPay/Port.php at line 351</a>
+
+<h3 id="get_mno_list()">get_mno_list</h3>
+<code class="signature">public  <a href="../../geodropsdk/droppay/mno.html">Mno[]</a> <strong>get_mno_list</strong>()</code>
+<div class="details">
+<p>Returns the mno array</p><dl>
+<dt>Returns:</dt>
+<dd>Array of MNO</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line361" class="location">dropPay/Port.php at line 361</a>
+
+<h3 id="get_subscription_max()">get_subscription_max</h3>
+<code class="signature">public  float <strong>get_subscription_max</strong>()</code>
+<div class="details">
+<p>Returns the subscription max</p><dl>
+<dt>Returns:</dt>
+<dd>Subscription max</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line371" class="location">dropPay/Port.php at line 371</a>
+
+<h3 id="get_subscription_period()">get_subscription_period</h3>
+<code class="signature">public  int <strong>get_subscription_period</strong>()</code>
+<div class="details">
+<p>Returns the subscription period</p><dl>
+<dt>Returns:</dt>
+<dd>Subscription period</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/port.php.html#line381" class="location">dropPay/Port.php at line 381</a>
+
+<h3 id="get_listener_list()">get_listener_list</h3>
+<code class="signature">public  <a href="../../geodropsdk/droppay/listener.html">Listener[]</a> <strong>get_listener_list</strong>()</code>
+<div class="details">
+<p>Returns the listener array</p><dl>
+<dt>Returns:</dt>
+<dd>Array of Listener</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../geodropsdk/droppay/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../geodropsdk/droppay/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../geodropsdk/droppay/port.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

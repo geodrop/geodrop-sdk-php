@@ -1,0 +1,433 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Tue, 17 Dec 2013 10:25:39 +0000">
+
+<link rel="stylesheet" type="text/css" href="../stylesheet.css">
+<link rel="start" href="../overview-summary.html">
+
+<title>GeodropRequest.php (PHP GeodropSDK)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../overview-files.html">Files</a></li>
+<li><a href="../deprecated-list.html">Deprecated</a></li>
+<li><a href="../todo-list.html">Todo</a></li>
+<li><a href="../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../index.html" target="_top">Frames</a>
+<a href="../source/geodroprequest.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>GeodropRequest.php</h1>
+<hr>
+
+<a name="line1"></a><pre><?php
+<a name="line2"></a>require_once 'GeodropResponse.php';
+<a name="line3"></a>require_once 'HttpMethod.php';
+<a name="line4"></a>require_once 'ErrorType.php';
+<a name="line5"></a>require_once 'HttpMethod.php';
+<a name="line6"></a>require_once 'ContentType.php';
+<a name="line7"></a>require_once 'Uri.php';
+<a name="line8"></a>
+<a name="line9"></a>/**
+<a name="line10"></a> * Generic Geodrop request
+<a name="line11"></a> *
+<a name="line12"></a> * @author A-Tono s.r.l.
+<a name="line13"></a> * @since 1.0
+<a name="line14"></a> *
+<a name="line15"></a> * @abstract
+<a name="line16"></a> * @access public
+<a name="line17"></a> */
+<a name="line18"></a>abstract class GeodropRequest
+<a name="line19"></a>{
+<a name="line20"></a>  /**
+<a name="line21"></a>   * The request URI
+<a name="line22"></a>   * @var Uri
+<a name="line23"></a>   * @access protected
+<a name="line24"></a>   */
+<a name="line25"></a>  protected $uri;
+<a name="line26"></a>  /**
+<a name="line27"></a>   * The request method
+<a name="line28"></a>   * @var HttpMethod
+<a name="line29"></a>   * @access protected
+<a name="line30"></a>   */
+<a name="line31"></a>  protected $httpMethod;
+<a name="line32"></a>  /**
+<a name="line33"></a>   * The request content type
+<a name="line34"></a>   * @var ContentType
+<a name="line35"></a>   * @access protected
+<a name="line36"></a>   */
+<a name="line37"></a>  protected $contentType;
+<a name="line38"></a>  /**
+<a name="line39"></a>   * The <CODE>GeodropResponse</CODE> to the request
+<a name="line40"></a>   * @var GeodropResponse
+<a name="line41"></a>   * @access protected
+<a name="line42"></a>   */
+<a name="line43"></a>  protected $response;
+<a name="line44"></a>  /**
+<a name="line45"></a>   * The parameters of the request
+<a name="line46"></a>   * @var array
+<a name="line47"></a>   * @access protected
+<a name="line48"></a>   */
+<a name="line49"></a>  protected $params;
+<a name="line50"></a>  /**
+<a name="line51"></a>   * The body of the request
+<a name="line52"></a>   * @var string
+<a name="line53"></a>   * @access protected
+<a name="line54"></a>   */
+<a name="line55"></a>  protected $body;  
+<a name="line56"></a>    
+<a name="line57"></a>  /**
+<a name="line58"></a>   * Decodes the response
+<a name="line59"></a>   * @abstract
+<a name="line60"></a>   * @access public
+<a name="line61"></a>   * @param string $http_response Response to the http request
+<a name="line62"></a>   * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
+<a name="line63"></a>   */
+<a name="line64"></a>  abstract public function decodeResponse($http_response);
+<a name="line65"></a>  
+<a name="line66"></a>  /**
+<a name="line67"></a>   * Creates the parameters for the http request
+<a name="line68"></a>   * @abstract
+<a name="line69"></a>   * @access protected
+<a name="line70"></a>   * @return void
+<a name="line71"></a>   */
+<a name="line72"></a>  abstract protected function createParams();
+<a name="line73"></a>  
+<a name="line74"></a>  
+<a name="line75"></a>  public function __destruct()
+<a name="line76"></a>  {
+<a name="line77"></a>    unset($this->uri);
+<a name="line78"></a>    unset($this->httpMethod);
+<a name="line79"></a>    unset($this->contentType);
+<a name="line80"></a>    unset($this->response);
+<a name="line81"></a>    unset($this->params);
+<a name="line82"></a>    unset($this->body);
+<a name="line83"></a>  }
+<a name="line84"></a>  
+<a name="line85"></a>  /**
+<a name="line86"></a>   * Checks the limit format; limit is used to paginate the result,
+<a name="line87"></a>   * it consists of two integers separated by a comma,
+<a name="line88"></a>   * the first one indicates the position of the first required result
+<a name="line89"></a>   * and the second the total number of result to return
+<a name="line90"></a>   * 
+<a name="line91"></a>   * @access public
+<a name="line92"></a>   * @final
+<a name="line93"></a>   * @param string $limit Limit to check
+<a name="line94"></a>   * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise
+<a name="line95"></a>   */
+<a name="line96"></a>  public final function checkLimitFormat($limit)
+<a name="line97"></a>  {
+<a name="line98"></a>    //int,int
+<a name="line99"></a>    $limit_splitted = split(",",$limit);
+<a name="line100"></a>    if(count($limit_splitted) != 2)
+<a name="line101"></a>    {
+<a name="line102"></a>      return false;
+<a name="line103"></a>    }
+<a name="line104"></a>    if(ctype_digit($limit_splitted[0]) && ctype_digit($limit_splitted[1]))
+<a name="line105"></a>    {
+<a name="line106"></a>      return true;
+<a name="line107"></a>    }
+<a name="line108"></a>    return false;
+<a name="line109"></a>  }
+<a name="line110"></a>  
+<a name="line111"></a>  /**
+<a name="line112"></a>   * Checks if the format of the msisdn is E.164;
+<a name="line113"></a>   * plan-conforming numbers are limited to a maximum of 15 digits
+<a name="line114"></a>   * usually prefixed with the character +
+<a name="line115"></a>   *
+<a name="line116"></a>   * @access public
+<a name="line117"></a>   * @param string msisdn Msisdn to check
+<a name="line118"></a>   * @param boolean $plus <CODE>true</CODE> if the msisdn must be preceded by "+",
+<a name="line119"></a>   * <CODE>false</CODE> otherwise
+<a name="line120"></a>   * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
+<a name="line121"></a>   */
+<a name="line122"></a>  public final function checkMsisdnE164Format($msisdn,$plus)
+<a name="line123"></a>  {
+<a name="line124"></a>    if($plus)
+<a name="line125"></a>    {
+<a name="line126"></a>      if($msisdn[0]!="+")
+<a name="line127"></a>      {
+<a name="line128"></a>	return false;
+<a name="line129"></a>      }
+<a name="line130"></a>      $msisdn_digit = substr($msisdn,1);
+<a name="line131"></a>    }
+<a name="line132"></a>    else
+<a name="line133"></a>    {
+<a name="line134"></a>      $msisdn_digit = $msisdn;
+<a name="line135"></a>    }
+<a name="line136"></a>    if(ctype_digit($msisdn_digit) && strlen($msisdn_digit) <= 15)
+<a name="line137"></a>    {
+<a name="line138"></a>      return true;
+<a name="line139"></a>    }
+<a name="line140"></a>    return false;
+<a name="line141"></a>  }
+<a name="line142"></a>  
+<a name="line143"></a>  /**
+<a name="line144"></a>   * Checks if the format is an array of msisdns (in E.164)
+<a name="line145"></a>   * or a single msisdn (in E.164)
+<a name="line146"></a>   *
+<a name="line147"></a>   * @access public
+<a name="line148"></a>   * @final
+<a name="line149"></a>   * @param string|array $msisdns string that contains the msisdn or the array of msisdns to check
+<a name="line150"></a>   * @param boolean plus <CODE>true</CODE> if the msisdn must be preceded by "+",
+<a name="line151"></a>   * <CODE>false</CODE> otherwise
+<a name="line152"></a>   * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
+<a name="line153"></a>   */
+<a name="line154"></a>  public final function checkIfMsisdnsIsArrayOrString($msisdns,$plus)
+<a name="line155"></a>  {
+<a name="line156"></a>    if($this->checkMsisdnsArray($msisdns,$plus))
+<a name="line157"></a>    {
+<a name="line158"></a>      return true;
+<a name="line159"></a>    }
+<a name="line160"></a>    if($this->checkMsisdnE164Format($msisdns,$plus))
+<a name="line161"></a>    {
+<a name="line162"></a>      return true;
+<a name="line163"></a>    }
+<a name="line164"></a>    return false;
+<a name="line165"></a>  }
+<a name="line166"></a>  
+<a name="line167"></a>  /**
+<a name="line168"></a>   * Checks if the format is an array of valid msisdns (in E.164)
+<a name="line169"></a>   *
+<a name="line170"></a>   * @access public
+<a name="line171"></a>   * @final
+<a name="line172"></a>   * @param array $msisdns The array of msisdns to check
+<a name="line173"></a>   * @param boolean $plus <CODE>true</CODE> if the msisdn must be preceded by "+",
+<a name="line174"></a>   * <CODE>false</CODE> otherwise
+<a name="line175"></a>   * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
+<a name="line176"></a>   */
+<a name="line177"></a>  public final function checkMsisdnsArray($msisdns,$plus)
+<a name="line178"></a>  {
+<a name="line179"></a>    if(is_array($msisdns))
+<a name="line180"></a>    {
+<a name="line181"></a>      foreach($msisdns as $msisdn)
+<a name="line182"></a>      {
+<a name="line183"></a>	if(!$this->checkMsisdnE164Format($msisdn,$plus))
+<a name="line184"></a>	{
+<a name="line185"></a>	  return false;
+<a name="line186"></a>	}
+<a name="line187"></a>      }
+<a name="line188"></a>    }
+<a name="line189"></a>    else
+<a name="line190"></a>    {
+<a name="line191"></a>      return false;
+<a name="line192"></a>    }
+<a name="line193"></a>    return true;
+<a name="line194"></a>  }
+<a name="line195"></a>  
+<a name="line196"></a>  /**
+<a name="line197"></a>   * Checks if the date is valid
+<a name="line198"></a>   * and if it is in the furure
+<a name="line199"></a>   *
+<a name="line200"></a>   * @access public
+<a name="line201"></a>   * @final
+<a name="line202"></a>   * @param date $datetime Date to check
+<a name="line203"></a>   * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
+<a name="line204"></a>   */
+<a name="line205"></a>  public final function checkIfFutureDatetime($datetime)
+<a name="line206"></a>  {
+<a name="line207"></a>    //check the format
+<a name="line208"></a>    if(!$this->checkDatetimeFormat($datetime))
+<a name="line209"></a>    {
+<a name="line210"></a>      return false;
+<a name="line211"></a>    }
+<a name="line212"></a>    //The date must be in the future
+<a name="line213"></a>    if($datetime < date("Y-m-d H:i:s"))
+<a name="line214"></a>    {
+<a name="line215"></a>      return false;
+<a name="line216"></a>    }
+<a name="line217"></a>    return true;
+<a name="line218"></a>  }
+<a name="line219"></a>  
+<a name="line220"></a>  /**
+<a name="line221"></a>   * Checks if the date valid
+<a name="line222"></a>   *
+<a name="line223"></a>   * @access public
+<a name="line224"></a>   * @final
+<a name="line225"></a>   * @param date $datetime Date to check
+<a name="line226"></a>   * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
+<a name="line227"></a>   */
+<a name="line228"></a>  public final function checkDatetimeFormat($datetime)
+<a name="line229"></a>  {
+<a name="line230"></a>    if(date_parse($datetime)['error_count'] != 0)
+<a name="line231"></a>    {
+<a name="line232"></a>      return false;
+<a name="line233"></a>    }
+<a name="line234"></a>    return true;
+<a name="line235"></a>  }
+<a name="line236"></a>  
+<a name="line237"></a>  /**
+<a name="line238"></a>   * Checks the first parameter is an array that contains pairs of
+<a name="line239"></a>   * "order id, msisdn" that uniquely identifies a single SMS message in the Geodrop archive;
+<a name="line240"></a>   * the msisdn must be in the E.164 format
+<a name="line241"></a>   *
+<a name="line242"></a>   * @access public
+<a name="line243"></a>   * @final
+<a name="line244"></a>   * @param array $arrayToCheck Array to check
+<a name="line245"></a>   * @param boolean $plus <CODE>true</CODE> if the msisdn must be preceded by "+",
+<a name="line246"></a>   * <CODE>false</CODE> otherwise
+<a name="line247"></a>   * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
+<a name="line248"></a>   */
+<a name="line249"></a>  public final function checkIfArrayOfPairOfOrderIdMsisdn($arrayToCheck,$plus)
+<a name="line250"></a>  {
+<a name="line251"></a>    if(!is_array($arrayToCheck))
+<a name="line252"></a>    {
+<a name="line253"></a>      return false;
+<a name="line254"></a>    }
+<a name="line255"></a>    else
+<a name="line256"></a>    {
+<a name="line257"></a>      foreach($arrayToCheck as $tuple)
+<a name="line258"></a>      {
+<a name="line259"></a>	if(!is_array($tuple))
+<a name="line260"></a>	{
+<a name="line261"></a>	  return false;
+<a name="line262"></a>	}
+<a name="line263"></a>	else
+<a name="line264"></a>	{
+<a name="line265"></a>	  if(count($tuple) != 2)
+<a name="line266"></a>	  {
+<a name="line267"></a>	    return false;
+<a name="line268"></a>	  }
+<a name="line269"></a>	  else
+<a name="line270"></a>	  {
+<a name="line271"></a>	    if(!$this->checkMsisdnE164Format($tuple[1],$plus))
+<a name="line272"></a>	    {
+<a name="line273"></a>	      return false;
+<a name="line274"></a>	    }
+<a name="line275"></a>	  }
+<a name="line276"></a>	}
+<a name="line277"></a>      }
+<a name="line278"></a>    }
+<a name="line279"></a>    return true;
+<a name="line280"></a>  }
+<a name="line281"></a>  
+<a name="line282"></a>  /**
+<a name="line283"></a>   * Checks if the parameter is an integer or a string where all characters are numerical
+<a name="line284"></a>   *
+<a name="line285"></a>   * @access public
+<a name="line286"></a>   * @final
+<a name="line287"></a>   * @param string|int $var The var to check
+<a name="line288"></a>   * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
+<a name="line289"></a>   */
+<a name="line290"></a>  public final function checkIfIntegerOrDigitString($var)
+<a name="line291"></a>  {
+<a name="line292"></a>    if(is_int($var) || ctype_digit($var))
+<a name="line293"></a>    {
+<a name="line294"></a>      return true;
+<a name="line295"></a>    }
+<a name="line296"></a>    return false;
+<a name="line297"></a>  }
+<a name="line298"></a>  
+<a name="line299"></a>  /**
+<a name="line300"></a>   * Returns the parameters of the <CODE>GeodropRequest</CODE>
+<a name="line301"></a>   *
+<a name="line302"></a>   * @access public
+<a name="line303"></a>   * @final
+<a name="line304"></a>   * @return array
+<a name="line305"></a>   */
+<a name="line306"></a>  public final function getParams()
+<a name="line307"></a>  {
+<a name="line308"></a>    return $this->params;
+<a name="line309"></a>  }
+<a name="line310"></a>
+<a name="line311"></a>  /**
+<a name="line312"></a>   * Returns the body of the <CODE>GeodropRequest</CODE>
+<a name="line313"></a>   *
+<a name="line314"></a>   * @access public
+<a name="line315"></a>   * @final
+<a name="line316"></a>   * @return string
+<a name="line317"></a>   */
+<a name="line318"></a>  public final function getBody()
+<a name="line319"></a>  {
+<a name="line320"></a>    return $this->body;
+<a name="line321"></a>  }
+<a name="line322"></a>  
+<a name="line323"></a>  /**
+<a name="line324"></a>   * Returns the <CODE>GeodropResponse</CODE>
+<a name="line325"></a>   *
+<a name="line326"></a>   * @access public
+<a name="line327"></a>   * @final
+<a name="line328"></a>   * @return GeodropResponse
+<a name="line329"></a>   */
+<a name="line330"></a>  public final function getResponse()
+<a name="line331"></a>  {
+<a name="line332"></a>    return $this->response;
+<a name="line333"></a>  }
+<a name="line334"></a>  
+<a name="line335"></a>  /**
+<a name="line336"></a>   * Returns the request URI
+<a name="line337"></a>   *
+<a name="line338"></a>   * @access public
+<a name="line339"></a>   * @final
+<a name="line340"></a>   * @return Uri
+<a name="line341"></a>   */
+<a name="line342"></a>  public final function getUri()
+<a name="line343"></a>  {
+<a name="line344"></a>    return $this->uri;
+<a name="line345"></a>  }
+<a name="line346"></a>  
+<a name="line347"></a>  /**
+<a name="line348"></a>   * Returns the request method
+<a name="line349"></a>   *
+<a name="line350"></a>   * @access public
+<a name="line351"></a>   * @final
+<a name="line352"></a>   * @return HttpMethod
+<a name="line353"></a>   */
+<a name="line354"></a>  public final function getHttpMethod()
+<a name="line355"></a>  {
+<a name="line356"></a>    return $this->httpMethod;
+<a name="line357"></a>  }
+<a name="line358"></a>  
+<a name="line359"></a>  /**
+<a name="line360"></a>   * Returns the request content type
+<a name="line361"></a>   *
+<a name="line362"></a>   * @access public
+<a name="line363"></a>   * @final
+<a name="line364"></a>   * @return ContentType
+<a name="line365"></a>   */
+<a name="line366"></a>  public final function getContentType()
+<a name="line367"></a>  {
+<a name="line368"></a>    return $this->contentType;
+<a name="line369"></a>  }
+<a name="line370"></a>}
+<a name="line371"></a>
+<a name="line372"></a>?>
+<a name="line373"></a></pre>
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../overview-files.html">Files</a></li>
+<li><a href="../deprecated-list.html">Deprecated</a></li>
+<li><a href="../todo-list.html">Todo</a></li>
+<li><a href="../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../index.html" target="_top">Frames</a>
+<a href="../source/geodroprequest.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>
