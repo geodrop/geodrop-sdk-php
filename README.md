@@ -37,6 +37,9 @@ To challenge a customer to confirm the telephone number in content provider init
 and to charge the customer:
 
 ```php
+require_once 'dropPay/PortChallenge.php';
+require_once 'dropPay/PortChargeOnDemandPurchases.php';
+
 $requestChallenge = new PortChallenge($port,$recipient,$textChallenge,$custom);
 if($session->runMethod($requestChallenge))
 {
