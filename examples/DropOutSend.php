@@ -5,6 +5,7 @@ require_once 'GeodropSession.php';
 require_once 'dropOut/SMSSend.php';
 
 
+
 $application_id = '';
 $application_secret = '';
 $username = '';
