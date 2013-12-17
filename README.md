@@ -1,19 +1,16 @@
 geodrop-sdk-php
 ===============
 
-PHP SDK to use [Geodrop](https://geodrop.com/) SMS services. Except as otherwise noted, it is licensed under the [Apache Licence, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).  
-Geodrop is a provider of services and applications for the mobile market. You can use the Geodrop API to send and receive SMS from web or from your application and to build new Premium Service with your digital content.
+[Geodrop](https://geodrop.com/) is a provider of services and applications for the mobile market. You can use the Geodrop API to send and receive SMS from web or from your application and to build new Premium Service with your digital content.
+This PHP SDK allows you to easily use Geodrop SMS services. Except as otherwise noted, it is licensed under the [Apache Licence, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).  
 
-How to run
+Usage
 -----
 Download the folder [geodrop](https://github.com/geodrop/geodrop-sdk-php/tree/master/geodrop). 
 Each php file that uses the SDK must include the path of the geodrop folder:
 ```php
 set_include_path('geodrop_sdk_path/');
 ```
-
-Usage
------
 The [examples](https://github.com/geodrop/geodrop-sdk-php/tree/master/examples) are a good place to start.
 To create a new session you must include:
 ```php
