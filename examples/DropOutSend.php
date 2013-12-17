@@ -2,7 +2,6 @@
 set_include_path('geodrop/');
 require_once 'SessionFactory.php';
 require_once 'GeodropSession.php';
-require_once 'dropOut/SMSEstimatecost.php';
 require_once 'dropOut/SMSSend.php';
 
 
