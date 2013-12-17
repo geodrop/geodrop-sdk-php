@@ -20,7 +20,7 @@ To create a new session you must include:
 require_once 'SessionFactory.php';
 require_once 'GeodropSession.php';
 ```
-Then create a session:
+Then you can create a session:
 ```php
 $session = SessionFactory::buildSession_ResourceOwnerPasswordCredentials(
                       $application_id,$application_secret,$username,$password);
