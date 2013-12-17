@@ -65,4 +65,4 @@ Additional labels for pre-release and build metadata are available as extensions
 
 Bug report
 -----
-If you find a bug [open an issue](https://github.com/geodrop/geodrop-sdk-php/issues).
+If you find a bug [open an issue](https://github.com/geodrop/geodrop-sdk-php/issues) and report the problem.
