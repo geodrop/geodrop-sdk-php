@@ -20,16 +20,15 @@ class SMSStatusAdhoc extends GeodropRequest
     */
    private static $requestType;
    /**
-   * Array of pair <order id, msisdn>
-   * that uniquely identifies a single SMS message in the Geodrop archive
-   * @var string[][]
-   */
-   
+    * Array of pair <order id, msisdn>
+    * that uniquely identifies a single SMS message in the Geodrop archive
+    * @var string[][]
+    */
    private $dest;
    /**
-   * The client id
-   * @var string
-   */
+    * The client id
+    * @var string
+    */
    private $client_id;
    
    /**
@@ -96,6 +95,27 @@ class SMSStatusAdhoc extends GeodropRequest
       //echo "SMSStatusRange::decodeResponse: ".$http_response."\n";
       $this->response = new SMSStatus_Response();
       return $this->response->fillParameters($http_response);
+   }
+   
+   //getters
+   /**
+    * Returns the array of pair <order id, msisdn>
+    * that uniquely identifies a single SMS message in the Geodrop archive
+    * @access public
+    * @return string[][]
+    */
+   public function get_dest()
+   {
+      return $this->dest;
+   }
+   /**
+    * Returns the client id
+    * @access public
+    * @return string
+    */
+   public function get_client_id()
+   {
+      return $this->client_id;
    }
  }
  

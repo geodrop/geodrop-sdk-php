@@ -44,6 +44,18 @@ class SMSEstimatecost_Response extends GeodropResponse
   {
     return $this->estimate_cost;
   }
+  
+  //getters
+  /**
+   * Returns the estimate of the final cost of the message
+   *
+   * @access public
+   * @return int
+   */
+  public function getEstimateCost()
+  {
+    return $this->estimate_cost;
+  }
 }
 
 ?>

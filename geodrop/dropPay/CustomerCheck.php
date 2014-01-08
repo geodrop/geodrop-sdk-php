@@ -82,6 +82,26 @@ class CustomerCheck extends GeodropRequest
     $this->response = new CustomerCheck_Response();
     return $this->response->fillParameters($http_response);
   }
+  
+  //getters
+  /**
+   * Returns the DropPay port id
+   * @access public
+   * @return int
+   */
+  public function get_port()
+  {
+    return $this->port;
+  }
+  /**
+   * Returns the customer phone number in E.164 format (without +)
+   * @access public
+   * @return string
+   */
+  public function get_msisdn()
+  {
+    return $this->msisdn;
+  }
 }
 
 ?>

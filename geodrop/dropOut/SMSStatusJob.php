@@ -20,22 +20,22 @@ class SMSStatusJob extends GeodropRequest
     */
    private static $requestType;
    /**
-   * The Global Unique IDentifier (GUID) of the job
-   * @var string
-   */
+    * The Global Unique IDentifier (GUID) of the job
+    * @var string
+    */
    private $job_orderid;
    /**
-   * Used to paginate the result,
-   * it consist of two integers separated by a comma,
-   * the first one indicates the position of the first required result
-   * and the second the total number of result to return
-   * @var string
-   */
+    * Used to paginate the result,
+    * it consist of two integers separated by a comma,
+    * the first one indicates the position of the first required result
+    * and the second the total number of result to return
+    * @var string
+    */
    private $job_limit;
    /**
-   * The client id
-   * @var string
-   */
+    * The client id
+    * @var string
+    */
    private $client_id;
    
    /**
@@ -103,6 +103,38 @@ class SMSStatusJob extends GeodropRequest
       //echo "SMSStatusRange::decodeResponse: ".$http_response."\n";
       $this->response = new SMSStatus_Response();
       return $this->response->fillParameters($http_response);
+   }
+   
+   //getters
+   /**
+    * Returns the Global Unique IDentifier (GUID) of the job
+    * @access public
+    * @return string
+    */
+   public function get_job_orderid()
+   {
+      return $this->job_orderid;
+   }
+   /**
+    * Returns the limit, used to paginate the result,
+    * it consist of two integers separated by a comma,
+    * the first one indicates the position of the first required result
+    * and the second the total number of result to return
+    * @access public
+    * @return string
+    */
+   public function get_job_limit()
+   {
+      return $this->job_limit;
+   }
+   /**
+    * Returns the client id
+    * @access public
+    * @return string
+    */
+   public function get_client_id()
+   {
+      return $this->client_id;
    }
  }
  

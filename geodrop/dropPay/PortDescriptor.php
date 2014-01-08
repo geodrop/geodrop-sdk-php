@@ -66,6 +66,17 @@ class PortDescriptor extends GeodropRequest
     $this->response = new PortDescriptor_Response();
     return $this->response->fillParameters($http_response);
   }
+  
+  //getters
+  /**
+   * Returns the DropPay port id
+   * @access public
+   * @return int
+   */
+  public function get_port()
+  {
+    return $this->port;
+  }
 }
 
 ?>

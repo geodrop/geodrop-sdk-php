@@ -118,6 +118,53 @@ class PortTrigger extends GeodropRequest
     $this->response = new PortTrigger_Response();
     return $this->response->fillParameters($http_response);
   }
+  
+  //getters
+  /**
+   * Returns the DropPay port id
+   * @access public
+   * @return int
+   */
+  public function get_port()
+  {
+    return $this->port;
+  }
+  /**
+   * Returns the customer phone number in E.164 format (without +)
+   * @access public
+   * @return string
+   */
+  public function get_msisdn()
+  {
+    return $this->msisdn;
+  }
+  /**
+   * Returns the unique CP request id
+   * @access public
+   * @return string
+   */
+  public function get_custom()
+  {
+    return $this->custom;
+  }
+  /**
+   * Returns the text to send, encoded in UTF-8, up to 160 characters
+   * @access public
+   * @return string
+   */
+  public function get_text()
+  {
+    return $this->text;
+  }
+  /**
+   * Returns the time to schedule trigger, default is now
+   * @access public
+   * @return date
+   */
+  public function get_time()
+  {
+    return $this->time;
+  }
 }
 
 ?>

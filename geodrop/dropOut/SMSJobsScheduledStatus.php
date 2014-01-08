@@ -64,13 +64,24 @@ class SMSJobsScheduledStatus extends GeodropRequest
       $this->body.= '<JOB JOBID="'.$this->job_id;
       $this->body.= '" ACTION="'.$this->action.'" />';
       $this->body.= '</GEOSMSSCHEDULER>';
-  }
+   }
     
    public function decodeResponse( $http_response )
    {
      //echo "SMSJobsScheduledStatus::decodeResponse: ".$http_response."\n";
      $this->response = new SMSJobsScheduled_Response();
      return $this->response->fillParameters($http_response);
+   }
+   
+   //getters
+   /**
+    * The job id
+    * @access public
+    * @return string
+    */
+   public function get_job_id()
+   {
+      return $this->job_id;
    }
 }
  

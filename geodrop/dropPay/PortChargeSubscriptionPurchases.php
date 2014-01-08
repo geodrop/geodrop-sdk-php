@@ -126,6 +126,64 @@ class PortChargeSubscriptionPurchases extends GeodropRequest
     $this->response = new PortChargePurchases_Response();
     return $this->response->fillParameters($http_response);
   }
+  
+  //getters
+  /**
+   * Returns the DropPay port id
+   * @access public
+   * @return int
+   */
+  public function get_port()
+  {
+    return $this->port;
+  }
+  /**
+   * Returns the customer phone number in E.164 format (without +)
+   * @access public
+   * @return string
+   */
+  public function get_msisdn()
+  {
+    return $this->msisdn;
+  }
+  /**
+   * Returns the unique CP request id
+   * @access public
+   * @return string
+   */
+  public function get_custom()
+  {
+    return $this->custom;
+  }
+  /**
+   * Returns the text to send, encoded in UTF-8, up to 160 characters
+   * @access public
+   * @return string
+   */
+  public function get_text()
+  {
+    return $this->text;
+  }
+  /**
+   * Returns the subscriber id required in subscription payments
+   * @access public
+   * @return int
+   */
+  public function get_subscriber()
+  {
+    return $this->subscriber;
+  }
+  /**
+   * Returns the pin code sent to customer in challenge action,
+   * it is mandatory if transaction was initiated by provider calling challenge,
+   * it is not mandatory if transaction was initiated by customer sending MO
+   * @access public
+   * @return string
+   */
+  public function get_pin()
+  {
+    return $this->pin;
+  }
 }
 
 ?>

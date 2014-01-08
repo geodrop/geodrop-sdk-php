@@ -93,7 +93,7 @@ abstract class GeodropRequest
    * @param string $limit Limit to check
    * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise
    */
-  public final function checkLimitFormat($limit)
+  protected final function checkLimitFormat($limit)
   {
     //int,int
     $limit_splitted = split(",",$limit);
@@ -119,7 +119,7 @@ abstract class GeodropRequest
    * <CODE>false</CODE> otherwise
    * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
    */
-  public final function checkMsisdnE164Format($msisdn,$plus)
+  protected final function checkMsisdnE164Format($msisdn,$plus)
   {
     if($plus)
     {
@@ -151,7 +151,7 @@ abstract class GeodropRequest
    * <CODE>false</CODE> otherwise
    * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
    */
-  public final function checkIfMsisdnsIsArrayOrString($msisdns,$plus)
+  protected final function checkIfMsisdnsIsArrayOrString($msisdns,$plus)
   {
     if($this->checkMsisdnsArray($msisdns,$plus))
     {
@@ -174,7 +174,7 @@ abstract class GeodropRequest
    * <CODE>false</CODE> otherwise
    * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
    */
-  public final function checkMsisdnsArray($msisdns,$plus)
+  protected final function checkMsisdnsArray($msisdns,$plus)
   {
     if(is_array($msisdns))
     {
@@ -202,7 +202,7 @@ abstract class GeodropRequest
    * @param date $datetime Date to check
    * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
    */
-  public final function checkIfFutureDatetime($datetime)
+  protected final function checkIfFutureDatetime($datetime)
   {
     //check the format
     if(!$this->checkDatetimeFormat($datetime))
@@ -225,7 +225,7 @@ abstract class GeodropRequest
    * @param date $datetime Date to check
    * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
    */
-  public final function checkDatetimeFormat($datetime)
+  protected final function checkDatetimeFormat($datetime)
   {
     if(date_parse($datetime)['error_count'] != 0)
     {
@@ -246,7 +246,7 @@ abstract class GeodropRequest
    * <CODE>false</CODE> otherwise
    * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
    */
-  public final function checkIfArrayOfPairOfOrderIdMsisdn($arrayToCheck,$plus)
+  protected final function checkIfArrayOfPairOfOrderIdMsisdn($arrayToCheck,$plus)
   {
     if(!is_array($arrayToCheck))
     {
@@ -287,7 +287,7 @@ abstract class GeodropRequest
    * @param string|int $var The var to check
    * @return boolean <CODE>true</CODE> on success, <CODE>false</CODE> otherwise.
    */
-  public final function checkIfIntegerOrDigitString($var)
+  protected final function checkIfIntegerOrDigitString($var)
   {
     if(is_int($var) || ctype_digit($var))
     {
@@ -296,6 +296,7 @@ abstract class GeodropRequest
     return false;
   }
   
+  //getters
   /**
    * Returns the parameters of the <CODE>GeodropRequest</CODE>
    *

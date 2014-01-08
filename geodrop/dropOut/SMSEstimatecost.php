@@ -89,6 +89,28 @@ class SMSEstimatecost extends GeodropRequest
     $this->response = new SMSEstimatecost_Response(); 
     return $this->response->fillParameters($http_response);
   }
+  
+  //getters
+  /**
+   * Returns the text of the message to send
+   * @access public
+   * @return string
+   */
+  public function get_message_text()
+  {
+    return $this->message_text;
+  }
+  
+  /**
+   * Returns the msisdn of the recipient or an array of msisdns if there are many recipients;
+   * each msisdn is in E.164 format with '+'
+   * @access public
+   * @return string|string[]
+   */
+  public function get_dest_msisdns()
+  {
+    return $this->dest_msisdns;
+  }
 }
 
 ?>

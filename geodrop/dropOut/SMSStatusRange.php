@@ -120,6 +120,47 @@ class SMSStatusRange extends GeodropRequest
      $this->response = new SMSStatus_Response();
      return $this->response->fillParameters($http_response);
    }
+   
+   //getters
+   /**
+    * Returns the end date of the time interval
+    * @access public
+    * @return date
+    */
+   public function get_range_dateTo()
+   {
+      return $this->range_dateTo;
+   }
+   /**
+    * Returns the start date of the time interval
+    * @access public
+    * @return date
+    */
+   public function get_range_dateFrom()
+   {
+      return $this->range_dateFrom;
+   }
+   /**
+    * Returns the limit, used to paginate the result,
+    * it consist of two integers separated by a comma,
+    * the first one indicates the position of the first required result
+    * and the second the total number of result to return
+    * @access public
+    * @return string
+    */
+   public function get_range_limit()
+   {
+      return $this->range_limit();
+   }
+   /**
+    * Returns the client id
+    * @access public
+    * @return string
+    */
+   public function get_client_id()
+   {
+      return $this->client_id;
+   }
  }
  
  ?>

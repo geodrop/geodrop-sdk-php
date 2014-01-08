@@ -127,6 +127,46 @@ class SMSSend extends GeodropRequest
     $this->body.= '</GEOSMS>';
   }
 
+  //getters
+  /**
+   * Returns the text of the message to send
+   * @access public
+   * @return string
+   */
+  public function get_message_text()
+  {
+    return $this->message_text;
+  }
+  /**
+   * Returns the msisdn of the recipient or an array of msisdns if there are many recipients;
+   * each msisdn is in E.164 format with '+'
+   * @access public
+   * @return string|string[]
+   */
+  public function get_dest_msisdns()
+  {
+    return $this->dest_msisdns;
+  }
+  /**
+   * Returns the personalized sender
+   * @access public
+   * @return string
+   */
+  public function get_tpoa()
+  {
+    return $this->tpoa;
+  }
+  /**
+   * Returns date and time in the format "Y-m-d H:i:s",
+   * used to send the message to a certain date,
+   * if not specified the message is sent immediately
+   * @access public
+   * @return date
+   */
+  public function get_deferred()
+  {
+    return $this->deferred;
+  }
 }
 
 ?>

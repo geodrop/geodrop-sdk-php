@@ -72,6 +72,17 @@ class SMSJobsScheduledDelete extends GeodropRequest
      $this->response = new SMSJobsScheduled_Response();
      return $this->response->fillParameters($http_response);
    }
+   
+   //getters
+   /**
+    * Returns the job id of the job to delete
+    * @access public
+    * @return string
+    */
+   public function get_job_id()
+   {
+      return $this->job_id;
+   }
 }
  
 ?>

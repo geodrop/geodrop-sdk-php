@@ -180,6 +180,64 @@ class SMSJobsScheduledModify extends GeodropRequest
      $this->response = new SMSJobsScheduled_Response();
      return $this->response->fillParameters($http_response);
    }
+   
+   //getters
+   /**
+    * Returns the job id of the job to modify
+    * @access public
+    * @return string
+    */
+   public function get_job_id()
+   {
+      return $this->job_id;
+   }
+   /**
+    * Returns the text of the message
+    * @access public
+    * @return string
+    */
+   public function get_message_text()
+   {
+      return $this->message_text;
+   }
+   /**
+    * Returns the array of msisdns to delete; each msisdn is in E.164 format with '+'
+    * @access public
+    * @return string[]
+    */
+   public function get_msisdn_to_delete()
+   {
+      return $this->msisdn_to_delete;
+   }
+   /**
+    * Returns the array of msisdns to add; each msisdn is in E.164 format with '+'
+    * @access public
+    * @return string[]
+    */
+   public function get_msisdn_to_add()
+   {
+      return $this->get_msisdn_to_add;
+   }
+   /**
+    * Returns the personalized sender
+    * @access public
+    * @return string
+    */
+   public function get_tpoa()
+   {
+      return $this->tpoa;
+   }
+   /**
+    * Returns the date and time in the format "Y-m-d H:i:s",
+    * used to send the message to a certain date,
+    * if not specified the message is sent immediately
+    * @access public
+    * @return date
+    */
+   public function get_deferred_time()
+   {
+      return $this->deferred_time;
+   }
 }
 
 ?>
