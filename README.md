@@ -52,7 +52,7 @@ if($session->runMethod($requestChallenge))
 
 Documentation
 -----
-The documentation is available in the [doc folder](https://github.com/geodrop/geodrop-sdk-php/tree/master/doc).
+The documentation is available in the [doc folder](https://github.com/geodrop/geodrop-sdk-php/tree/master/doc) and [here](http://geodrop.github.io/geodrop-sdk-php/).
 
 Versioning
 -----
