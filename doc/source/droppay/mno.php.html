@@ -1,0 +1,211 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Wed, 08 Jan 2014 14:24:30 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>dropPay/Mno.php (PHP GeodropSDK)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/droppay/mno.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>dropPay/Mno.php</h1>
+<hr>
+
+<a name="line1"></a><pre><?php
+<a name="line2"></a>  /**
+<a name="line3"></a>   * Indicates settings for which the payment port is enabled (see Mobile Network Code)
+<a name="line4"></a>   *
+<a name="line5"></a>   * @author A-Tono s.r.l.
+<a name="line6"></a>   * @since 1.0
+<a name="line7"></a>   *
+<a name="line8"></a>   */
+<a name="line9"></a>  class Mno
+<a name="line10"></a>  {
+<a name="line11"></a>    /**
+<a name="line12"></a>     * Short identifier label for network operator
+<a name="line13"></a>     * @var string
+<a name="line14"></a>     */
+<a name="line15"></a>    private $brand;
+<a name="line16"></a>    /**
+<a name="line17"></a>     * Double value parameter made of two dot separed integers
+<a name="line18"></a>     * @var string
+<a name="line19"></a>     */
+<a name="line20"></a>    private $mcnc;
+<a name="line21"></a>    /**
+<a name="line22"></a>     * Long network operator description
+<a name="line23"></a>     * @var string
+<a name="line24"></a>     */
+<a name="line25"></a>    private $operator;
+<a name="line26"></a>    /**
+<a name="line27"></a>     * It is enabled for short messaging features;
+<a name="line28"></a>     * it is used as sender of short messager pertinent to the payment port,
+<a name="line29"></a>     * and/or recipient for requests coming from customers (reply messages or purchasing actions)
+<a name="line30"></a>     *
+<a name="line31"></a>     * @var int
+<a name="line32"></a>     */
+<a name="line33"></a>    private $shortcode;
+<a name="line34"></a>    
+<a name="line35"></a>    public function __destruct()
+<a name="line36"></a>    {
+<a name="line37"></a>      unset($this->brand);
+<a name="line38"></a>      unset($this->mcnc);
+<a name="line39"></a>      unset($this->operator);
+<a name="line40"></a>      unset($this->shortcode);
+<a name="line41"></a>    }
+<a name="line42"></a>    
+<a name="line43"></a>    /**
+<a name="line44"></a>     * Returns a string representation of the object;
+<a name="line45"></a>     * in general, the toString method returns a string that "textually represents" this object;
+<a name="line46"></a>     * the result should be a concise but informative representation that is easy for a person to read
+<a name="line47"></a>     * 
+<a name="line48"></a>     * @return string A string rapresentation of the object
+<a name="line49"></a>     */
+<a name="line50"></a>    public function toString()
+<a name="line51"></a>    {
+<a name="line52"></a>      $result = " - brand: ";
+<a name="line53"></a>      $result.= $this->brand;
+<a name="line54"></a>      $result.= ", mcnc: ";
+<a name="line55"></a>      $result.= $this->mcnc;
+<a name="line56"></a>      $result.= ", operator: ";
+<a name="line57"></a>      $result.= $this->operator;
+<a name="line58"></a>      $result.= ", shortcode: ";
+<a name="line59"></a>      $result.= $this->shortcode;
+<a name="line60"></a>      
+<a name="line61"></a>      return $result;
+<a name="line62"></a>    }
+<a name="line63"></a>    
+<a name="line64"></a>    //setters
+<a name="line65"></a>    /**
+<a name="line66"></a>     * Set the brand
+<a name="line67"></a>     *
+<a name="line68"></a>     * @param string brand Brand
+<a name="line69"></a>     * @return void
+<a name="line70"></a>     */
+<a name="line71"></a>    public function set_brand($brand)
+<a name="line72"></a>    {
+<a name="line73"></a>      $this->brand = trim($brand);
+<a name="line74"></a>    }
+<a name="line75"></a>    
+<a name="line76"></a>    /**
+<a name="line77"></a>     * Set the mcnc
+<a name="line78"></a>     *
+<a name="line79"></a>     * @param string mcnc Mcnc
+<a name="line80"></a>     * @return void
+<a name="line81"></a>     */
+<a name="line82"></a>    public function set_mcnc($mcnc)
+<a name="line83"></a>    {
+<a name="line84"></a>      $this->mcnc = trim($mcnc);
+<a name="line85"></a>    }
+<a name="line86"></a>    
+<a name="line87"></a>    /**
+<a name="line88"></a>     * Set the operator
+<a name="line89"></a>     *
+<a name="line90"></a>     * @param string operator Operator
+<a name="line91"></a>     * @return void
+<a name="line92"></a>     */
+<a name="line93"></a>    public function set_operator($operator)
+<a name="line94"></a>    {
+<a name="line95"></a>      $this->operator = trim($operator);
+<a name="line96"></a>    }
+<a name="line97"></a>    
+<a name="line98"></a>    /**
+<a name="line99"></a>     * Set the shortcode
+<a name="line100"></a>     * 
+<a name="line101"></a>     * @param int shortcode Shortcode
+<a name="line102"></a>     * @return void
+<a name="line103"></a>     */
+<a name="line104"></a>    public function set_shortcode($shortcode)
+<a name="line105"></a>    {
+<a name="line106"></a>      $this->shortcode = trim($shortcode);
+<a name="line107"></a>    }
+<a name="line108"></a>    
+<a name="line109"></a>    //getters
+<a name="line110"></a>    /**
+<a name="line111"></a>     * Returns the brand
+<a name="line112"></a>     * 
+<a name="line113"></a>     * @return string Brand
+<a name="line114"></a>     */
+<a name="line115"></a>    public function get_brand()
+<a name="line116"></a>    {
+<a name="line117"></a>      return $this->brand;
+<a name="line118"></a>    }
+<a name="line119"></a>    
+<a name="line120"></a>    /**
+<a name="line121"></a>     * Returns the mcnc
+<a name="line122"></a>     * 
+<a name="line123"></a>     * @return string Mcnc
+<a name="line124"></a>     */
+<a name="line125"></a>    public function get_mcnc()
+<a name="line126"></a>    {
+<a name="line127"></a>      return $this->mcnc;
+<a name="line128"></a>    }
+<a name="line129"></a>    
+<a name="line130"></a>    /**
+<a name="line131"></a>     * Returns the operator
+<a name="line132"></a>     * 
+<a name="line133"></a>     * @return string Operator
+<a name="line134"></a>     */
+<a name="line135"></a>    public function get_operator()
+<a name="line136"></a>    {
+<a name="line137"></a>      return $this->operator;
+<a name="line138"></a>    }
+<a name="line139"></a>    
+<a name="line140"></a>    /**
+<a name="line141"></a>     * Returns the shortcode
+<a name="line142"></a>     * 
+<a name="line143"></a>     * @return int Shortcode
+<a name="line144"></a>     */
+<a name="line145"></a>    public function get_shortcode()
+<a name="line146"></a>    {
+<a name="line147"></a>      return $this->shortcode;
+<a name="line148"></a>    }
+<a name="line149"></a>  }
+<a name="line150"></a>?>
+<a name="line151"></a></pre>
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/droppay/mno.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

@@ -1,0 +1,286 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Wed, 08 Jan 2014 14:24:30 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>dropPay/CustomerCheck_Response.php (PHP GeodropSDK)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/droppay/customercheck_response.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>dropPay/CustomerCheck_Response.php</h1>
+<hr>
+
+<a name="line1"></a><pre><?php
+<a name="line2"></a>require_once 'GeodropResponse.php';
+<a name="line3"></a>
+<a name="line4"></a>/**
+<a name="line5"></a> * Response to a <CODE>CustomerCheck</CODE> request
+<a name="line6"></a> *
+<a name="line7"></a> * @author A-Tono s.r.l.
+<a name="line8"></a> * @since 1.0
+<a name="line9"></a> *
+<a name="line10"></a> *
+<a name="line11"></a> */
+<a name="line12"></a>class CustomerCheck_Response extends GeodropResponse
+<a name="line13"></a>{
+<a name="line14"></a>  /**
+<a name="line15"></a>   * Customer phone number in E.164 format (without +)
+<a name="line16"></a>   * @var string
+<a name="line17"></a>   */
+<a name="line18"></a>  private $msisdn;
+<a name="line19"></a>  /**
+<a name="line20"></a>   * DropPay port id
+<a name="line21"></a>   * @var int
+<a name="line22"></a>   */
+<a name="line23"></a>  private $port;
+<a name="line24"></a>  /**
+<a name="line25"></a>   * Error code
+<a name="line26"></a>   * @var int
+<a name="line27"></a>   */
+<a name="line28"></a>  private $code;
+<a name="line29"></a>  /**
+<a name="line30"></a>   * Verbose description of the error
+<a name="line31"></a>   * @var string
+<a name="line32"></a>   */
+<a name="line33"></a>  private $description;
+<a name="line34"></a>  /**
+<a name="line35"></a>   * Short identifier label of network operator
+<a name="line36"></a>   * @var string
+<a name="line37"></a>   */
+<a name="line38"></a>  private $mno;
+<a name="line39"></a>  /**
+<a name="line40"></a>   * Status of the port (ACTIVE, NOTACTIVE, SUSPENDED)
+<a name="line41"></a>   * @var string
+<a name="line42"></a>   */
+<a name="line43"></a>  private $status;
+<a name="line44"></a>  /**
+<a name="line45"></a>   * Subscriber id
+<a name="line46"></a>   * @var int
+<a name="line47"></a>   */
+<a name="line48"></a>  private $subscriber;
+<a name="line49"></a>  /**
+<a name="line50"></a>   * Subscription date
+<a name="line51"></a>   * @var date
+<a name="line52"></a>   */
+<a name="line53"></a>  private $date;
+<a name="line54"></a>  /**
+<a name="line55"></a>   * Status change date
+<a name="line56"></a>   * @var date
+<a name="line57"></a>   */
+<a name="line58"></a>  private $updated;
+<a name="line59"></a>  /**
+<a name="line60"></a>   * Subscription category
+<a name="line61"></a>   * @var string
+<a name="line62"></a>   */
+<a name="line63"></a>  private $category;
+<a name="line64"></a>  
+<a name="line65"></a>  public function __destruct()
+<a name="line66"></a>  {
+<a name="line67"></a>    parent::__destruct();    
+<a name="line68"></a>    unset($this->msisdn);
+<a name="line69"></a>    unset($this->port);
+<a name="line70"></a>    unset($this->code);
+<a name="line71"></a>    unset($this->description);
+<a name="line72"></a>    unset($this->mno);
+<a name="line73"></a>    unset($this->status);
+<a name="line74"></a>    unset($this->subscriber);
+<a name="line75"></a>    unset($this->date);
+<a name="line76"></a>    unset($this->updated);
+<a name="line77"></a>    unset($this->category);
+<a name="line78"></a>  }
+<a name="line79"></a>  
+<a name="line80"></a>  public function toString()
+<a name="line81"></a>  {
+<a name="line82"></a>    $result = "msisdn: ";
+<a name="line83"></a>    $result.= $this->msisdn."\n";
+<a name="line84"></a>    $result.= "port: ";
+<a name="line85"></a>    $result.= $this->port."\n";
+<a name="line86"></a>    $result.= "code: ";
+<a name="line87"></a>    $result.= $this->code."\n";
+<a name="line88"></a>    $result.= "description: ";
+<a name="line89"></a>    $result.= $this->description."\n";
+<a name="line90"></a>    $result.= "mno: ";
+<a name="line91"></a>    $result.= $this->mno."\n";
+<a name="line92"></a>    $result.= "status: ";
+<a name="line93"></a>    $result.= $this->status."\n";
+<a name="line94"></a>    $result.= "subscriber: ";
+<a name="line95"></a>    $result.= $this->subscriber."\n";
+<a name="line96"></a>    $result.= "date: ";
+<a name="line97"></a>    $result.= $this->date."\n";
+<a name="line98"></a>    $result.= "updated: ";
+<a name="line99"></a>    $result.= $this->updated."\n";
+<a name="line100"></a>    $result.= "category: ";
+<a name="line101"></a>    $result.= $this->category."\n"; 
+<a name="line102"></a>    return $result;
+<a name="line103"></a>  }
+<a name="line104"></a>  
+<a name="line105"></a>  public function fillParameters($http_response)
+<a name="line106"></a>  {
+<a name="line107"></a>    try
+<a name="line108"></a>    {
+<a name="line109"></a>      $xml = new SimpleXMLElement($http_response);
+<a name="line110"></a>    }
+<a name="line111"></a>    catch (Exception $e)
+<a name="line112"></a>    {
+<a name="line113"></a>      error_log(ErrorType::RESPONSE_NOT_XML);
+<a name="line114"></a>      return false;
+<a name="line115"></a>    }
+<a name="line116"></a>    
+<a name="line117"></a>    $this->msisdn       = trim($xml->pay->{'check-rsp'}['msisdn']);
+<a name="line118"></a>    $this->port         = (int)trim($xml->pay->{'check-rsp'}['port']);
+<a name="line119"></a>    $this->code         = (int)trim($xml->pay->{'check-rsp'}['code']);
+<a name="line120"></a>    $this->description  = trim($xml->pay->{'check-rsp'}['description']);
+<a name="line121"></a>    $this->mno          = trim($xml->pay->{'check-rsp'}['mno']);
+<a name="line122"></a>    $this->status       = trim($xml->pay->{'check-rsp'}->subscription->status);
+<a name="line123"></a>    $this->subscriber   = (int)trim($xml->pay->{'check-rsp'}->subscription->subscriber);
+<a name="line124"></a>    $this->date         = date('Y-m-d H:i:s',strtotime(trim($xml->pay->{'check-rsp'}->subscription->date)));
+<a name="line125"></a>    $this->updated      = date('Y-m-d H:i:s',strtotime(trim($xml->pay->{'check-rsp'}->subscription->updated)));
+<a name="line126"></a>    $this->category     = trim($xml->pay->{'check-rsp'}->subscription->category);
+<a name="line127"></a>    
+<a name="line128"></a>    unset($xml);
+<a name="line129"></a>    return true;
+<a name="line130"></a>  }
+<a name="line131"></a>  
+<a name="line132"></a>  //getters
+<a name="line133"></a>  /**
+<a name="line134"></a>   * Returns the customer phone number
+<a name="line135"></a>   * 
+<a name="line136"></a>   * @return string Customer phone number
+<a name="line137"></a>   */
+<a name="line138"></a>  public function get_msisdn()
+<a name="line139"></a>  {
+<a name="line140"></a>    return $this->msisdn;
+<a name="line141"></a>  }
+<a name="line142"></a>  /**
+<a name="line143"></a>   * Returns the DropPay port id
+<a name="line144"></a>   * 
+<a name="line145"></a>   * @return int DropPay port id
+<a name="line146"></a>   */
+<a name="line147"></a>  public function get_port()
+<a name="line148"></a>  {
+<a name="line149"></a>    return $this->port;
+<a name="line150"></a>  }
+<a name="line151"></a>  /**
+<a name="line152"></a>   * Returns the error code
+<a name="line153"></a>   * 
+<a name="line154"></a>   * @return int error code
+<a name="line155"></a>   */
+<a name="line156"></a>  public function get_code()
+<a name="line157"></a>  {
+<a name="line158"></a>    return $this->code;
+<a name="line159"></a>  }
+<a name="line160"></a>  /**
+<a name="line161"></a>   * Returns the description of the error
+<a name="line162"></a>   * 
+<a name="line163"></a>   * @return string Description of the error
+<a name="line164"></a>   */
+<a name="line165"></a>  public function get_description()
+<a name="line166"></a>  {
+<a name="line167"></a>    return $this->description;
+<a name="line168"></a>  }
+<a name="line169"></a>  /**
+<a name="line170"></a>   * Returns the mno
+<a name="line171"></a>   * 
+<a name="line172"></a>   * @return string Mno
+<a name="line173"></a>   */
+<a name="line174"></a>  public function get_mno()
+<a name="line175"></a>  {
+<a name="line176"></a>    return $this->mno;
+<a name="line177"></a>  }
+<a name="line178"></a>  /**
+<a name="line179"></a>   * Returns the status
+<a name="line180"></a>   * 
+<a name="line181"></a>   * @return string Status
+<a name="line182"></a>   */
+<a name="line183"></a>  public function get_status()
+<a name="line184"></a>  {
+<a name="line185"></a>    return $this->status;
+<a name="line186"></a>  }
+<a name="line187"></a>  /**
+<a name="line188"></a>   * Returns the subscriber id
+<a name="line189"></a>   * 
+<a name="line190"></a>   * @return int Subscriber id
+<a name="line191"></a>   */
+<a name="line192"></a>  public function get_subscriber()
+<a name="line193"></a>  {
+<a name="line194"></a>    return $this->subscriber;
+<a name="line195"></a>  }
+<a name="line196"></a>  /**
+<a name="line197"></a>   * Returns the subscription date
+<a name="line198"></a>   * 
+<a name="line199"></a>   * @return date Subscription date
+<a name="line200"></a>   */
+<a name="line201"></a>  public function get_date()
+<a name="line202"></a>  {
+<a name="line203"></a>    return $this->date;
+<a name="line204"></a>  }
+<a name="line205"></a>  /**
+<a name="line206"></a>   * Returns the status change date
+<a name="line207"></a>   * 
+<a name="line208"></a>   * @return date Status change date
+<a name="line209"></a>   */
+<a name="line210"></a>  public function get_updated()
+<a name="line211"></a>  {
+<a name="line212"></a>    return $this->updated;
+<a name="line213"></a>  }
+<a name="line214"></a>  /**
+<a name="line215"></a>   * Returns the subscription category
+<a name="line216"></a>   * 
+<a name="line217"></a>   * @return string Subscription category
+<a name="line218"></a>   */
+<a name="line219"></a>  public function get_category()
+<a name="line220"></a>  {
+<a name="line221"></a>    return $this->category;
+<a name="line222"></a>  }
+<a name="line223"></a>}
+<a name="line224"></a>
+<a name="line225"></a>?>
+<a name="line226"></a></pre>
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/droppay/customercheck_response.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>
