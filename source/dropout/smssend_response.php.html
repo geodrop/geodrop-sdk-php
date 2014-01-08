@@ -1,0 +1,230 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Wed, 08 Jan 2014 14:24:30 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>dropOut/SMSSend_Response.php (PHP GeodropSDK)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/dropout/smssend_response.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>dropOut/SMSSend_Response.php</h1>
+<hr>
+
+<a name="line1"></a><pre><?php
+<a name="line2"></a>require_once 'GeodropResponse.php';
+<a name="line3"></a>
+<a name="line4"></a>/**
+<a name="line5"></a> * Response to a <CODE>SMSSend</CODE> request
+<a name="line6"></a> *
+<a name="line7"></a> * @author A-Tono s.r.l.
+<a name="line8"></a> * @since 1.0
+<a name="line9"></a> *
+<a name="line10"></a> *
+<a name="line11"></a> */
+<a name="line12"></a>class SMSSend_Response extends GeodropResponse
+<a name="line13"></a>{
+<a name="line14"></a>  /**
+<a name="line15"></a>   * Code that indicates the result of the request, it is set to 0 on success
+<a name="line16"></a>   * @var int
+<a name="line17"></a>   */
+<a name="line18"></a>  private $code;
+<a name="line19"></a>  /**
+<a name="line20"></a>   * Description of error
+<a name="line21"></a>   * @var string
+<a name="line22"></a>   */
+<a name="line23"></a>  private $description;
+<a name="line24"></a>  /**
+<a name="line25"></a>   * Total of the requested recipients
+<a name="line26"></a>   * @var int
+<a name="line27"></a>   */
+<a name="line28"></a>  private $report_requested;
+<a name="line29"></a>  /**
+<a name="line30"></a>   * Total of the effectively sent SMS messages
+<a name="line31"></a>   * @var int
+<a name="line32"></a>   */
+<a name="line33"></a>  private $report_posted;
+<a name="line34"></a>  /**
+<a name="line35"></a>   * Contains a <CODE>Report</CODE> for each recipient's mobile phone number
+<a name="line36"></a>   * @var Report[]
+<a name="line37"></a>   */
+<a name="line38"></a>  private $report_list;
+<a name="line39"></a>
+<a name="line40"></a>  public function __destruct()
+<a name="line41"></a>  {
+<a name="line42"></a>    parent::__destruct();
+<a name="line43"></a>    unset($this->code);
+<a name="line44"></a>    unset($this->description);
+<a name="line45"></a>    unset($this->report_requested);
+<a name="line46"></a>    unset($this->report_posted);
+<a name="line47"></a>    unset($this->report_list);
+<a name="line48"></a>  }
+<a name="line49"></a>   
+<a name="line50"></a>  public function toString()
+<a name="line51"></a>  {
+<a name="line52"></a>    $result = "code: ";
+<a name="line53"></a>    $result.= $this->code."\n";
+<a name="line54"></a>    $result.= "description: ";
+<a name="line55"></a>    $result.= $this->description."\n";
+<a name="line56"></a>    $result.= "requested: ";
+<a name="line57"></a>    $result.= $this->report_requested."\n";
+<a name="line58"></a>    $result.= "posted: ";
+<a name="line59"></a>    $result.= $this->report_posted."\n";
+<a name="line60"></a>    $result.= "report list: \n";
+<a name="line61"></a>    foreach($this->report_list as $report)
+<a name="line62"></a>    {
+<a name="line63"></a>      $result.= $report->toString();
+<a name="line64"></a>      $result.="\n";
+<a name="line65"></a>    }
+<a name="line66"></a>    return $result;
+<a name="line67"></a>  }
+<a name="line68"></a>  
+<a name="line69"></a>  public function fillParameters($http_response)
+<a name="line70"></a>  {
+<a name="line71"></a>    //echo "SMSSend::decodeResponse: ".$http_response."\n";
+<a name="line72"></a>    try
+<a name="line73"></a>    {
+<a name="line74"></a>      $xml = new SimpleXMLElement($http_response);
+<a name="line75"></a>    }
+<a name="line76"></a>    catch (Exception $e)
+<a name="line77"></a>    {
+<a name="line78"></a>      error_log(ErrorType::RESPONSE_NOT_XML);
+<a name="line79"></a>      return false;
+<a name="line80"></a>    }
+<a name="line81"></a>    
+<a name="line82"></a>    //tag USER if ok, tag BAD if error
+<a name="line83"></a>    if(isset($xml->BAD))
+<a name="line84"></a>    {
+<a name="line85"></a>      $this->code = 		(int)trim($xml->BAD['code']);
+<a name="line86"></a>      $this->description = 	trim($xml->BAD['description']);
+<a name="line87"></a>    }
+<a name="line88"></a>    elseif (isset($xml->USER))
+<a name="line89"></a>    {
+<a name="line90"></a>      $this->code 		= 0;
+<a name="line91"></a>      $this->description 	= "ok";
+<a name="line92"></a>    }
+<a name="line93"></a>    
+<a name="line94"></a>    $this->report_requested = 	(int)trim($xml->REPORT['requested']);
+<a name="line95"></a>    $this->report_posted = 	(int)trim($xml->REPORT['posted']);
+<a name="line96"></a>    
+<a name="line97"></a>    if(isset($xml->REPORT))
+<a name="line98"></a>    {
+<a name="line99"></a>      $report_list = array();
+<a name="line100"></a>      foreach($xml->REPORT->OK as $ok)
+<a name="line101"></a>      {
+<a name="line102"></a>	$r = new Report();
+<a name="line103"></a>	$r->set_order_id(trim($ok['orderid']));
+<a name="line104"></a>	$r->set_msisdn(trim($ok['msisdn']));
+<a name="line105"></a>	$r->set_status(0);
+<a name="line106"></a>	array_push($report_list,$r);
+<a name="line107"></a>      }
+<a name="line108"></a>      foreach($xml->REPORT->ERROR as $error)
+<a name="line109"></a>      {
+<a name="line110"></a>	$r = new Report();
+<a name="line111"></a>	$r->set_msisdn(trim($error['msisdn']));
+<a name="line112"></a>	$r->set_status((int)$error['reason']);
+<a name="line113"></a>	array_push($report_list,$r);
+<a name="line114"></a>      }
+<a name="line115"></a>      $this->report_list = $report_list;
+<a name="line116"></a>    }
+<a name="line117"></a>    unset($xml);
+<a name="line118"></a>    return true;
+<a name="line119"></a>  }
+<a name="line120"></a>  
+<a name="line121"></a>  //getters
+<a name="line122"></a>  /**
+<a name="line123"></a>   * Returns the code
+<a name="line124"></a>   * 
+<a name="line125"></a>   * @return int Code
+<a name="line126"></a>   */
+<a name="line127"></a>  public function get_code()
+<a name="line128"></a>  {
+<a name="line129"></a>    return $this->code;
+<a name="line130"></a>  }
+<a name="line131"></a>  /**
+<a name="line132"></a>   * Returns the description of the error
+<a name="line133"></a>   * 
+<a name="line134"></a>   * @return string Description of the error
+<a name="line135"></a>   */
+<a name="line136"></a>  public function get_description()
+<a name="line137"></a>  {
+<a name="line138"></a>    return $this->description;
+<a name="line139"></a>  }
+<a name="line140"></a>  /**
+<a name="line141"></a>   * Returns the total of the requested recipients
+<a name="line142"></a>   * 
+<a name="line143"></a>   * @return int Total of the requested recipients
+<a name="line144"></a>   */
+<a name="line145"></a>  public function get_report_requested()
+<a name="line146"></a>  {
+<a name="line147"></a>    return $this->report_requested;
+<a name="line148"></a>  }
+<a name="line149"></a>  /**
+<a name="line150"></a>   * Returns the total of the effectively sent SMS messages
+<a name="line151"></a>   * 
+<a name="line152"></a>   * @return int Total of the effectively sent SMS messages
+<a name="line153"></a>   */
+<a name="line154"></a>  public function get_report_posted()
+<a name="line155"></a>  {
+<a name="line156"></a>    return $this->report_posted;
+<a name="line157"></a>  }
+<a name="line158"></a>  /**
+<a name="line159"></a>   * Returns the <CODE>Report</CODE> array
+<a name="line160"></a>   * 
+<a name="line161"></a>   * @return Report[] The <CODE>Report</CODE> array
+<a name="line162"></a>   */ 
+<a name="line163"></a>  public function get_report_list()
+<a name="line164"></a>  {
+<a name="line165"></a>    return $this->report_list;
+<a name="line166"></a>  }
+<a name="line167"></a>}
+<a name="line168"></a>
+<a name="line169"></a>?>
+<a name="line170"></a></pre>
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/dropout/smssend_response.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

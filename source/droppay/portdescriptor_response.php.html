@@ -1,0 +1,192 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Wed, 08 Jan 2014 14:24:30 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>dropPay/PortDescriptor_Response.php (PHP GeodropSDK)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/droppay/portdescriptor_response.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>dropPay/PortDescriptor_Response.php</h1>
+<hr>
+
+<a name="line1"></a><pre><?php
+<a name="line2"></a>require_once 'GeodropResponse.php';
+<a name="line3"></a>
+<a name="line4"></a>/**
+<a name="line5"></a> * Response to a <CODE>PortDescriptor</CODE> request
+<a name="line6"></a> *
+<a name="line7"></a> * @author A-Tono s.r.l.
+<a name="line8"></a> * @since 1.0
+<a name="line9"></a> *
+<a name="line10"></a> *
+<a name="line11"></a> */
+<a name="line12"></a>class PortDescriptor_Response extends GeodropResponse
+<a name="line13"></a>{
+<a name="line14"></a>  /**
+<a name="line15"></a>   * Array of ports
+<a name="line16"></a>   * @var Port[]
+<a name="line17"></a>   */
+<a name="line18"></a>  private $ports;
+<a name="line19"></a>  
+<a name="line20"></a>  public function __destruct()
+<a name="line21"></a>  {
+<a name="line22"></a>    parent::__destruct();    
+<a name="line23"></a>    unset($this->ports);
+<a name="line24"></a>  }
+<a name="line25"></a>  
+<a name="line26"></a>  public function toString()
+<a name="line27"></a>  {
+<a name="line28"></a>    $result = "";
+<a name="line29"></a>    foreach($this->ports as $key => $value)
+<a name="line30"></a>    {
+<a name="line31"></a>      $result.= "Port ".$key."\n";
+<a name="line32"></a>      $result.= $value->toString()."\n";
+<a name="line33"></a>    }
+<a name="line34"></a>    return $result;
+<a name="line35"></a>  }
+<a name="line36"></a>  
+<a name="line37"></a>  public function fillParameters($http_response)
+<a name="line38"></a>  {
+<a name="line39"></a>    try
+<a name="line40"></a>    {
+<a name="line41"></a>      $xml = new SimpleXMLElement($http_response);
+<a name="line42"></a>    }
+<a name="line43"></a>    catch (Exception $e)
+<a name="line44"></a>    {
+<a name="line45"></a>      error_log(ErrorType::RESPONSE_NOT_XML);
+<a name="line46"></a>      return false;
+<a name="line47"></a>    }
+<a name="line48"></a>    
+<a name="line49"></a>    $ports = array();
+<a name="line50"></a>    if(isset($xml->pay->ports))
+<a name="line51"></a>    {
+<a name="line52"></a>      foreach($xml->pay->ports->port as $port)
+<a name="line53"></a>      {     
+<a name="line54"></a>	$p = $this->fillPortParameters($port);
+<a name="line55"></a>	//add a port
+<a name="line56"></a>	$ports[(string)trim($port['id'])] = $p;
+<a name="line57"></a>      }  
+<a name="line58"></a>    }
+<a name="line59"></a>    else
+<a name="line60"></a>    {
+<a name="line61"></a>      $p = $this->fillPortParameters($xml->pay->port);
+<a name="line62"></a>      $ports[(string)trim($xml->pay->port['id'])] = $p;
+<a name="line63"></a>    }
+<a name="line64"></a>    unset($xml);
+<a name="line65"></a>    $this->ports = $ports;
+<a name="line66"></a>    return true;
+<a name="line67"></a>  }
+<a name="line68"></a>  
+<a name="line69"></a>  /**
+<a name="line70"></a>   * Performs the parsing of the http response
+<a name="line71"></a>   * and fills the field of a single <CODE>Port</CODE> object
+<a name="line72"></a>   *
+<a name="line73"></a>   * @param string http_response Response to the http request, relating to the port
+<a name="line74"></a>   *  
+<a name="line75"></a>   * @return boolean Returns <CODE>true</CODE> on success, <CODE>false</CODE> otherwise
+<a name="line76"></a>   */
+<a name="line77"></a>  private function fillPortParameters($port)
+<a name="line78"></a>  {
+<a name="line79"></a>    //Port object
+<a name="line80"></a>    $p = new Port();
+<a name="line81"></a>    $p->set_drop(trim($port['drop']));
+<a name="line82"></a>    $p->set_alias(trim($port->alias));
+<a name="line83"></a>    $p->set_price_tag(trim($port->price['tag']));
+<a name="line84"></a>    $p->set_price_value(trim($port->price['value']));
+<a name="line85"></a>    $p->set_type(trim($port['type']));
+<a name="line86"></a>    $p->set_open_since(trim($port->open['since']));
+<a name="line87"></a>    $p->set_open_until(trim($port->open['until']));
+<a name="line88"></a>    $p->set_open_state(trim($port->open['state']));
+<a name="line89"></a>    //mno_list
+<a name="line90"></a>    $mnos = array();
+<a name="line91"></a>    foreach($port->mno as $mno)
+<a name="line92"></a>    {
+<a name="line93"></a>      $m = new Mno();
+<a name="line94"></a>      $m->set_brand(trim($mno['brand']));
+<a name="line95"></a>      $m->set_mcnc(trim($mno['mcnc']));
+<a name="line96"></a>      $m->set_operator(trim($mno['operator']));
+<a name="line97"></a>      $m->set_shortcode(trim($mno['shortcode']));
+<a name="line98"></a>      array_push($mnos, $m);
+<a name="line99"></a>    }
+<a name="line100"></a>    $p->set_mno_list($mnos);
+<a name="line101"></a>    //subscription
+<a name="line102"></a>    $p->set_subscription_max(trim($port->subscription['max']));
+<a name="line103"></a>    $p->set_subscription_period(trim($port->subscription['period']));
+<a name="line104"></a>    //listener_list
+<a name="line105"></a>    $listeners = array();
+<a name="line106"></a>    foreach($port->events->listener as $listener)
+<a name="line107"></a>    {
+<a name="line108"></a>      $l = new Listener();
+<a name="line109"></a>      $l->set_uri(trim($listener['URI']));
+<a name="line110"></a>      $l->set_type(trim($listener['type']));
+<a name="line111"></a>      $l->set_lclass(trim($listener['class']));
+<a name="line112"></a>      array_push($listeners, $l);
+<a name="line113"></a>    }
+<a name="line114"></a>    $p->set_listener_list($listeners);
+<a name="line115"></a>    
+<a name="line116"></a>    return $p;
+<a name="line117"></a>  }
+<a name="line118"></a>  
+<a name="line119"></a>  //getters
+<a name="line120"></a>  /**
+<a name="line121"></a>   * Returns the ports
+<a name="line122"></a>   * 
+<a name="line123"></a>   * @return Port[] Ports
+<a name="line124"></a>   */
+<a name="line125"></a>  public function get_ports()
+<a name="line126"></a>  {
+<a name="line127"></a>    return $this->ports;
+<a name="line128"></a>  }
+<a name="line129"></a>}
+<a name="line130"></a>
+<a name="line131"></a>?>
+<a name="line132"></a></pre>
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/droppay/portdescriptor_response.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>
