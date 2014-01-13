@@ -65,35 +65,16 @@ class PortChargeSubscriptionPurchases extends GeodropRequest
       throw new Exception(ErrorType::MISSING_PARAMETERS);
     }
     
-    //check port
-    if(!$this->checkIfIntegerOrDigitString($port))
-    {
-      throw new Exception(ErrorType::MALFORMED_PORT);
-    }
-    
-    //check msisdn
-    if(!$this->checkMsisdnE164Format($msisdn,false))
-    {
-      throw new Exception(ErrorType::MALFORMED_MSISDN);
-    }
-    
-    //check subscriber
-    if(!$this->checkIfIntegerOrDigitString($subscriber))
-    {
-      throw new Exception(ErrorType::MALFORMED_SUBSCRIBER);
-    }
-    
     //set parameters
     $this->uri = Uri::PAY_PORT_CHARGE;
     $this->httpMethod = HttpMethod::POST;
     $this->contentType = ContentType::RAW;
-    $this->port = $port;
-    $this->msisdn = $msisdn;
-    $this->custom = $custom;
-    $this->text = utf8_encode($text);
-    $this->subscriber = $subscriber;
-    $this->pin = $pin;
-    $this->createParams();
+    $this->set_port($port);
+    $this->set_msisdn($msisdn);
+    $this->set_custom($custom);
+    $this->set_text(utf8_encode($text));
+    $this->set_subscriber($subscriber);
+    $this->set_pin($pin);
   }
   
   public function __destruct()
@@ -107,7 +88,7 @@ class PortChargeSubscriptionPurchases extends GeodropRequest
     unset($this->subscriber);
   }
   
-  protected function createParams()
+  public function createParams()
   {
     //set URI parameters
     $this->params = array(
@@ -184,6 +165,83 @@ class PortChargeSubscriptionPurchases extends GeodropRequest
   {
     return $this->pin;
   }
+  
+  //setters
+  /**
+   * Sets the DropPay port id
+   * @param int port The DropPay port id
+   * @return void
+   * @throws Exception If parameters are not valid
+   */
+  public function set_port($port)
+  {
+    //check port
+    if(!$this->checkIfIntegerOrDigitString($port))
+    {
+      throw new Exception(ErrorType::MALFORMED_PORT);
+    }
+    $this->port = $port;
+  }
+  /**
+   * Sets the customer phone number in E.164 format (without +)
+   * @param string msisdn The customer phone number in E.164 format (without +)
+   * @return void
+   * @throws Exception If parameters are not valid
+   */
+  public function set_msisdn($msisdn)
+  {
+    //check msisdn
+    if(!$this->checkMsisdnE164Format($msisdn,false))
+    {
+      throw new Exception(ErrorType::MALFORMED_MSISDN);
+    }
+    $this->msisdn = $msisdn;
+  }
+  /**
+   * Sets the unique CP request id
+   * @param string custom The unique CP request id
+   * @return void
+   */
+  public function set_custom($custom)
+  {
+    $this->custom = $custom;
+  }
+  /**
+   * Sets the text to send, encoded in UTF-8, up to 160 characters
+   * @param string text The text to send
+   * @return void
+   */
+  public function set_text($text)
+  {
+    $this->text = $text;
+  }
+  /**
+   * Sets the subscriber id required in subscription payments
+   * @param int subscriber The subscriber id
+   * @return void
+   * @throws Exception If parameters are not valid
+   */
+  public function set_subscriber($subscriber)
+  {
+    //check subscriber
+    if(!$this->checkIfIntegerOrDigitString($subscriber))
+    {
+      throw new Exception(ErrorType::MALFORMED_SUBSCRIBER);
+    }
+    $this->subscriber = $subscriber;
+  }
+  /**
+   * Sets the pin code sent to customer in challenge action,
+   * it is mandatory if transaction was initiated by provider calling challenge,
+   * it is not mandatory if transaction was initiated by customer sending MO
+   * @param string pin The pin code sent to customer in challenge action
+   * @return void
+   */
+  public function set_pin($pin)
+  {
+    $this->pin = $pin;
+  }
+
 }
 
 ?>

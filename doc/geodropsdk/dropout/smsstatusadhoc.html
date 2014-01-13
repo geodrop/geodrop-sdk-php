@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:29 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -74,7 +74,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <table id="summary_method">
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
-<td class="type">protected  void</td>
+<td class="type"> void</td>
 <td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request.</p></td>
 </tr>
 <tr>
@@ -89,6 +89,15 @@ that uniquely identifies a single SMS message in the Geodrop archive.</p></td>
 <tr>
 <td class="type"> string</td>
 <td class="description"><p class="name"><a href="#get_client_id()">get_client_id</a>()</p><p class="description">Returns the client id.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_dest()">set_dest</a>(string dest)</p><p class="description">Sets the array of pair 
+that uniquely identifies a single SMS message in the Geodrop archive.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_client_id()">set_client_id</a>(string client_id)</p><p class="description">Sets the client id.</p></td>
 </tr>
 </table>
 
@@ -114,16 +123,16 @@ that uniquely identifies a single SMS message in the Geodrop archive.</p></td>
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../../source/dropout/smsstatusadhoc.php.html#line73" class="location">dropOut/SMSStatusAdhoc.php at line 73</a>
+<a href="../../source/dropout/smsstatusadhoc.php.html#line66" class="location">dropOut/SMSStatusAdhoc.php at line 66</a>
 
 <h3 id="createParams()">createParams</h3>
-<code class="signature">protected  void <strong>createParams</strong>()</code>
+<code class="signature">public  void <strong>createParams</strong>()</code>
 <div class="details">
 <p>Creates the parameters for the http request</p></div>
 
 <hr>
 
-<a href="../../source/dropout/smsstatusadhoc.php.html#line93" class="location">dropOut/SMSStatusAdhoc.php at line 93</a>
+<a href="../../source/dropout/smsstatusadhoc.php.html#line86" class="location">dropOut/SMSStatusAdhoc.php at line 86</a>
 
 <h3 id="decodeResponse()">decodeResponse</h3>
 <code class="signature">public  boolean <strong>decodeResponse</strong>(string http_response)</code>
@@ -138,7 +147,7 @@ that uniquely identifies a single SMS message in the Geodrop archive.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsstatusadhoc.php.html#line107" class="location">dropOut/SMSStatusAdhoc.php at line 107</a>
+<a href="../../source/dropout/smsstatusadhoc.php.html#line100" class="location">dropOut/SMSStatusAdhoc.php at line 100</a>
 
 <h3 id="get_dest()">get_dest</h3>
 <code class="signature">public  string[][] <strong>get_dest</strong>()</code>
@@ -148,12 +157,41 @@ that uniquely identifies a single SMS message in the Geodrop archive</p></div>
 
 <hr>
 
-<a href="../../source/dropout/smsstatusadhoc.php.html#line116" class="location">dropOut/SMSStatusAdhoc.php at line 116</a>
+<a href="../../source/dropout/smsstatusadhoc.php.html#line109" class="location">dropOut/SMSStatusAdhoc.php at line 109</a>
 
 <h3 id="get_client_id()">get_client_id</h3>
 <code class="signature">public  string <strong>get_client_id</strong>()</code>
 <div class="details">
 <p>Returns the client id</p></div>
+
+<hr>
+
+<a href="../../source/dropout/smsstatusadhoc.php.html#line122" class="location">dropOut/SMSStatusAdhoc.php at line 122</a>
+
+<h3 id="set_dest()">set_dest</h3>
+<code class="signature">public  void <strong>set_dest</strong>(string dest)</code>
+<div class="details">
+<p>Sets the array of pair <order id, msisdn>
+that uniquely identifies a single SMS message in the Geodrop archive</p><dl>
+<dt>Parameters:</dt>
+<dd>dest - The array of pair <order id, msisdn></dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smsstatusadhoc.php.html#line136" class="location">dropOut/SMSStatusAdhoc.php at line 136</a>
+
+<h3 id="set_client_id()">set_client_id</h3>
+<code class="signature">public  void <strong>set_client_id</strong>(string client_id)</code>
+<div class="details">
+<p>Sets the client id</p><dl>
+<dt>Parameters:</dt>
+<dd>client_id - The client id</dd>
+</dl>
+</div>
 
 <hr>
 

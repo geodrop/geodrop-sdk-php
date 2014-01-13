@@ -55,39 +55,17 @@ class PortTrigger extends GeodropRequest
     {
       throw new Exception(ErrorType::MISSING_PARAMETERS);
     }
-    
-    //check port
-    if(!$this->checkIfIntegerOrDigitString($port))
-    {
-      throw new Exception(ErrorType::MALFORMED_PORT);
-    }
-    
-    //check msisdn
-    if(!$this->checkMsisdnE164Format($msisdn,false))
-    {
-      throw new Exception(ErrorType::MALFORMED_MSISDN);
-    }
-    
-    //check time
-    if(isset($time))
-    {
-      if(!$this->checkIfFutureDatetime($time))
-      {
-	throw new Exception(ErrorType::MALFORMED_OR_PAST_TIME);
-      }
-    }
-    
+       
     //set parameters
     $this->uri = Uri::PAY_PORT_TRIGGER;
     $this->httpMethod = HttpMethod::POST;
     $this->contentType = ContentType::RAW;
-    $this->port = $port;
-    $this->msisdn = $msisdn;
-    $this->custom = $custom;
-    $this->text = utf8_encode($text);
+    $this->set_port($port);
+    $this->set_msisdn($msisdn);
+    $this->set_custom($custom);
+    $this->set_text(utf8_encode($text));
     if(isset($time))
-      $this->time = date('Y-m-d H:i:s',strtotime(trim($time)));
-    $this->createParams();
+      $this->set_time(date('Y-m-d H:i:s',strtotime(trim($time))));
   }
   
   public function __destruct()
@@ -100,7 +78,7 @@ class PortTrigger extends GeodropRequest
     unset($this->time);
   }
   
-  protected function createParams()
+  public function createParams()
   {
     //set URI parameters
     $this->params = array(
@@ -164,6 +142,74 @@ class PortTrigger extends GeodropRequest
   public function get_time()
   {
     return $this->time;
+  }
+  
+  //setters
+  /**
+   * Sets the DropPay port id
+   * @param int port The DropPay port id
+   * @return void
+   * @throws Exception If parameters are not valid
+   */
+  public function set_port($port)
+  {
+    //check port
+    if(!$this->checkIfIntegerOrDigitString($port))
+    {
+      throw new Exception(ErrorType::MALFORMED_PORT);
+    }
+    $this->port = $port;
+  }
+  /**
+   * Sets the customer phone number in E.164 format (without +)
+   * @param string msisdn The customer phone number in E.164 format (without +)
+   * @return void
+   * @throws Exception If parameters are not valid
+   */
+  public function set_msisdn($msisdn)
+  {
+    //check msisdn
+    if(!$this->checkMsisdnE164Format($msisdn,false))
+    {
+      throw new Exception(ErrorType::MALFORMED_MSISDN);
+    }
+    $this->msisdn = $msisdn;
+  }
+  /**
+   * Sets the unique CP request id
+   * @param string custom The unique CP request id
+   * @return void
+   */
+  public function set_custom($custom)
+  {
+    $this->custom = $custom;
+  }
+  /**
+   * Sets the text to send, encoded in UTF-8, up to 160 characters
+   * @param string text The text to send
+   * @return void
+   */
+  public function set_text($text)
+  {
+    $this->text = $text;
+  }
+  /**
+   * Sets the time to schedule trigger, default is now
+   * @param date time The time to schedule trigger
+   * @return void
+   * @throws Exception If parameters are not valid
+   */
+  public function set_time($time)
+  {
+    //check time
+    if(isset($time))
+    {
+      if(!$this->checkIfFutureDatetime($time))
+      {
+	throw new Exception(ErrorType::MALFORMED_OR_PAST_TIME);
+      }
+    }
+    $this->time = $time;
   }
 }
 

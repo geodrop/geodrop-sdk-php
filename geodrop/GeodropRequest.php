@@ -66,10 +66,10 @@ abstract class GeodropRequest
   /**
    * Creates the parameters for the http request
    * @abstract
-   * @access protected
+   * @access public
    * @return void
    */
-  abstract protected function createParams();
+  abstract public function createParams();
   
   
   public function __destruct()

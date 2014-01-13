@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:29 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -74,7 +74,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <table id="summary_method">
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
-<td class="type">protected  void</td>
+<td class="type"> void</td>
 <td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request.</p></td>
 </tr>
 <tr>
@@ -95,6 +95,21 @@ and the second the total number of result to return.</p></td>
 <tr>
 <td class="type"> string</td>
 <td class="description"><p class="name"><a href="#get_client_id()">get_client_id</a>()</p><p class="description">Returns the client id.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_job_orderid()">set_job_orderid</a>(string job_orderid)</p><p class="description">Sets the Global Unique IDentifier (GUID) of the job.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_job_limit()">set_job_limit</a>(string job_limit)</p><p class="description">Sets the limit, used to paginate the result,
+it consist of two integers separated by a comma,
+the first one indicates the position of the first required result
+and the second the total number of result to return.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_client_id()">set_client_id</a>(string client_id)</p><p class="description">Sets the client id.</p></td>
 </tr>
 </table>
 
@@ -121,16 +136,16 @@ and the second the total number of result to return.</p></td>
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../../source/dropout/smsstatusjob.php.html#line86" class="location">dropOut/SMSStatusJob.php at line 86</a>
+<a href="../../source/dropout/smsstatusjob.php.html#line76" class="location">dropOut/SMSStatusJob.php at line 76</a>
 
 <h3 id="createParams()">createParams</h3>
-<code class="signature">protected  void <strong>createParams</strong>()</code>
+<code class="signature">public  void <strong>createParams</strong>()</code>
 <div class="details">
 <p>Creates the parameters for the http request</p></div>
 
 <hr>
 
-<a href="../../source/dropout/smsstatusjob.php.html#line101" class="location">dropOut/SMSStatusJob.php at line 101</a>
+<a href="../../source/dropout/smsstatusjob.php.html#line91" class="location">dropOut/SMSStatusJob.php at line 91</a>
 
 <h3 id="decodeResponse()">decodeResponse</h3>
 <code class="signature">public  boolean <strong>decodeResponse</strong>(string http_response)</code>
@@ -145,7 +160,7 @@ and the second the total number of result to return.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsstatusjob.php.html#line114" class="location">dropOut/SMSStatusJob.php at line 114</a>
+<a href="../../source/dropout/smsstatusjob.php.html#line104" class="location">dropOut/SMSStatusJob.php at line 104</a>
 
 <h3 id="get_job_orderid()">get_job_orderid</h3>
 <code class="signature">public  string <strong>get_job_orderid</strong>()</code>
@@ -154,7 +169,7 @@ and the second the total number of result to return.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsstatusjob.php.html#line126" class="location">dropOut/SMSStatusJob.php at line 126</a>
+<a href="../../source/dropout/smsstatusjob.php.html#line116" class="location">dropOut/SMSStatusJob.php at line 116</a>
 
 <h3 id="get_job_limit()">get_job_limit</h3>
 <code class="signature">public  string <strong>get_job_limit</strong>()</code>
@@ -166,12 +181,56 @@ and the second the total number of result to return</p></div>
 
 <hr>
 
-<a href="../../source/dropout/smsstatusjob.php.html#line135" class="location">dropOut/SMSStatusJob.php at line 135</a>
+<a href="../../source/dropout/smsstatusjob.php.html#line125" class="location">dropOut/SMSStatusJob.php at line 125</a>
 
 <h3 id="get_client_id()">get_client_id</h3>
 <code class="signature">public  string <strong>get_client_id</strong>()</code>
 <div class="details">
 <p>Returns the client id</p></div>
+
+<hr>
+
+<a href="../../source/dropout/smsstatusjob.php.html#line136" class="location">dropOut/SMSStatusJob.php at line 136</a>
+
+<h3 id="set_job_orderid()">set_job_orderid</h3>
+<code class="signature">public  void <strong>set_job_orderid</strong>(string job_orderid)</code>
+<div class="details">
+<p>Sets the Global Unique IDentifier (GUID) of the job</p><dl>
+<dt>Parameters:</dt>
+<dd>job_orderid - The Global Unique IDentifier (GUID) of the job</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smsstatusjob.php.html#line149" class="location">dropOut/SMSStatusJob.php at line 149</a>
+
+<h3 id="set_job_limit()">set_job_limit</h3>
+<code class="signature">public  void <strong>set_job_limit</strong>(string job_limit)</code>
+<div class="details">
+<p>Sets the limit, used to paginate the result,
+it consist of two integers separated by a comma,
+the first one indicates the position of the first required result
+and the second the total number of result to return</p><dl>
+<dt>Parameters:</dt>
+<dd>job_limit - The limit</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smsstatusjob.php.html#line166" class="location">dropOut/SMSStatusJob.php at line 166</a>
+
+<h3 id="set_client_id()">set_client_id</h3>
+<code class="signature">public  void <strong>set_client_id</strong>(string client_id)</code>
+<div class="details">
+<p>Sets the client id</p><dl>
+<dt>Parameters:</dt>
+<dd>client_id - The client id</dd>
+</dl>
+</div>
 
 <hr>
 

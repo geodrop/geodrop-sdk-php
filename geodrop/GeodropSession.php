@@ -85,7 +85,7 @@ class GeodropSession
    * in general, the toString method returns a string that "textually represents" this object;
    * the result should be a concise but informative representation that is easy for a person to read
    * 
-   * @return string a string rapresentation of the object
+   * @return string a string representation of the object
    */
   public function toString() 
   {
@@ -123,6 +123,7 @@ class GeodropSession
     //build http request
     //body or URI parameters
     //print_r ($request->getParams());
+    $request->createParams();
     $body = $request->getBody();
     if(!isset($body))
     {
@@ -175,6 +176,8 @@ class GeodropSession
       //print_r (curl_getinfo($ch));
       //close connection
       curl_close($ch);
+      
+      //echo "result = ".$result."\n";
       
       $attempt++;
       if(isset($result))

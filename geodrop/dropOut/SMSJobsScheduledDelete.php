@@ -44,9 +44,7 @@ class SMSJobsScheduledDelete extends GeodropRequest
       $this->httpMethod = HttpMethod::POST;
       $this->contentType = ContentType::XML;
       $this->action = ActionOutScheduled::DELETE;
-      $this->job_id = $job_id;
-      
-      $this->createParams();
+      $this->set_job_id($job_id);
    }
     
    public function __destruct()
@@ -56,7 +54,7 @@ class SMSJobsScheduledDelete extends GeodropRequest
      unset($this->action);
    }
     
-   protected function createParams()
+   public function createParams()
    { 
        //set body
        $this->body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
@@ -82,6 +80,17 @@ class SMSJobsScheduledDelete extends GeodropRequest
    public function get_job_id()
    {
       return $this->job_id;
+   }
+   
+   //setters
+   /**
+    * Sets the job id of the job to delete
+    * @param string job_id The job id
+    * @return void
+    */
+   public function set_job_id($job_id)
+   {
+      $this->job_id = $job_id;
    }
 }
  

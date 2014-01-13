@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:30 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -94,116 +94,156 @@
 <a name="line56"></a>      throw new Exception(ErrorType::MISSING_PARAMETERS);
 <a name="line57"></a>    }
 <a name="line58"></a>    
-<a name="line59"></a>    //check port
-<a name="line60"></a>    if(!$this->checkIfIntegerOrDigitString($port))
-<a name="line61"></a>    {
-<a name="line62"></a>      throw new Exception(ErrorType::MALFORMED_PORT);
-<a name="line63"></a>    }
-<a name="line64"></a>    
-<a name="line65"></a>    //check msisdn
-<a name="line66"></a>    if(!$this->checkMsisdnE164Format($msisdn,false))
-<a name="line67"></a>    {
-<a name="line68"></a>      throw new Exception(ErrorType::MALFORMED_MSISDN);
-<a name="line69"></a>    }
-<a name="line70"></a>    
-<a name="line71"></a>    //check subscriber
-<a name="line72"></a>    if(!$this->checkIfIntegerOrDigitString($subscriber))
-<a name="line73"></a>    {
-<a name="line74"></a>      throw new Exception(ErrorType::MALFORMED_SUBSCRIBER);
-<a name="line75"></a>    }
-<a name="line76"></a>    
-<a name="line77"></a>    //set parameters
-<a name="line78"></a>    $this->uri = Uri::PAY_CUSTOMERS_GOODBYE;
-<a name="line79"></a>    $this->httpMethod = HttpMethod::POST;
-<a name="line80"></a>    $this->contentType = ContentType::RAW;
-<a name="line81"></a>    $this->port = $port;
-<a name="line82"></a>    $this->msisdn = $msisdn;
-<a name="line83"></a>    $this->custom = $custom;
-<a name="line84"></a>    $this->text = utf8_encode($text);
-<a name="line85"></a>    $this->subscriber = $subscriber;
-<a name="line86"></a>  
-<a name="line87"></a>    $this->createParams();
-<a name="line88"></a>  }
-<a name="line89"></a>  
-<a name="line90"></a>  public function __destruct()
-<a name="line91"></a>  {
-<a name="line92"></a>    parent::__destruct();    
-<a name="line93"></a>    unset($this->port);
-<a name="line94"></a>    unset($this->msisdn);
-<a name="line95"></a>    unset($this->custom);
-<a name="line96"></a>    unset($this->text);
-<a name="line97"></a>    unset($this->subscriber);
-<a name="line98"></a>  }
-<a name="line99"></a>  
-<a name="line100"></a>  protected function createParams()
-<a name="line101"></a>  {
-<a name="line102"></a>    //set URI parameters
-<a name="line103"></a>    $this->params = array(
-<a name="line104"></a>      "port" 	=> $this->port,
-<a name="line105"></a>      "msisdn"	=> $this->msisdn,
-<a name="line106"></a>      "custom" => $this->custom,
-<a name="line107"></a>      "text" => $this->text,
-<a name="line108"></a>      "subscriber" => $this->subscriber,
-<a name="line109"></a>    );
-<a name="line110"></a>  }
-<a name="line111"></a>  
-<a name="line112"></a>  public function decodeResponse( $http_response )
-<a name="line113"></a>  {
-<a name="line114"></a>    //echo "CustomerGoodbye::decodeResponse: \n".$http_response."\n";
-<a name="line115"></a>    $this->response = new CustomerGoodbye_Response();
-<a name="line116"></a>    return $this->response->fillParameters($http_response);
+<a name="line59"></a>    //set parameters
+<a name="line60"></a>    $this->uri = Uri::PAY_CUSTOMERS_GOODBYE;
+<a name="line61"></a>    $this->httpMethod = HttpMethod::POST;
+<a name="line62"></a>    $this->contentType = ContentType::RAW;
+<a name="line63"></a>    $this->set_port($port);
+<a name="line64"></a>    $this->set_msisdn($msisdn);
+<a name="line65"></a>    $this->set_custom($custom);
+<a name="line66"></a>    $this->set_text(utf8_encode($text));
+<a name="line67"></a>    $this->set_subscriber($subscriber);
+<a name="line68"></a>  }
+<a name="line69"></a>  
+<a name="line70"></a>  public function __destruct()
+<a name="line71"></a>  {
+<a name="line72"></a>    parent::__destruct();    
+<a name="line73"></a>    unset($this->port);
+<a name="line74"></a>    unset($this->msisdn);
+<a name="line75"></a>    unset($this->custom);
+<a name="line76"></a>    unset($this->text);
+<a name="line77"></a>    unset($this->subscriber);
+<a name="line78"></a>  }
+<a name="line79"></a>  
+<a name="line80"></a>  public function createParams()
+<a name="line81"></a>  {
+<a name="line82"></a>    //set URI parameters
+<a name="line83"></a>    $this->params = array(
+<a name="line84"></a>      "port" 	=> $this->port,
+<a name="line85"></a>      "msisdn"	=> $this->msisdn,
+<a name="line86"></a>      "custom" => $this->custom,
+<a name="line87"></a>      "text" => $this->text,
+<a name="line88"></a>      "subscriber" => $this->subscriber,
+<a name="line89"></a>    );
+<a name="line90"></a>  }
+<a name="line91"></a>  
+<a name="line92"></a>  public function decodeResponse( $http_response )
+<a name="line93"></a>  {
+<a name="line94"></a>    //echo "CustomerGoodbye::decodeResponse: \n".$http_response."\n";
+<a name="line95"></a>    $this->response = new CustomerGoodbye_Response();
+<a name="line96"></a>    return $this->response->fillParameters($http_response);
+<a name="line97"></a>  }
+<a name="line98"></a>  
+<a name="line99"></a>  //getters
+<a name="line100"></a>  /**
+<a name="line101"></a>   * Returns the DropPay port id
+<a name="line102"></a>   * @access public
+<a name="line103"></a>   * @return int
+<a name="line104"></a>   */
+<a name="line105"></a>  public function get_port()
+<a name="line106"></a>  {
+<a name="line107"></a>    return $this->port;
+<a name="line108"></a>  }
+<a name="line109"></a>  /**
+<a name="line110"></a>   * Returns the customer phone number in E.164 format (without +)
+<a name="line111"></a>   * @access public
+<a name="line112"></a>   * @return string
+<a name="line113"></a>   */
+<a name="line114"></a>  public function get_msisdn()
+<a name="line115"></a>  {
+<a name="line116"></a>    return $this->msisdn;
 <a name="line117"></a>  }
-<a name="line118"></a>  
-<a name="line119"></a>  //getters
-<a name="line120"></a>  /**
-<a name="line121"></a>   * Returns the DropPay port id
-<a name="line122"></a>   * @access public
-<a name="line123"></a>   * @return int
-<a name="line124"></a>   */
-<a name="line125"></a>  public function get_port()
-<a name="line126"></a>  {
-<a name="line127"></a>    return $this->port;
-<a name="line128"></a>  }
-<a name="line129"></a>  /**
-<a name="line130"></a>   * Returns the customer phone number in E.164 format (without +)
-<a name="line131"></a>   * @access public
-<a name="line132"></a>   * @return string
-<a name="line133"></a>   */
-<a name="line134"></a>  public function get_msisdn()
-<a name="line135"></a>  {
-<a name="line136"></a>    return $this->msisdn;
-<a name="line137"></a>  }
-<a name="line138"></a>  /**
-<a name="line139"></a>   * Returns the unique CP request id
-<a name="line140"></a>   * @access public
-<a name="line141"></a>   * @return string
-<a name="line142"></a>   */
-<a name="line143"></a>  public function get_custom()
-<a name="line144"></a>  {
-<a name="line145"></a>    return $this->custom;
-<a name="line146"></a>  }
+<a name="line118"></a>  /**
+<a name="line119"></a>   * Returns the unique CP request id
+<a name="line120"></a>   * @access public
+<a name="line121"></a>   * @return string
+<a name="line122"></a>   */
+<a name="line123"></a>  public function get_custom()
+<a name="line124"></a>  {
+<a name="line125"></a>    return $this->custom;
+<a name="line126"></a>  }
+<a name="line127"></a>  /**
+<a name="line128"></a>   * Returns the text to send, encoded in UTF-8, up to 160 characters
+<a name="line129"></a>   * @access public
+<a name="line130"></a>   * @return string
+<a name="line131"></a>   */
+<a name="line132"></a>  public function get_text()
+<a name="line133"></a>  {
+<a name="line134"></a>    return $this->text;
+<a name="line135"></a>  }
+<a name="line136"></a>  /**
+<a name="line137"></a>   * Returns the subscriber id required in subscription payments
+<a name="line138"></a>   * @access public
+<a name="line139"></a>   * @return int
+<a name="line140"></a>   */
+<a name="line141"></a>  public function get_subscriber()
+<a name="line142"></a>  {
+<a name="line143"></a>    return $this->subscriber;
+<a name="line144"></a>  }
+<a name="line145"></a>  
+<a name="line146"></a>  //setters
 <a name="line147"></a>  /**
-<a name="line148"></a>   * Returns the text to send, encoded in UTF-8, up to 160 characters
-<a name="line149"></a>   * @access public
-<a name="line150"></a>   * @return string
-<a name="line151"></a>   */
-<a name="line152"></a>  public function get_text()
-<a name="line153"></a>  {
-<a name="line154"></a>    return $this->text;
-<a name="line155"></a>  }
-<a name="line156"></a>  /**
-<a name="line157"></a>   * Returns the subscriber id required in subscription payments
-<a name="line158"></a>   * @access public
-<a name="line159"></a>   * @return int
-<a name="line160"></a>   */
-<a name="line161"></a>  public function get_subscriber()
-<a name="line162"></a>  {
-<a name="line163"></a>    return $this->subscriber;
-<a name="line164"></a>  }
-<a name="line165"></a>}
-<a name="line166"></a>
-<a name="line167"></a>?>
-<a name="line168"></a></pre>
+<a name="line148"></a>   * Sets the DropPay port id
+<a name="line149"></a>   * @param int port The DropPay port id
+<a name="line150"></a>   * @return void
+<a name="line151"></a>   * @throws Exception If parameters are not valid
+<a name="line152"></a>   */
+<a name="line153"></a>  public function set_port($port)
+<a name="line154"></a>  {
+<a name="line155"></a>    $this->port = $port;
+<a name="line156"></a>  }
+<a name="line157"></a>  /**
+<a name="line158"></a>   * Sets the customer phone number in E.164 format (without +)
+<a name="line159"></a>   * @param string msisdn The customer phone number in E.164 format (without +)
+<a name="line160"></a>   * @return void
+<a name="line161"></a>   * @throws Exception If parameters are not valid
+<a name="line162"></a>   */
+<a name="line163"></a>  public function set_msisdn($msisdn)
+<a name="line164"></a>  {
+<a name="line165"></a>    //check msisdn
+<a name="line166"></a>    if(!$this->checkMsisdnE164Format($msisdn,false))
+<a name="line167"></a>    {
+<a name="line168"></a>      throw new Exception(ErrorType::MALFORMED_MSISDN);
+<a name="line169"></a>    }
+<a name="line170"></a>    $this->msisdn = $msisdn;
+<a name="line171"></a>  }
+<a name="line172"></a>  /**
+<a name="line173"></a>   * Sets the unique CP request id
+<a name="line174"></a>   * @param string custom The unique CP request id
+<a name="line175"></a>   * @return void
+<a name="line176"></a>   */
+<a name="line177"></a>  public function set_custom($custom)
+<a name="line178"></a>  {
+<a name="line179"></a>    $this->custom = $custom;
+<a name="line180"></a>  }
+<a name="line181"></a>  /**
+<a name="line182"></a>   * Sets the text to send, encoded in UTF-8, up to 160 characters
+<a name="line183"></a>   * @param string text The text to send
+<a name="line184"></a>   * @return void
+<a name="line185"></a>   */
+<a name="line186"></a>  public function set_text($text)
+<a name="line187"></a>  {
+<a name="line188"></a>    $this->text = $text;
+<a name="line189"></a>  }
+<a name="line190"></a>  /**
+<a name="line191"></a>   * Sets the subscriber id required in subscription payments
+<a name="line192"></a>   * @param int subscriber The subscriber id
+<a name="line193"></a>   * @return void
+<a name="line194"></a>   * @throws Exception If parameters are not valid
+<a name="line195"></a>   */
+<a name="line196"></a>  public function set_subscriber($subscriber)
+<a name="line197"></a>  {
+<a name="line198"></a>    //check subscriber
+<a name="line199"></a>    if(!$this->checkIfIntegerOrDigitString($subscriber))
+<a name="line200"></a>    {
+<a name="line201"></a>      throw new Exception(ErrorType::MALFORMED_SUBSCRIBER);
+<a name="line202"></a>    }
+<a name="line203"></a>    $this->subscriber = $subscriber;
+<a name="line204"></a>  }
+<a name="line205"></a>}
+<a name="line206"></a>
+<a name="line207"></a>?>
+<a name="line208"></a></pre>
 <div class="header">
 <h1>PHP GeodropSDK</h1>
 <ul>

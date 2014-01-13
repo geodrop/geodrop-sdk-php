@@ -38,7 +38,7 @@
      * in general, the toString method returns a string that "textually represents" this object;
      * the result should be a concise but informative representation that is easy for a person to read
      * 
-     * @return string A string rapresentation of the object
+     * @return string A string representation of the object
      */
     public function toString()
     {

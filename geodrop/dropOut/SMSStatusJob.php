@@ -53,25 +53,15 @@ class SMSStatusJob extends GeodropRequest
       {
 	throw new Exception(ErrorType::MISSING_ORDERID);
       }
-      
-      //check job_limit
-      if(isset($job_limit))
-      {
-	 if(!$this->checkLimitFormat($job_limit))
-	 {
-	    throw new Exception(ErrorType::MALFORMED_LIMIT);
-	 }
-      }
-      
+           
       //set parameters
       $this->uri = Uri::OUT_SMS_STATUS;
       $this->httpMethod = HttpMethod::PUT;
       $this->contentType = ContentType::XML;
       $this->requestType = RequestTypeOutStatus::JOB;
-      $this->job_orderid = $job_orderid;
-      $this->job_limit = $job_limit;
-      $this->client_id = $client_id;
-      $this->createParams();
+      $this->set_job_orderid($job_orderid);
+      $this->set_job_limit($job_limit);
+      $this->set_client_id($client_id);
    }
    
    public function __destruct()
@@ -83,7 +73,7 @@ class SMSStatusJob extends GeodropRequest
       unset($this->client_id);
    }
    
-   protected function createParams()
+   public function createParams()
    { 
       //set body
       $this->body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
@@ -135,6 +125,47 @@ class SMSStatusJob extends GeodropRequest
    public function get_client_id()
    {
       return $this->client_id;
+   }
+   
+   //setters
+   /**
+    * Sets the Global Unique IDentifier (GUID) of the job
+    * @param string job_orderid The Global Unique IDentifier (GUID) of the job
+    * @return void
+    */
+   public function set_job_orderid($job_orderid)
+   {
+      $this->job_orderid = $job_orderid;
+   }
+   /**
+    * Sets the limit, used to paginate the result,
+    * it consist of two integers separated by a comma,
+    * the first one indicates the position of the first required result
+    * and the second the total number of result to return
+    * @param string job_limit The limit
+    * @return void
+    * @throws Exception If parameters are not valid
+    */
+   public function set_job_limit($job_limit)
+   {
+      //check job_limit
+      if(isset($job_limit))
+      {
+	 if(!$this->checkLimitFormat($job_limit))
+	 {
+	    throw new Exception(ErrorType::MALFORMED_LIMIT);
+	 }
+      }
+      $this->job_limit = $job_limit;
+   }
+   /**
+    * Sets the client id
+    * @param string client_id The client id
+    * @return void
+    */
+   public function set_client_id($client_id)
+   {
+      $this->client_id = $client_id;
    }
  }
  

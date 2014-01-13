@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:30 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -91,93 +91,124 @@
 <a name="line53"></a>      {
 <a name="line54"></a>	throw new Exception(ErrorType::MISSING_ORDERID);
 <a name="line55"></a>      }
-<a name="line56"></a>      
-<a name="line57"></a>      //check job_limit
-<a name="line58"></a>      if(isset($job_limit))
-<a name="line59"></a>      {
-<a name="line60"></a>	 if(!$this->checkLimitFormat($job_limit))
-<a name="line61"></a>	 {
-<a name="line62"></a>	    throw new Exception(ErrorType::MALFORMED_LIMIT);
-<a name="line63"></a>	 }
-<a name="line64"></a>      }
-<a name="line65"></a>      
-<a name="line66"></a>      //set parameters
-<a name="line67"></a>      $this->uri = Uri::OUT_SMS_STATUS;
-<a name="line68"></a>      $this->httpMethod = HttpMethod::PUT;
-<a name="line69"></a>      $this->contentType = ContentType::XML;
-<a name="line70"></a>      $this->requestType = RequestTypeOutStatus::JOB;
-<a name="line71"></a>      $this->job_orderid = $job_orderid;
-<a name="line72"></a>      $this->job_limit = $job_limit;
-<a name="line73"></a>      $this->client_id = $client_id;
-<a name="line74"></a>      $this->createParams();
-<a name="line75"></a>   }
-<a name="line76"></a>   
-<a name="line77"></a>   public function __destruct()
-<a name="line78"></a>   {
-<a name="line79"></a>      parent::__destruct();
-<a name="line80"></a>      unset($this->requestType);
-<a name="line81"></a>      unset($this->job_limit);
-<a name="line82"></a>      unset($this->job_orderid);
-<a name="line83"></a>      unset($this->client_id);
-<a name="line84"></a>   }
-<a name="line85"></a>   
-<a name="line86"></a>   protected function createParams()
-<a name="line87"></a>   { 
-<a name="line88"></a>      //set body
-<a name="line89"></a>      $this->body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
-<a name="line90"></a>      $this->body.= '<GEOSMSSTATUS>';
-<a name="line91"></a>      if(isset($this->client_id))
-<a name="line92"></a>      {
-<a name="line93"></a>	 $this->body.= '<ID_CLIENT>'.$this->client_id.'</ID_CLIENT>';//optional
-<a name="line94"></a>      }
-<a name="line95"></a>      $this->body.= '<REQUEST_TYPE>'.$this->requestType.'</REQUEST_TYPE>';
-<a name="line96"></a>      $this->body.= '<JOB orderid="'.$this->job_orderid;
-<a name="line97"></a>      $this->body.= '" limit="'.$this->job_limit.'" />';
-<a name="line98"></a>      $this->body.= '</GEOSMSSTATUS>';
-<a name="line99"></a>   }
-<a name="line100"></a>   
-<a name="line101"></a>   public function decodeResponse( $http_response )
-<a name="line102"></a>   {
-<a name="line103"></a>      //echo "SMSStatusRange::decodeResponse: ".$http_response."\n";
-<a name="line104"></a>      $this->response = new SMSStatus_Response();
-<a name="line105"></a>      return $this->response->fillParameters($http_response);
-<a name="line106"></a>   }
-<a name="line107"></a>   
-<a name="line108"></a>   //getters
-<a name="line109"></a>   /**
-<a name="line110"></a>    * Returns the Global Unique IDentifier (GUID) of the job
-<a name="line111"></a>    * @access public
-<a name="line112"></a>    * @return string
-<a name="line113"></a>    */
-<a name="line114"></a>   public function get_job_orderid()
-<a name="line115"></a>   {
-<a name="line116"></a>      return $this->job_orderid;
-<a name="line117"></a>   }
-<a name="line118"></a>   /**
-<a name="line119"></a>    * Returns the limit, used to paginate the result,
-<a name="line120"></a>    * it consist of two integers separated by a comma,
-<a name="line121"></a>    * the first one indicates the position of the first required result
-<a name="line122"></a>    * and the second the total number of result to return
-<a name="line123"></a>    * @access public
-<a name="line124"></a>    * @return string
-<a name="line125"></a>    */
-<a name="line126"></a>   public function get_job_limit()
-<a name="line127"></a>   {
-<a name="line128"></a>      return $this->job_limit;
-<a name="line129"></a>   }
-<a name="line130"></a>   /**
-<a name="line131"></a>    * Returns the client id
-<a name="line132"></a>    * @access public
-<a name="line133"></a>    * @return string
-<a name="line134"></a>    */
-<a name="line135"></a>   public function get_client_id()
-<a name="line136"></a>   {
-<a name="line137"></a>      return $this->client_id;
-<a name="line138"></a>   }
-<a name="line139"></a> }
-<a name="line140"></a> 
-<a name="line141"></a> ?>
-<a name="line142"></a></pre>
+<a name="line56"></a>           
+<a name="line57"></a>      //set parameters
+<a name="line58"></a>      $this->uri = Uri::OUT_SMS_STATUS;
+<a name="line59"></a>      $this->httpMethod = HttpMethod::PUT;
+<a name="line60"></a>      $this->contentType = ContentType::XML;
+<a name="line61"></a>      $this->requestType = RequestTypeOutStatus::JOB;
+<a name="line62"></a>      $this->set_job_orderid($job_orderid);
+<a name="line63"></a>      $this->set_job_limit($job_limit);
+<a name="line64"></a>      $this->set_client_id($client_id);
+<a name="line65"></a>   }
+<a name="line66"></a>   
+<a name="line67"></a>   public function __destruct()
+<a name="line68"></a>   {
+<a name="line69"></a>      parent::__destruct();
+<a name="line70"></a>      unset($this->requestType);
+<a name="line71"></a>      unset($this->job_limit);
+<a name="line72"></a>      unset($this->job_orderid);
+<a name="line73"></a>      unset($this->client_id);
+<a name="line74"></a>   }
+<a name="line75"></a>   
+<a name="line76"></a>   public function createParams()
+<a name="line77"></a>   { 
+<a name="line78"></a>      //set body
+<a name="line79"></a>      $this->body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+<a name="line80"></a>      $this->body.= '<GEOSMSSTATUS>';
+<a name="line81"></a>      if(isset($this->client_id))
+<a name="line82"></a>      {
+<a name="line83"></a>	 $this->body.= '<ID_CLIENT>'.$this->client_id.'</ID_CLIENT>';//optional
+<a name="line84"></a>      }
+<a name="line85"></a>      $this->body.= '<REQUEST_TYPE>'.$this->requestType.'</REQUEST_TYPE>';
+<a name="line86"></a>      $this->body.= '<JOB orderid="'.$this->job_orderid;
+<a name="line87"></a>      $this->body.= '" limit="'.$this->job_limit.'" />';
+<a name="line88"></a>      $this->body.= '</GEOSMSSTATUS>';
+<a name="line89"></a>   }
+<a name="line90"></a>   
+<a name="line91"></a>   public function decodeResponse( $http_response )
+<a name="line92"></a>   {
+<a name="line93"></a>      //echo "SMSStatusRange::decodeResponse: ".$http_response."\n";
+<a name="line94"></a>      $this->response = new SMSStatus_Response();
+<a name="line95"></a>      return $this->response->fillParameters($http_response);
+<a name="line96"></a>   }
+<a name="line97"></a>   
+<a name="line98"></a>   //getters
+<a name="line99"></a>   /**
+<a name="line100"></a>    * Returns the Global Unique IDentifier (GUID) of the job
+<a name="line101"></a>    * @access public
+<a name="line102"></a>    * @return string
+<a name="line103"></a>    */
+<a name="line104"></a>   public function get_job_orderid()
+<a name="line105"></a>   {
+<a name="line106"></a>      return $this->job_orderid;
+<a name="line107"></a>   }
+<a name="line108"></a>   /**
+<a name="line109"></a>    * Returns the limit, used to paginate the result,
+<a name="line110"></a>    * it consist of two integers separated by a comma,
+<a name="line111"></a>    * the first one indicates the position of the first required result
+<a name="line112"></a>    * and the second the total number of result to return
+<a name="line113"></a>    * @access public
+<a name="line114"></a>    * @return string
+<a name="line115"></a>    */
+<a name="line116"></a>   public function get_job_limit()
+<a name="line117"></a>   {
+<a name="line118"></a>      return $this->job_limit;
+<a name="line119"></a>   }
+<a name="line120"></a>   /**
+<a name="line121"></a>    * Returns the client id
+<a name="line122"></a>    * @access public
+<a name="line123"></a>    * @return string
+<a name="line124"></a>    */
+<a name="line125"></a>   public function get_client_id()
+<a name="line126"></a>   {
+<a name="line127"></a>      return $this->client_id;
+<a name="line128"></a>   }
+<a name="line129"></a>   
+<a name="line130"></a>   //setters
+<a name="line131"></a>   /**
+<a name="line132"></a>    * Sets the Global Unique IDentifier (GUID) of the job
+<a name="line133"></a>    * @param string job_orderid The Global Unique IDentifier (GUID) of the job
+<a name="line134"></a>    * @return void
+<a name="line135"></a>    */
+<a name="line136"></a>   public function set_job_orderid($job_orderid)
+<a name="line137"></a>   {
+<a name="line138"></a>      $this->job_orderid = $job_orderid;
+<a name="line139"></a>   }
+<a name="line140"></a>   /**
+<a name="line141"></a>    * Sets the limit, used to paginate the result,
+<a name="line142"></a>    * it consist of two integers separated by a comma,
+<a name="line143"></a>    * the first one indicates the position of the first required result
+<a name="line144"></a>    * and the second the total number of result to return
+<a name="line145"></a>    * @param string job_limit The limit
+<a name="line146"></a>    * @return void
+<a name="line147"></a>    * @throws Exception If parameters are not valid
+<a name="line148"></a>    */
+<a name="line149"></a>   public function set_job_limit($job_limit)
+<a name="line150"></a>   {
+<a name="line151"></a>      //check job_limit
+<a name="line152"></a>      if(isset($job_limit))
+<a name="line153"></a>      {
+<a name="line154"></a>	 if(!$this->checkLimitFormat($job_limit))
+<a name="line155"></a>	 {
+<a name="line156"></a>	    throw new Exception(ErrorType::MALFORMED_LIMIT);
+<a name="line157"></a>	 }
+<a name="line158"></a>      }
+<a name="line159"></a>      $this->job_limit = $job_limit;
+<a name="line160"></a>   }
+<a name="line161"></a>   /**
+<a name="line162"></a>    * Sets the client id
+<a name="line163"></a>    * @param string client_id The client id
+<a name="line164"></a>    * @return void
+<a name="line165"></a>    */
+<a name="line166"></a>   public function set_client_id($client_id)
+<a name="line167"></a>   {
+<a name="line168"></a>      $this->client_id = $client_id;
+<a name="line169"></a>   }
+<a name="line170"></a> }
+<a name="line171"></a> 
+<a name="line172"></a> ?>
+<a name="line173"></a></pre>
 <div class="header">
 <h1>PHP GeodropSDK</h1>
 <ul>

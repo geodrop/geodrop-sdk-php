@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:29 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -80,7 +80,7 @@ a list of recipients and a personalized sender</p></div>
 <td class="description"><p class="name"><a href="#decodeResponse()">decodeResponse</a>(string http_response)</p><p class="description">Decodes the response.</p></td>
 </tr>
 <tr>
-<td class="type">protected  void</td>
+<td class="type"> void</td>
 <td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request.</p></td>
 </tr>
 <tr>
@@ -99,6 +99,25 @@ each msisdn is in E.164 format with '+'.</p></td>
 <tr>
 <td class="type"> date</td>
 <td class="description"><p class="name"><a href="#get_deferred()">get_deferred</a>()</p><p class="description">Returns date and time in the format "Y-m-d H:i:s",
+used to send the message to a certain date,
+if not specified the message is sent immediately.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_message_text()">set_message_text</a>(string message_text)</p><p class="description">Sets the text of the message to send.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_dest_msisdns()">set_dest_msisdns</a>(string|string The, mixed dest_msisdns)</p><p class="description">Sets the msisdn of the recipient or an array of msisdns if there are many recipients;
+each msisdn is in E.164 format with '+'.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_tpoa()">set_tpoa</a>(string dest_msisdns, mixed tpoa)</p><p class="description">Sets the personalized sender.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_deferred()">set_deferred</a>(date deferred)</p><p class="description">Sets date and time in the format "Y-m-d H:i:s",
 used to send the message to a certain date,
 if not specified the message is sent immediately.</p></td>
 </tr>
@@ -128,7 +147,7 @@ if not specified the message is sent immediately.</p></td>
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../../source/dropout/smssend.php.html#line97" class="location">dropOut/SMSSend.php at line 97</a>
+<a href="../../source/dropout/smssend.php.html#line81" class="location">dropOut/SMSSend.php at line 81</a>
 
 <h3 id="decodeResponse()">decodeResponse</h3>
 <code class="signature">public  boolean <strong>decodeResponse</strong>(string http_response)</code>
@@ -143,16 +162,16 @@ if not specified the message is sent immediately.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smssend.php.html#line104" class="location">dropOut/SMSSend.php at line 104</a>
+<a href="../../source/dropout/smssend.php.html#line88" class="location">dropOut/SMSSend.php at line 88</a>
 
 <h3 id="createParams()">createParams</h3>
-<code class="signature">protected  void <strong>createParams</strong>()</code>
+<code class="signature">public  void <strong>createParams</strong>()</code>
 <div class="details">
 <p>Creates the parameters for the http request</p></div>
 
 <hr>
 
-<a href="../../source/dropout/smssend.php.html#line136" class="location">dropOut/SMSSend.php at line 136</a>
+<a href="../../source/dropout/smssend.php.html#line120" class="location">dropOut/SMSSend.php at line 120</a>
 
 <h3 id="get_message_text()">get_message_text</h3>
 <code class="signature">public  string <strong>get_message_text</strong>()</code>
@@ -161,7 +180,7 @@ if not specified the message is sent immediately.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smssend.php.html#line146" class="location">dropOut/SMSSend.php at line 146</a>
+<a href="../../source/dropout/smssend.php.html#line130" class="location">dropOut/SMSSend.php at line 130</a>
 
 <h3 id="get_dest_msisdns()">get_dest_msisdns</h3>
 <code class="signature">public  string|string[] <strong>get_dest_msisdns</strong>()</code>
@@ -171,7 +190,7 @@ each msisdn is in E.164 format with '+'</p></div>
 
 <hr>
 
-<a href="../../source/dropout/smssend.php.html#line155" class="location">dropOut/SMSSend.php at line 155</a>
+<a href="../../source/dropout/smssend.php.html#line139" class="location">dropOut/SMSSend.php at line 139</a>
 
 <h3 id="get_tpoa()">get_tpoa</h3>
 <code class="signature">public  string <strong>get_tpoa</strong>()</code>
@@ -180,7 +199,7 @@ each msisdn is in E.164 format with '+'</p></div>
 
 <hr>
 
-<a href="../../source/dropout/smssend.php.html#line166" class="location">dropOut/SMSSend.php at line 166</a>
+<a href="../../source/dropout/smssend.php.html#line151" class="location">dropOut/SMSSend.php at line 151</a>
 
 <h3 id="get_deferred()">get_deferred</h3>
 <code class="signature">public  date <strong>get_deferred</strong>()</code>
@@ -188,6 +207,65 @@ each msisdn is in E.164 format with '+'</p></div>
 <p>Returns date and time in the format "Y-m-d H:i:s",
 used to send the message to a certain date,
 if not specified the message is sent immediately</p></div>
+
+<hr>
+
+<a href="../../source/dropout/smssend.php.html#line171" class="location">dropOut/SMSSend.php at line 171</a>
+
+<h3 id="set_message_text()">set_message_text</h3>
+<code class="signature">public  void <strong>set_message_text</strong>(string message_text)</code>
+<div class="details">
+<p>Sets the text of the message to send</p><dl>
+<dt>Parameters:</dt>
+<dd>message_text - The text of the message to send</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smssend.php.html#line183" class="location">dropOut/SMSSend.php at line 183</a>
+
+<h3 id="set_dest_msisdns()">set_dest_msisdns</h3>
+<code class="signature">public  void <strong>set_dest_msisdns</strong>(string|string The, mixed dest_msisdns)</code>
+<div class="details">
+<p>Sets the msisdn of the recipient or an array of msisdns if there are many recipients;
+each msisdn is in E.164 format with '+'</p><dl>
+<dt>Parameters:</dt>
+<dd>The - msisdn of the recipient or an array of msisdns</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smssend.php.html#line198" class="location">dropOut/SMSSend.php at line 198</a>
+
+<h3 id="set_tpoa()">set_tpoa</h3>
+<code class="signature">public  void <strong>set_tpoa</strong>(string dest_msisdns, mixed tpoa)</code>
+<div class="details">
+<p>Sets the personalized sender</p><dl>
+<dt>Parameters:</dt>
+<dd>dest_msisdns - The personalized sender</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smssend.php.html#line211" class="location">dropOut/SMSSend.php at line 211</a>
+
+<h3 id="set_deferred()">set_deferred</h3>
+<code class="signature">public  void <strong>set_deferred</strong>(date deferred)</code>
+<div class="details">
+<p>Sets date and time in the format "Y-m-d H:i:s",
+used to send the message to a certain date,
+if not specified the message is sent immediately</p><dl>
+<dt>Parameters:</dt>
+<dd>deferred - The deferred time</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
 
 <hr>
 

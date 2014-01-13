@@ -74,46 +74,19 @@ class SMSJobsScheduledModify extends GeodropRequest
       {
 	throw new Exception(ErrorType::MISSING_JOBID);
       }
-
-      //check deferred
-      if(isset($deferred_time))
-      {
-	 if(!$this->checkIfFutureDatetime($deferred_time))
-	 {
-	    throw new Exception(ErrorType::MALFORMED_OR_PAST_TIME);
-	 }
-      }
-      
-      //check msisdn_to_delete
-      if(isset($msisdn_to_delete))
-      {
-	 if(!$this->checkMsisdnsArray($msisdn_to_delete,true))
-	 {
-	    throw new Exception(ErrorType::MALFORMED_MSISDNS);
-	 }
-      }
-      //check msisdn_to_add
-      if(isset($msisdn_to_add))
-      {
-	 if(!$this->checkMsisdnsArray($msisdn_to_add,true))
-	 {
-	    throw new Exception(ErrorType::MALFORMED_MSISDNS);
-	 }
-      }
       
       //set parameters
       $this->uri = Uri::OUT_SMS_JOBS_SCHEDULED;
       $this->httpMethod = HttpMethod::POST;
       $this->contentType = ContentType::XML;
       $this->action = ActionOutScheduled::MODIFY;
-      $this->job_id = $job_id;
-      $this->message_text = utf8_encode($message_text);
-      $this->msisdn_to_delete = $msisdn_to_delete;
-      $this->msisdn_to_add = $msisdn_to_add;
-      $this->tpoa = $tpoa;
+      $this->set_job_id($job_id);
+      $this->set_message_text(utf8_encode($message_text));
+      $this->set_msisdn_to_delete($msisdn_to_delete);
+      $this->set_msisdn_to_add($msisdn_to_add);
+      $this->set_tpoa($tpoa);
       if(isset($deferred_time))
-	 $this->deferred_time = date('Y-m-d H:i:s',strtotime(trim($deferred_time)));
-      $this->createParams();
+	 $this->set_deferred_time(date('Y-m-d H:i:s',strtotime(trim($deferred_time))));
    }
    
    public function __destruct()
@@ -130,7 +103,7 @@ class SMSJobsScheduledModify extends GeodropRequest
       unset($this->deferred_time);
    }
    
-   protected function createParams()
+   public function createParams()
    { 
       //set body
       $this->body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
@@ -216,7 +189,7 @@ class SMSJobsScheduledModify extends GeodropRequest
     */
    public function get_msisdn_to_add()
    {
-      return $this->get_msisdn_to_add;
+      return $this->msisdn_to_add;
    }
    /**
     * Returns the personalized sender
@@ -237,6 +210,91 @@ class SMSJobsScheduledModify extends GeodropRequest
    public function get_deferred_time()
    {
       return $this->deferred_time;
+   }
+   
+   //setters
+   /**
+    * Sets the job id of the job to modify
+    * @param string job_id The job id
+    * @return void
+    */
+   public function set_job_id($job_id)
+   {
+      $this->job_id = $job_id;
+   }
+   /**
+    * Sets the text of the message
+    * @param string message_text The message text
+    * @return void
+    */
+   public function set_message_text($message_text)
+   {
+      $this->message_text = $message_text;
+   }
+   /**
+    * Sets the array of msisdns to delete; each msisdn is in E.164 format with '+'
+    * @param string[] msisdn_to_delete The array of msisdns to delete
+    * @return void
+    * @throws Exception If parameters are not valid
+    */
+   public function set_msisdn_to_delete($msisdn_to_delete)
+   {
+      //check msisdn_to_delete
+      if(isset($msisdn_to_delete))
+      {
+	 if(!$this->checkMsisdnsArray($msisdn_to_delete,true))
+	 {
+	    throw new Exception(ErrorType::MALFORMED_MSISDNS);
+	 }
+      }
+      $this->msisdn_to_delete = $msisdn_to_delete;
+   }
+   /**
+    * Sets the array of msisdns to add; each msisdn is in E.164 format with '+'
+    * @param string[] msisdn_to_add The array of msisdns to add
+    * @return void
+    * @throws Exception If parameters are not valid
+    */
+   public function set_msisdn_to_add($msisdn_to_add)
+   {
+      //check msisdn_to_add
+      if(isset($msisdn_to_add))
+      {
+	 if(!$this->checkMsisdnsArray($msisdn_to_add,true))
+	 {
+	    throw new Exception(ErrorType::MALFORMED_MSISDNS);
+	 }
+      }
+      $this->msisdn_to_add = $msisdn_to_add;
+   }
+   /**
+    * Sets the personalized sender
+    * @param string tpoa The personalized sender
+    * @return void
+    */
+   public function set_tpoa($tpoa)
+   {
+      $this->tpoa = $tpoa;
+   }
+   /**
+    * Sets the date and time in the format "Y-m-d H:i:s",
+    * used to send the message to a certain date,
+    * if not specified the message is sent immediately
+    * @param date deferred_time The deferred time
+    * @return void
+    * @throws Exception If parameters are not valid
+    */
+   public function set_deferred_time($deferred_time)
+   {
+      //check deferred
+      if(isset($deferred_time))
+      {
+	 if(!$this->checkIfFutureDatetime($deferred_time))
+	 {
+	    throw new Exception(ErrorType::MALFORMED_OR_PAST_TIME);
+	 }
+      }
+      $this->deferred_time = $deferred_time;
    }
 }
 

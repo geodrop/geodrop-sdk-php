@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:30 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -82,49 +82,58 @@
 <a name="line44"></a>      $this->httpMethod = HttpMethod::POST;
 <a name="line45"></a>      $this->contentType = ContentType::XML;
 <a name="line46"></a>      $this->action = ActionOutScheduled::DELETE;
-<a name="line47"></a>      $this->job_id = $job_id;
-<a name="line48"></a>      
-<a name="line49"></a>      $this->createParams();
-<a name="line50"></a>   }
-<a name="line51"></a>    
-<a name="line52"></a>   public function __destruct()
-<a name="line53"></a>   {
-<a name="line54"></a>     parent::__destruct();
-<a name="line55"></a>     unset($this->job_id);
-<a name="line56"></a>     unset($this->action);
-<a name="line57"></a>   }
-<a name="line58"></a>    
-<a name="line59"></a>   protected function createParams()
-<a name="line60"></a>   { 
-<a name="line61"></a>       //set body
-<a name="line62"></a>       $this->body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
-<a name="line63"></a>       $this->body.= '<GEOSMSSCHEDULER>';
-<a name="line64"></a>       $this->body.= '<JOB JOBID="'.$this->job_id;
-<a name="line65"></a>       $this->body.= '" ACTION="'.$this->action.'" />';
-<a name="line66"></a>       $this->body.= '</GEOSMSSCHEDULER>';
-<a name="line67"></a>   }
-<a name="line68"></a>    
-<a name="line69"></a>   public function decodeResponse( $http_response )
-<a name="line70"></a>   {
-<a name="line71"></a>     //echo "SMSJobsScheduledStatus::decodeResponse: ".$http_response."\n";
-<a name="line72"></a>     $this->response = new SMSJobsScheduled_Response();
-<a name="line73"></a>     return $this->response->fillParameters($http_response);
-<a name="line74"></a>   }
-<a name="line75"></a>   
-<a name="line76"></a>   //getters
-<a name="line77"></a>   /**
-<a name="line78"></a>    * Returns the job id of the job to delete
-<a name="line79"></a>    * @access public
-<a name="line80"></a>    * @return string
-<a name="line81"></a>    */
-<a name="line82"></a>   public function get_job_id()
-<a name="line83"></a>   {
-<a name="line84"></a>      return $this->job_id;
-<a name="line85"></a>   }
-<a name="line86"></a>}
-<a name="line87"></a> 
-<a name="line88"></a>?>
-<a name="line89"></a></pre>
+<a name="line47"></a>      $this->set_job_id($job_id);
+<a name="line48"></a>   }
+<a name="line49"></a>    
+<a name="line50"></a>   public function __destruct()
+<a name="line51"></a>   {
+<a name="line52"></a>     parent::__destruct();
+<a name="line53"></a>     unset($this->job_id);
+<a name="line54"></a>     unset($this->action);
+<a name="line55"></a>   }
+<a name="line56"></a>    
+<a name="line57"></a>   public function createParams()
+<a name="line58"></a>   { 
+<a name="line59"></a>       //set body
+<a name="line60"></a>       $this->body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+<a name="line61"></a>       $this->body.= '<GEOSMSSCHEDULER>';
+<a name="line62"></a>       $this->body.= '<JOB JOBID="'.$this->job_id;
+<a name="line63"></a>       $this->body.= '" ACTION="'.$this->action.'" />';
+<a name="line64"></a>       $this->body.= '</GEOSMSSCHEDULER>';
+<a name="line65"></a>   }
+<a name="line66"></a>    
+<a name="line67"></a>   public function decodeResponse( $http_response )
+<a name="line68"></a>   {
+<a name="line69"></a>     //echo "SMSJobsScheduledStatus::decodeResponse: ".$http_response."\n";
+<a name="line70"></a>     $this->response = new SMSJobsScheduled_Response();
+<a name="line71"></a>     return $this->response->fillParameters($http_response);
+<a name="line72"></a>   }
+<a name="line73"></a>   
+<a name="line74"></a>   //getters
+<a name="line75"></a>   /**
+<a name="line76"></a>    * Returns the job id of the job to delete
+<a name="line77"></a>    * @access public
+<a name="line78"></a>    * @return string
+<a name="line79"></a>    */
+<a name="line80"></a>   public function get_job_id()
+<a name="line81"></a>   {
+<a name="line82"></a>      return $this->job_id;
+<a name="line83"></a>   }
+<a name="line84"></a>   
+<a name="line85"></a>   //setters
+<a name="line86"></a>   /**
+<a name="line87"></a>    * Sets the job id of the job to delete
+<a name="line88"></a>    * @param string job_id The job id
+<a name="line89"></a>    * @return void
+<a name="line90"></a>    */
+<a name="line91"></a>   public function set_job_id($job_id)
+<a name="line92"></a>   {
+<a name="line93"></a>      $this->job_id = $job_id;
+<a name="line94"></a>   }
+<a name="line95"></a>}
+<a name="line96"></a> 
+<a name="line97"></a>?>
+<a name="line98"></a></pre>
 <div class="header">
 <h1>PHP GeodropSDK</h1>
 <ul>

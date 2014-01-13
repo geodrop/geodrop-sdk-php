@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:29 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -75,7 +75,7 @@ the status of all SMS messages sent in a given time interval.</p></div>
 <table id="summary_method">
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
-<td class="type">protected  void</td>
+<td class="type"> void</td>
 <td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request.</p></td>
 </tr>
 <tr>
@@ -100,6 +100,25 @@ and the second the total number of result to return.</p></td>
 <tr>
 <td class="type"> string</td>
 <td class="description"><p class="name"><a href="#get_client_id()">get_client_id</a>()</p><p class="description">Returns the client id.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_range_dateTo()">set_range_dateTo</a>(date range_dateTo)</p><p class="description">Sets the end date of the time interval.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_range_dateFrom()">set_range_dateFrom</a>(date range_dateFrom)</p><p class="description">Sets the start date of the time interval.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_range_limit()">set_range_limit</a>(string range_limit)</p><p class="description">Sets the limit, used to paginate the result,
+it consist of two integers separated by a comma,
+the first one indicates the position of the first required result
+and the second the total number of result to return.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_client_id()">set_client_id</a>(string client_id)</p><p class="description">Sets the client id.</p></td>
 </tr>
 </table>
 
@@ -127,16 +146,16 @@ and the second the total number of result to return.</p></td>
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../../source/dropout/smsstatusrange.php.html#line101" class="location">dropOut/SMSStatusRange.php at line 101</a>
+<a href="../../source/dropout/smsstatusrange.php.html#line85" class="location">dropOut/SMSStatusRange.php at line 85</a>
 
 <h3 id="createParams()">createParams</h3>
-<code class="signature">protected  void <strong>createParams</strong>()</code>
+<code class="signature">public  void <strong>createParams</strong>()</code>
 <div class="details">
 <p>Creates the parameters for the http request</p></div>
 
 <hr>
 
-<a href="../../source/dropout/smsstatusrange.php.html#line117" class="location">dropOut/SMSStatusRange.php at line 117</a>
+<a href="../../source/dropout/smsstatusrange.php.html#line101" class="location">dropOut/SMSStatusRange.php at line 101</a>
 
 <h3 id="decodeResponse()">decodeResponse</h3>
 <code class="signature">public  boolean <strong>decodeResponse</strong>(string http_response)</code>
@@ -151,7 +170,7 @@ and the second the total number of result to return.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsstatusrange.php.html#line130" class="location">dropOut/SMSStatusRange.php at line 130</a>
+<a href="../../source/dropout/smsstatusrange.php.html#line114" class="location">dropOut/SMSStatusRange.php at line 114</a>
 
 <h3 id="get_range_dateTo()">get_range_dateTo</h3>
 <code class="signature">public  date <strong>get_range_dateTo</strong>()</code>
@@ -160,7 +179,7 @@ and the second the total number of result to return.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsstatusrange.php.html#line139" class="location">dropOut/SMSStatusRange.php at line 139</a>
+<a href="../../source/dropout/smsstatusrange.php.html#line123" class="location">dropOut/SMSStatusRange.php at line 123</a>
 
 <h3 id="get_range_dateFrom()">get_range_dateFrom</h3>
 <code class="signature">public  date <strong>get_range_dateFrom</strong>()</code>
@@ -169,7 +188,7 @@ and the second the total number of result to return.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsstatusrange.php.html#line151" class="location">dropOut/SMSStatusRange.php at line 151</a>
+<a href="../../source/dropout/smsstatusrange.php.html#line135" class="location">dropOut/SMSStatusRange.php at line 135</a>
 
 <h3 id="get_range_limit()">get_range_limit</h3>
 <code class="signature">public  string <strong>get_range_limit</strong>()</code>
@@ -181,12 +200,73 @@ and the second the total number of result to return</p></div>
 
 <hr>
 
-<a href="../../source/dropout/smsstatusrange.php.html#line160" class="location">dropOut/SMSStatusRange.php at line 160</a>
+<a href="../../source/dropout/smsstatusrange.php.html#line144" class="location">dropOut/SMSStatusRange.php at line 144</a>
 
 <h3 id="get_client_id()">get_client_id</h3>
 <code class="signature">public  string <strong>get_client_id</strong>()</code>
 <div class="details">
 <p>Returns the client id</p></div>
+
+<hr>
+
+<a href="../../source/dropout/smsstatusrange.php.html#line156" class="location">dropOut/SMSStatusRange.php at line 156</a>
+
+<h3 id="set_range_dateTo()">set_range_dateTo</h3>
+<code class="signature">public  void <strong>set_range_dateTo</strong>(date range_dateTo)</code>
+<div class="details">
+<p>Sets the end date of the time interval</p><dl>
+<dt>Parameters:</dt>
+<dd>range_dateTo - The end date of the time interval</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smsstatusrange.php.html#line171" class="location">dropOut/SMSStatusRange.php at line 171</a>
+
+<h3 id="set_range_dateFrom()">set_range_dateFrom</h3>
+<code class="signature">public  void <strong>set_range_dateFrom</strong>(date range_dateFrom)</code>
+<div class="details">
+<p>Sets the start date of the time interval</p><dl>
+<dt>Parameters:</dt>
+<dd>range_dateFrom - The start date of the time interval</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smsstatusrange.php.html#line189" class="location">dropOut/SMSStatusRange.php at line 189</a>
+
+<h3 id="set_range_limit()">set_range_limit</h3>
+<code class="signature">public  void <strong>set_range_limit</strong>(string range_limit)</code>
+<div class="details">
+<p>Sets the limit, used to paginate the result,
+it consist of two integers separated by a comma,
+the first one indicates the position of the first required result
+and the second the total number of result to return</p><dl>
+<dt>Parameters:</dt>
+<dd>range_limit - The limit</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smsstatusrange.php.html#line206" class="location">dropOut/SMSStatusRange.php at line 206</a>
+
+<h3 id="set_client_id()">set_client_id</h3>
+<code class="signature">public  void <strong>set_client_id</strong>(string client_id)</code>
+<div class="details">
+<p>Sets the client id</p><dl>
+<dt>Parameters:</dt>
+<dd>client_id - The client id</dd>
+</dl>
+</div>
 
 <hr>
 

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:29 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -74,7 +74,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <table id="summary_method">
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
-<td class="type">protected  void</td>
+<td class="type"> void</td>
 <td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request.</p></td>
 </tr>
 <tr>
@@ -100,6 +100,26 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr>
 <td class="type"> int</td>
 <td class="description"><p class="name"><a href="#get_subscriber()">get_subscriber</a>()</p><p class="description">Returns the subscriber id required in subscription payments.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_port()">set_port</a>(int port)</p><p class="description">Sets the DropPay port id.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_msisdn()">set_msisdn</a>(string msisdn)</p><p class="description">Sets the customer phone number in E.164 format (without +).</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_custom()">set_custom</a>(string custom)</p><p class="description">Sets the unique CP request id.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_text()">set_text</a>(string text)</p><p class="description">Sets the text to send, encoded in UTF-8, up to 160 characters.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_subscriber()">set_subscriber</a>(int subscriber)</p><p class="description">Sets the subscriber id required in subscription payments.</p></td>
 </tr>
 </table>
 
@@ -128,16 +148,16 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../../source/droppay/customergoodbye.php.html#line100" class="location">dropPay/CustomerGoodbye.php at line 100</a>
+<a href="../../source/droppay/customergoodbye.php.html#line80" class="location">dropPay/CustomerGoodbye.php at line 80</a>
 
 <h3 id="createParams()">createParams</h3>
-<code class="signature">protected  void <strong>createParams</strong>()</code>
+<code class="signature">public  void <strong>createParams</strong>()</code>
 <div class="details">
 <p>Creates the parameters for the http request</p></div>
 
 <hr>
 
-<a href="../../source/droppay/customergoodbye.php.html#line112" class="location">dropPay/CustomerGoodbye.php at line 112</a>
+<a href="../../source/droppay/customergoodbye.php.html#line92" class="location">dropPay/CustomerGoodbye.php at line 92</a>
 
 <h3 id="decodeResponse()">decodeResponse</h3>
 <code class="signature">public  boolean <strong>decodeResponse</strong>(string http_response)</code>
@@ -152,7 +172,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../../source/droppay/customergoodbye.php.html#line125" class="location">dropPay/CustomerGoodbye.php at line 125</a>
+<a href="../../source/droppay/customergoodbye.php.html#line105" class="location">dropPay/CustomerGoodbye.php at line 105</a>
 
 <h3 id="get_port()">get_port</h3>
 <code class="signature">public  int <strong>get_port</strong>()</code>
@@ -161,7 +181,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../../source/droppay/customergoodbye.php.html#line134" class="location">dropPay/CustomerGoodbye.php at line 134</a>
+<a href="../../source/droppay/customergoodbye.php.html#line114" class="location">dropPay/CustomerGoodbye.php at line 114</a>
 
 <h3 id="get_msisdn()">get_msisdn</h3>
 <code class="signature">public  string <strong>get_msisdn</strong>()</code>
@@ -170,7 +190,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../../source/droppay/customergoodbye.php.html#line143" class="location">dropPay/CustomerGoodbye.php at line 143</a>
+<a href="../../source/droppay/customergoodbye.php.html#line123" class="location">dropPay/CustomerGoodbye.php at line 123</a>
 
 <h3 id="get_custom()">get_custom</h3>
 <code class="signature">public  string <strong>get_custom</strong>()</code>
@@ -179,7 +199,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../../source/droppay/customergoodbye.php.html#line152" class="location">dropPay/CustomerGoodbye.php at line 152</a>
+<a href="../../source/droppay/customergoodbye.php.html#line132" class="location">dropPay/CustomerGoodbye.php at line 132</a>
 
 <h3 id="get_text()">get_text</h3>
 <code class="signature">public  string <strong>get_text</strong>()</code>
@@ -188,12 +208,83 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../../source/droppay/customergoodbye.php.html#line161" class="location">dropPay/CustomerGoodbye.php at line 161</a>
+<a href="../../source/droppay/customergoodbye.php.html#line141" class="location">dropPay/CustomerGoodbye.php at line 141</a>
 
 <h3 id="get_subscriber()">get_subscriber</h3>
 <code class="signature">public  int <strong>get_subscriber</strong>()</code>
 <div class="details">
 <p>Returns the subscriber id required in subscription payments</p></div>
+
+<hr>
+
+<a href="../../source/droppay/customergoodbye.php.html#line153" class="location">dropPay/CustomerGoodbye.php at line 153</a>
+
+<h3 id="set_port()">set_port</h3>
+<code class="signature">public  void <strong>set_port</strong>(int port)</code>
+<div class="details">
+<p>Sets the DropPay port id</p><dl>
+<dt>Parameters:</dt>
+<dd>port - The DropPay port id</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/customergoodbye.php.html#line163" class="location">dropPay/CustomerGoodbye.php at line 163</a>
+
+<h3 id="set_msisdn()">set_msisdn</h3>
+<code class="signature">public  void <strong>set_msisdn</strong>(string msisdn)</code>
+<div class="details">
+<p>Sets the customer phone number in E.164 format (without +)</p><dl>
+<dt>Parameters:</dt>
+<dd>msisdn - The customer phone number in E.164 format (without +)</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/customergoodbye.php.html#line177" class="location">dropPay/CustomerGoodbye.php at line 177</a>
+
+<h3 id="set_custom()">set_custom</h3>
+<code class="signature">public  void <strong>set_custom</strong>(string custom)</code>
+<div class="details">
+<p>Sets the unique CP request id</p><dl>
+<dt>Parameters:</dt>
+<dd>custom - The unique CP request id</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/customergoodbye.php.html#line186" class="location">dropPay/CustomerGoodbye.php at line 186</a>
+
+<h3 id="set_text()">set_text</h3>
+<code class="signature">public  void <strong>set_text</strong>(string text)</code>
+<div class="details">
+<p>Sets the text to send, encoded in UTF-8, up to 160 characters</p><dl>
+<dt>Parameters:</dt>
+<dd>text - The text to send</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/customergoodbye.php.html#line196" class="location">dropPay/CustomerGoodbye.php at line 196</a>
+
+<h3 id="set_subscriber()">set_subscriber</h3>
+<code class="signature">public  void <strong>set_subscriber</strong>(int subscriber)</code>
+<div class="details">
+<p>Sets the subscriber id required in subscription payments</p><dl>
+<dt>Parameters:</dt>
+<dd>subscriber - The subscriber id</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
 
 <hr>
 

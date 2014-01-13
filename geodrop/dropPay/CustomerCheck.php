@@ -39,25 +39,12 @@ class CustomerCheck extends GeodropRequest
       throw new Exception(ErrorType::MISSING_PARAMETERS);
     }
     
-    //check port
-    if(!$this->checkIfIntegerOrDigitString($port))
-    {
-      throw new Exception(ErrorType::MALFORMED_PORT);
-    }
-    
-    //check msisdn
-    if(!$this->checkMsisdnE164Format($msisdn,false))
-    {
-      throw new Exception(ErrorType::MALFORMED_MSISDN);
-    }
-    
     //set parameters
     $this->uri = Uri::PAY_CUSTOMERS_CHECK;
     $this->httpMethod = HttpMethod::POST;
     $this->contentType = ContentType::RAW;
-    $this->port = $port;
-    $this->msisdn = $msisdn;
-    $this->createParams();
+    $this->set_port($port);
+    $this->set_msisdn($msisdn);
   }
   
   public function __destruct()
@@ -67,7 +54,7 @@ class CustomerCheck extends GeodropRequest
     unset($this->msisdn);
   }
   
-  protected function createParams()
+  public function createParams()
   {
     //set URI parameters
     $this->params = array(
@@ -91,6 +78,11 @@ class CustomerCheck extends GeodropRequest
    */
   public function get_port()
   {
+    //check port
+    if(!$this->checkIfIntegerOrDigitString($port))
+    {
+      throw new Exception(ErrorType::MALFORMED_PORT);
+    }
     return $this->port;
   }
   /**
@@ -101,6 +93,33 @@ class CustomerCheck extends GeodropRequest
   public function get_msisdn()
   {
     return $this->msisdn;
+  }
+  
+  //setters
+  /**
+   * Sets the DropPay port id
+   * @param int port The DropPay port id
+   * @return void
+   * @throws Exception If parameters are not valid
+   */
+  public function set_port($port)
+  {
+    $this->port = $port;
+  }
+  /**
+   * Sets the customer phone number in E.164 format (without +)
+   * @param string msisdn The customer phone number in E.164 format (without +)
+   * @return void
+   * @throws Exception If parameters are not valid
+   */
+  public function set_msisdn($msisdn)
+  {
+    //check msisdn
+    if(!$this->checkMsisdnE164Format($msisdn,false))
+    {
+      throw new Exception(ErrorType::MALFORMED_MSISDN);
+    }
+    $this->msisdn = $msisdn;
   }
 }
 

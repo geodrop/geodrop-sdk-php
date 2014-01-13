@@ -57,32 +57,16 @@ class SMSSend extends GeodropRequest
     {
       throw new Exception(ErrorType::MISSING_PARAMETERS);
     }
-    
-    //check dest_msisdns
-    if(!$this->checkIfMsisdnsIsArrayOrString($dest_msisdns,true))
-    {
-      throw new Exception(ErrorType::MALFORMED_MSISDNS);
-    }
-    
-    //check deferred
-    if(isset($deferred))
-    {
-      if(!$this->checkIfFutureDatetime($deferred))
-      {
-	throw new Exception(ErrorType::MALFORMED_OR_PAST_TIME);
-      }
-    }
 
     //set parameters
     $this->uri = Uri::OUT_SMS_SEND;
     $this->httpMethod = HttpMethod::POST;
     $this->contentType = ContentType::XML;
-    $this->dest_msisdns = $dest_msisdns;
-    $this->message_text = utf8_encode($message_text);
-    $this->tpoa = $tpoa;
+    $this->set_dest_msisdns($dest_msisdns);
+    $this->set_message_text(utf8_encode($message_text));
+    $this->set_tpoa($tpoa);
     if(isset($deferred))
-      $this->deferred = date('Y-m-d H:i:s',strtotime(trim($deferred)));
-    $this->createParams();
+      $this->set_deferred(date('Y-m-d H:i:s',strtotime(trim($deferred))));
   }
   
   public function __destruct()
@@ -101,7 +85,7 @@ class SMSSend extends GeodropRequest
     return $this->response->fillParameters($http_response);
   }
   
-  protected function createParams()
+  public function createParams()
   {      
     //set body
     $this->body = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -162,10 +146,71 @@ class SMSSend extends GeodropRequest
    * if not specified the message is sent immediately
    * @access public
    * @return date
+   * 
    */
   public function get_deferred()
   {
+    //check deferred
+    if(isset($deferred))
+    {
+      if(!$this->checkIfFutureDatetime($deferred))
+      {
+	throw new Exception(ErrorType::MALFORMED_OR_PAST_TIME);
+      }
+    }
     return $this->deferred;
+  }
+  
+  //setters
+  /**
+   * Sets the text of the message to send
+   * 
+   * @param string message_text The text of the message to send
+   * @return void
+   */
+  public function set_message_text($message_text)
+  {
+    $this->message_text = $message_text;
+  }
+  /**
+   * Sets the msisdn of the recipient or an array of msisdns if there are many recipients;
+   * each msisdn is in E.164 format with '+'
+   * 
+   * @param string|string[] The msisdn of the recipient or an array of msisdns
+   * @return void
+   * @throws Exception If parameters are not valid
+   */
+  public function set_dest_msisdns($dest_msisdns)
+  {
+    //check dest_msisdns
+    if(!$this->checkIfMsisdnsIsArrayOrString($dest_msisdns,true))
+    {
+      throw new Exception(ErrorType::MALFORMED_MSISDNS);
+    }
+    $this->dest_msisdns = $dest_msisdns;
+  }
+  /**
+   * Sets the personalized sender
+   * 
+   * @param string dest_msisdns The personalized sender
+   * @return void
+   */
+  public function set_tpoa($tpoa)
+  {
+    $this->tpoa = $tpoa;
+  }
+  /**
+   * Sets date and time in the format "Y-m-d H:i:s",
+   * used to send the message to a certain date,
+   * if not specified the message is sent immediately
+   * 
+   * @param date deferred The deferred time
+   * @return void
+   * @throws Exception If parameters are not valid
+   */
+  public function set_deferred($deferred)
+  {
+    $this->deferred = $deferred;
   }
 }
 

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:30 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -93,120 +93,166 @@
 <a name="line55"></a>    {
 <a name="line56"></a>      throw new Exception(ErrorType::MISSING_PARAMETERS);
 <a name="line57"></a>    }
-<a name="line58"></a>    
-<a name="line59"></a>    //check port
-<a name="line60"></a>    if(!$this->checkIfIntegerOrDigitString($port))
-<a name="line61"></a>    {
-<a name="line62"></a>      throw new Exception(ErrorType::MALFORMED_PORT);
-<a name="line63"></a>    }
-<a name="line64"></a>    
-<a name="line65"></a>    //check msisdn
-<a name="line66"></a>    if(!$this->checkMsisdnE164Format($msisdn,false))
-<a name="line67"></a>    {
-<a name="line68"></a>      throw new Exception(ErrorType::MALFORMED_MSISDN);
-<a name="line69"></a>    }
-<a name="line70"></a>    
-<a name="line71"></a>    //check time
-<a name="line72"></a>    if(isset($time))
-<a name="line73"></a>    {
-<a name="line74"></a>      if(!$this->checkIfFutureDatetime($time))
-<a name="line75"></a>      {
-<a name="line76"></a>	throw new Exception(ErrorType::MALFORMED_OR_PAST_TIME);
-<a name="line77"></a>      }
-<a name="line78"></a>    }
-<a name="line79"></a>    
-<a name="line80"></a>    //set parameters
-<a name="line81"></a>    $this->uri = Uri::PAY_PORT_TRIGGER;
-<a name="line82"></a>    $this->httpMethod = HttpMethod::POST;
-<a name="line83"></a>    $this->contentType = ContentType::RAW;
-<a name="line84"></a>    $this->port = $port;
-<a name="line85"></a>    $this->msisdn = $msisdn;
-<a name="line86"></a>    $this->custom = $custom;
-<a name="line87"></a>    $this->text = utf8_encode($text);
-<a name="line88"></a>    if(isset($time))
-<a name="line89"></a>      $this->time = date('Y-m-d H:i:s',strtotime(trim($time)));
-<a name="line90"></a>    $this->createParams();
+<a name="line58"></a>       
+<a name="line59"></a>    //set parameters
+<a name="line60"></a>    $this->uri = Uri::PAY_PORT_TRIGGER;
+<a name="line61"></a>    $this->httpMethod = HttpMethod::POST;
+<a name="line62"></a>    $this->contentType = ContentType::RAW;
+<a name="line63"></a>    $this->set_port($port);
+<a name="line64"></a>    $this->set_msisdn($msisdn);
+<a name="line65"></a>    $this->set_custom($custom);
+<a name="line66"></a>    $this->set_text(utf8_encode($text));
+<a name="line67"></a>    if(isset($time))
+<a name="line68"></a>      $this->set_time(date('Y-m-d H:i:s',strtotime(trim($time))));
+<a name="line69"></a>  }
+<a name="line70"></a>  
+<a name="line71"></a>  public function __destruct()
+<a name="line72"></a>  {
+<a name="line73"></a>    parent::__destruct();    
+<a name="line74"></a>    unset($this->port);
+<a name="line75"></a>    unset($this->msisdn);
+<a name="line76"></a>    unset($this->custom);
+<a name="line77"></a>    unset($this->text);
+<a name="line78"></a>    unset($this->time);
+<a name="line79"></a>  }
+<a name="line80"></a>  
+<a name="line81"></a>  public function createParams()
+<a name="line82"></a>  {
+<a name="line83"></a>    //set URI parameters
+<a name="line84"></a>    $this->params = array(
+<a name="line85"></a>      "port" 	=> $this->port,
+<a name="line86"></a>      "msisdn"	=> $this->msisdn,
+<a name="line87"></a>      "custom"	=> $this->custom,
+<a name="line88"></a>      "text"	=> $this->text,
+<a name="line89"></a>      "time"	=> $this->time,
+<a name="line90"></a>    );
 <a name="line91"></a>  }
 <a name="line92"></a>  
-<a name="line93"></a>  public function __destruct()
+<a name="line93"></a>  public function decodeResponse( $http_response )
 <a name="line94"></a>  {
-<a name="line95"></a>    parent::__destruct();    
-<a name="line96"></a>    unset($this->port);
-<a name="line97"></a>    unset($this->msisdn);
-<a name="line98"></a>    unset($this->custom);
-<a name="line99"></a>    unset($this->text);
-<a name="line100"></a>    unset($this->time);
-<a name="line101"></a>  }
-<a name="line102"></a>  
-<a name="line103"></a>  protected function createParams()
-<a name="line104"></a>  {
-<a name="line105"></a>    //set URI parameters
-<a name="line106"></a>    $this->params = array(
-<a name="line107"></a>      "port" 	=> $this->port,
-<a name="line108"></a>      "msisdn"	=> $this->msisdn,
-<a name="line109"></a>      "custom"	=> $this->custom,
-<a name="line110"></a>      "text"	=> $this->text,
-<a name="line111"></a>      "time"	=> $this->time,
-<a name="line112"></a>    );
-<a name="line113"></a>  }
-<a name="line114"></a>  
-<a name="line115"></a>  public function decodeResponse( $http_response )
+<a name="line95"></a>    //echo "PortTrigger::decodeResponse: \n".$http_response."\n";
+<a name="line96"></a>    $this->response = new PortTrigger_Response();
+<a name="line97"></a>    return $this->response->fillParameters($http_response);
+<a name="line98"></a>  }
+<a name="line99"></a>  
+<a name="line100"></a>  //getters
+<a name="line101"></a>  /**
+<a name="line102"></a>   * Returns the DropPay port id
+<a name="line103"></a>   * @access public
+<a name="line104"></a>   * @return int
+<a name="line105"></a>   */
+<a name="line106"></a>  public function get_port()
+<a name="line107"></a>  {
+<a name="line108"></a>    return $this->port;
+<a name="line109"></a>  }
+<a name="line110"></a>  /**
+<a name="line111"></a>   * Returns the customer phone number in E.164 format (without +)
+<a name="line112"></a>   * @access public
+<a name="line113"></a>   * @return string
+<a name="line114"></a>   */
+<a name="line115"></a>  public function get_msisdn()
 <a name="line116"></a>  {
-<a name="line117"></a>    //echo "PortTrigger::decodeResponse: \n".$http_response."\n";
-<a name="line118"></a>    $this->response = new PortTrigger_Response();
-<a name="line119"></a>    return $this->response->fillParameters($http_response);
-<a name="line120"></a>  }
-<a name="line121"></a>  
-<a name="line122"></a>  //getters
-<a name="line123"></a>  /**
-<a name="line124"></a>   * Returns the DropPay port id
-<a name="line125"></a>   * @access public
-<a name="line126"></a>   * @return int
-<a name="line127"></a>   */
-<a name="line128"></a>  public function get_port()
-<a name="line129"></a>  {
-<a name="line130"></a>    return $this->port;
-<a name="line131"></a>  }
-<a name="line132"></a>  /**
-<a name="line133"></a>   * Returns the customer phone number in E.164 format (without +)
-<a name="line134"></a>   * @access public
-<a name="line135"></a>   * @return string
-<a name="line136"></a>   */
-<a name="line137"></a>  public function get_msisdn()
-<a name="line138"></a>  {
-<a name="line139"></a>    return $this->msisdn;
-<a name="line140"></a>  }
-<a name="line141"></a>  /**
-<a name="line142"></a>   * Returns the unique CP request id
-<a name="line143"></a>   * @access public
-<a name="line144"></a>   * @return string
-<a name="line145"></a>   */
-<a name="line146"></a>  public function get_custom()
-<a name="line147"></a>  {
-<a name="line148"></a>    return $this->custom;
-<a name="line149"></a>  }
-<a name="line150"></a>  /**
-<a name="line151"></a>   * Returns the text to send, encoded in UTF-8, up to 160 characters
-<a name="line152"></a>   * @access public
-<a name="line153"></a>   * @return string
-<a name="line154"></a>   */
-<a name="line155"></a>  public function get_text()
-<a name="line156"></a>  {
-<a name="line157"></a>    return $this->text;
-<a name="line158"></a>  }
-<a name="line159"></a>  /**
-<a name="line160"></a>   * Returns the time to schedule trigger, default is now
-<a name="line161"></a>   * @access public
-<a name="line162"></a>   * @return date
-<a name="line163"></a>   */
-<a name="line164"></a>  public function get_time()
-<a name="line165"></a>  {
-<a name="line166"></a>    return $this->time;
-<a name="line167"></a>  }
-<a name="line168"></a>}
-<a name="line169"></a>
-<a name="line170"></a>?>
-<a name="line171"></a></pre>
+<a name="line117"></a>    return $this->msisdn;
+<a name="line118"></a>  }
+<a name="line119"></a>  /**
+<a name="line120"></a>   * Returns the unique CP request id
+<a name="line121"></a>   * @access public
+<a name="line122"></a>   * @return string
+<a name="line123"></a>   */
+<a name="line124"></a>  public function get_custom()
+<a name="line125"></a>  {
+<a name="line126"></a>    return $this->custom;
+<a name="line127"></a>  }
+<a name="line128"></a>  /**
+<a name="line129"></a>   * Returns the text to send, encoded in UTF-8, up to 160 characters
+<a name="line130"></a>   * @access public
+<a name="line131"></a>   * @return string
+<a name="line132"></a>   */
+<a name="line133"></a>  public function get_text()
+<a name="line134"></a>  {
+<a name="line135"></a>    return $this->text;
+<a name="line136"></a>  }
+<a name="line137"></a>  /**
+<a name="line138"></a>   * Returns the time to schedule trigger, default is now
+<a name="line139"></a>   * @access public
+<a name="line140"></a>   * @return date
+<a name="line141"></a>   */
+<a name="line142"></a>  public function get_time()
+<a name="line143"></a>  {
+<a name="line144"></a>    return $this->time;
+<a name="line145"></a>  }
+<a name="line146"></a>  
+<a name="line147"></a>  //setters
+<a name="line148"></a>  /**
+<a name="line149"></a>   * Sets the DropPay port id
+<a name="line150"></a>   * @param int port The DropPay port id
+<a name="line151"></a>   * @return void
+<a name="line152"></a>   * @throws Exception If parameters are not valid
+<a name="line153"></a>   */
+<a name="line154"></a>  public function set_port($port)
+<a name="line155"></a>  {
+<a name="line156"></a>    //check port
+<a name="line157"></a>    if(!$this->checkIfIntegerOrDigitString($port))
+<a name="line158"></a>    {
+<a name="line159"></a>      throw new Exception(ErrorType::MALFORMED_PORT);
+<a name="line160"></a>    }
+<a name="line161"></a>    $this->port = $port;
+<a name="line162"></a>  }
+<a name="line163"></a>  /**
+<a name="line164"></a>   * Sets the customer phone number in E.164 format (without +)
+<a name="line165"></a>   * @param string msisdn The customer phone number in E.164 format (without +)
+<a name="line166"></a>   * @return void
+<a name="line167"></a>   * @throws Exception If parameters are not valid
+<a name="line168"></a>   */
+<a name="line169"></a>  public function set_msisdn($msisdn)
+<a name="line170"></a>  {
+<a name="line171"></a>    //check msisdn
+<a name="line172"></a>    if(!$this->checkMsisdnE164Format($msisdn,false))
+<a name="line173"></a>    {
+<a name="line174"></a>      throw new Exception(ErrorType::MALFORMED_MSISDN);
+<a name="line175"></a>    }
+<a name="line176"></a>    $this->msisdn = $msisdn;
+<a name="line177"></a>  }
+<a name="line178"></a>  /**
+<a name="line179"></a>   * Sets the unique CP request id
+<a name="line180"></a>   * @param string custom The unique CP request id
+<a name="line181"></a>   * @return void
+<a name="line182"></a>   */
+<a name="line183"></a>  public function set_custom($custom)
+<a name="line184"></a>  {
+<a name="line185"></a>    $this->custom = $custom;
+<a name="line186"></a>  }
+<a name="line187"></a>  /**
+<a name="line188"></a>   * Sets the text to send, encoded in UTF-8, up to 160 characters
+<a name="line189"></a>   * @param string text The text to send
+<a name="line190"></a>   * @return void
+<a name="line191"></a>   */
+<a name="line192"></a>  public function set_text($text)
+<a name="line193"></a>  {
+<a name="line194"></a>    $this->text = $text;
+<a name="line195"></a>  }
+<a name="line196"></a>  /**
+<a name="line197"></a>   * Sets the time to schedule trigger, default is now
+<a name="line198"></a>   * @param date time The time to schedule trigger
+<a name="line199"></a>   * @return void
+<a name="line200"></a>   * @throws Exception If parameters are not valid
+<a name="line201"></a>   */
+<a name="line202"></a>  public function set_time($time)
+<a name="line203"></a>  {
+<a name="line204"></a>    //check time
+<a name="line205"></a>    if(isset($time))
+<a name="line206"></a>    {
+<a name="line207"></a>      if(!$this->checkIfFutureDatetime($time))
+<a name="line208"></a>      {
+<a name="line209"></a>	throw new Exception(ErrorType::MALFORMED_OR_PAST_TIME);
+<a name="line210"></a>      }
+<a name="line211"></a>    }
+<a name="line212"></a>    $this->time = $time;
+<a name="line213"></a>  }
+<a name="line214"></a>}
+<a name="line215"></a>
+<a name="line216"></a>?>
+<a name="line217"></a></pre>
 <div class="header">
 <h1>PHP GeodropSDK</h1>
 <ul>

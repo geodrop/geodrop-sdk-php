@@ -28,22 +28,12 @@ class PortDescriptor extends GeodropRequest
    * @throws Exception If parameters are not valid
    */
   public function __construct($port = null) 
-  {
-    //check port
-    if(isset($port))
-    {
-      if(!$this->checkIfIntegerOrDigitString($port))
-      {
-        throw new Exception(ErrorType::MALFORMED_PORT);
-      }
-    }
-    
+  {   
     //set parameters
     $this->uri = Uri::PAY_PORT_DESCRIPTOR;
     $this->httpMethod = HttpMethod::POST;
     $this->contentType = ContentType::RAW;
-    $this->port = $port;
-    $this->createParams();
+    $this->set_port($port);
   }
   
   public function __destruct()
@@ -52,7 +42,7 @@ class PortDescriptor extends GeodropRequest
     unset($this->port);
   }
   
-  protected function createParams()
+  public function createParams()
   {
     //set URI parameters
     $this->params = array(
@@ -76,6 +66,26 @@ class PortDescriptor extends GeodropRequest
   public function get_port()
   {
     return $this->port;
+  }
+  
+  //setters
+  /**
+   * Sets the DropPay port id
+   * @param int port The DropPay port id
+   * @return void
+   * @throws Exception If parameters are not valid
+   */
+  public function set_port($port)
+  {
+    //check port
+    if(isset($port))
+    {
+      if(!$this->checkIfIntegerOrDigitString($port))
+      {
+        throw new Exception(ErrorType::MALFORMED_PORT);
+      }
+    }
+    $this->port = $port;
   }
 }
 

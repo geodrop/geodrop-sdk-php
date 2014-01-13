@@ -17,7 +17,7 @@ abstract class GeodropResponse
    * In general, the toString method returns a string that "textually represents" this object.
    * The result should be a concise but informative representation that is easy for a person to read.
    * 
-   * @return string A string rapresentation of the object
+   * @return string A string representation of the object
    */
   abstract public function toString();
   

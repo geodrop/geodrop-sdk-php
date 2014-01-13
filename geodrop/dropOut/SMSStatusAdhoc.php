@@ -46,20 +46,13 @@ class SMSStatusAdhoc extends GeodropRequest
 	throw new Exception(ErrorType::MISSING_PARAMETERS);
       }
       
-      //check dest
-      if(!$this->checkIfArrayOfPairOfOrderIdMsisdn($dest,true))
-      {
-	throw new Exception(ErrorType::MALFORMED_PARAMETERS);
-      }
-      
       //set parameters
       $this->uri = Uri::OUT_SMS_STATUS;
       $this->httpMethod = HttpMethod::PUT;
       $this->contentType = ContentType::XML;
       $this->requestType = RequestTypeOutStatus::ADHOC;
-      $this->dest = $dest;
+      $this->set_dest($dest);
       $this->client_id = $client_id;
-      $this->createParams();
    }
     
    public function __destruct()
@@ -70,7 +63,7 @@ class SMSStatusAdhoc extends GeodropRequest
       unset($this->client_id);
    }
    
-   protected function createParams()
+   public function createParams()
    { 
       //set body
       $this->body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
@@ -116,6 +109,33 @@ class SMSStatusAdhoc extends GeodropRequest
    public function get_client_id()
    {
       return $this->client_id;
+   }
+   
+   //setters
+   /**
+    * Sets the array of pair <order id, msisdn>
+    * that uniquely identifies a single SMS message in the Geodrop archive
+    * @param string[][] dest The array of pair <order id, msisdn>
+    * @return void
+    * @throws Exception If parameters are not valid
+    */
+   public function set_dest($dest)
+   {
+      //check dest
+      if(!$this->checkIfArrayOfPairOfOrderIdMsisdn($dest,true))
+      {
+	throw new Exception(ErrorType::MALFORMED_PARAMETERS);
+      }
+      $this->dest = $dest;
+   }
+   /**
+    * Sets the client id
+    * @param string client_id The client id
+    * @return void
+    */
+   public function set_client_id($client_id)
+   {
+      $this->client_id = $client_id;
    }
  }
  

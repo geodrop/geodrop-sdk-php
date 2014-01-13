@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:29 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -77,7 +77,7 @@ its custom sender or its scheduled time</p></div>
 <table id="summary_method">
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
-<td class="type">protected  void</td>
+<td class="type"> void</td>
 <td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request.</p></td>
 </tr>
 <tr>
@@ -110,6 +110,32 @@ its custom sender or its scheduled time</p></div>
 used to send the message to a certain date,
 if not specified the message is sent immediately.</p></td>
 </tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_job_id()">set_job_id</a>(string job_id)</p><p class="description">Sets the job id of the job to modify.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_message_text()">set_message_text</a>(string message_text)</p><p class="description">Sets the text of the message.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_msisdn_to_delete()">set_msisdn_to_delete</a>(string msisdn_to_delete)</p><p class="description">Sets the array of msisdns to delete; each msisdn is in E.164 format with '+'.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_msisdn_to_add()">set_msisdn_to_add</a>(string msisdn_to_add)</p><p class="description">Sets the array of msisdns to add; each msisdn is in E.164 format with '+'.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_tpoa()">set_tpoa</a>(string tpoa)</p><p class="description">Sets the personalized sender.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_deferred_time()">set_deferred_time</a>(date deferred_time)</p><p class="description">Sets the date and time in the format "Y-m-d H:i:s",
+used to send the message to a certain date,
+if not specified the message is sent immediately.</p></td>
+</tr>
 </table>
 
 <table class="inherit">
@@ -138,16 +164,16 @@ if not specified the message is sent immediately.</p></td>
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line133" class="location">dropOut/SMSJobsScheduledModify.php at line 133</a>
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line106" class="location">dropOut/SMSJobsScheduledModify.php at line 106</a>
 
 <h3 id="createParams()">createParams</h3>
-<code class="signature">protected  void <strong>createParams</strong>()</code>
+<code class="signature">public  void <strong>createParams</strong>()</code>
 <div class="details">
 <p>Creates the parameters for the http request</p></div>
 
 <hr>
 
-<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line177" class="location">dropOut/SMSJobsScheduledModify.php at line 177</a>
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line150" class="location">dropOut/SMSJobsScheduledModify.php at line 150</a>
 
 <h3 id="decodeResponse()">decodeResponse</h3>
 <code class="signature">public  boolean <strong>decodeResponse</strong>(string http_response)</code>
@@ -162,7 +188,7 @@ if not specified the message is sent immediately.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line190" class="location">dropOut/SMSJobsScheduledModify.php at line 190</a>
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line163" class="location">dropOut/SMSJobsScheduledModify.php at line 163</a>
 
 <h3 id="get_job_id()">get_job_id</h3>
 <code class="signature">public  string <strong>get_job_id</strong>()</code>
@@ -171,7 +197,7 @@ if not specified the message is sent immediately.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line199" class="location">dropOut/SMSJobsScheduledModify.php at line 199</a>
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line172" class="location">dropOut/SMSJobsScheduledModify.php at line 172</a>
 
 <h3 id="get_message_text()">get_message_text</h3>
 <code class="signature">public  string <strong>get_message_text</strong>()</code>
@@ -180,7 +206,7 @@ if not specified the message is sent immediately.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line208" class="location">dropOut/SMSJobsScheduledModify.php at line 208</a>
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line181" class="location">dropOut/SMSJobsScheduledModify.php at line 181</a>
 
 <h3 id="get_msisdn_to_delete()">get_msisdn_to_delete</h3>
 <code class="signature">public  string[] <strong>get_msisdn_to_delete</strong>()</code>
@@ -189,7 +215,7 @@ if not specified the message is sent immediately.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line217" class="location">dropOut/SMSJobsScheduledModify.php at line 217</a>
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line190" class="location">dropOut/SMSJobsScheduledModify.php at line 190</a>
 
 <h3 id="get_msisdn_to_add()">get_msisdn_to_add</h3>
 <code class="signature">public  string[] <strong>get_msisdn_to_add</strong>()</code>
@@ -198,7 +224,7 @@ if not specified the message is sent immediately.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line226" class="location">dropOut/SMSJobsScheduledModify.php at line 226</a>
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line199" class="location">dropOut/SMSJobsScheduledModify.php at line 199</a>
 
 <h3 id="get_tpoa()">get_tpoa</h3>
 <code class="signature">public  string <strong>get_tpoa</strong>()</code>
@@ -207,7 +233,7 @@ if not specified the message is sent immediately.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line237" class="location">dropOut/SMSJobsScheduledModify.php at line 237</a>
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line210" class="location">dropOut/SMSJobsScheduledModify.php at line 210</a>
 
 <h3 id="get_deferred_time()">get_deferred_time</h3>
 <code class="signature">public  date <strong>get_deferred_time</strong>()</code>
@@ -215,6 +241,92 @@ if not specified the message is sent immediately.</p></td>
 <p>Returns the date and time in the format "Y-m-d H:i:s",
 used to send the message to a certain date,
 if not specified the message is sent immediately</p></div>
+
+<hr>
+
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line221" class="location">dropOut/SMSJobsScheduledModify.php at line 221</a>
+
+<h3 id="set_job_id()">set_job_id</h3>
+<code class="signature">public  void <strong>set_job_id</strong>(string job_id)</code>
+<div class="details">
+<p>Sets the job id of the job to modify</p><dl>
+<dt>Parameters:</dt>
+<dd>job_id - The job id</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line230" class="location">dropOut/SMSJobsScheduledModify.php at line 230</a>
+
+<h3 id="set_message_text()">set_message_text</h3>
+<code class="signature">public  void <strong>set_message_text</strong>(string message_text)</code>
+<div class="details">
+<p>Sets the text of the message</p><dl>
+<dt>Parameters:</dt>
+<dd>message_text - The message text</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line240" class="location">dropOut/SMSJobsScheduledModify.php at line 240</a>
+
+<h3 id="set_msisdn_to_delete()">set_msisdn_to_delete</h3>
+<code class="signature">public  void <strong>set_msisdn_to_delete</strong>(string msisdn_to_delete)</code>
+<div class="details">
+<p>Sets the array of msisdns to delete; each msisdn is in E.164 format with '+'</p><dl>
+<dt>Parameters:</dt>
+<dd>msisdn_to_delete - The array of msisdns to delete</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line258" class="location">dropOut/SMSJobsScheduledModify.php at line 258</a>
+
+<h3 id="set_msisdn_to_add()">set_msisdn_to_add</h3>
+<code class="signature">public  void <strong>set_msisdn_to_add</strong>(string msisdn_to_add)</code>
+<div class="details">
+<p>Sets the array of msisdns to add; each msisdn is in E.164 format with '+'</p><dl>
+<dt>Parameters:</dt>
+<dd>msisdn_to_add - The array of msisdns to add</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line275" class="location">dropOut/SMSJobsScheduledModify.php at line 275</a>
+
+<h3 id="set_tpoa()">set_tpoa</h3>
+<code class="signature">public  void <strong>set_tpoa</strong>(string tpoa)</code>
+<div class="details">
+<p>Sets the personalized sender</p><dl>
+<dt>Parameters:</dt>
+<dd>tpoa - The personalized sender</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smsjobsscheduledmodify.php.html#line287" class="location">dropOut/SMSJobsScheduledModify.php at line 287</a>
+
+<h3 id="set_deferred_time()">set_deferred_time</h3>
+<code class="signature">public  void <strong>set_deferred_time</strong>(date deferred_time)</code>
+<div class="details">
+<p>Sets the date and time in the format "Y-m-d H:i:s",
+used to send the message to a certain date,
+if not specified the message is sent immediately</p><dl>
+<dt>Parameters:</dt>
+<dd>deferred_time - The deferred time</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
 
 <hr>
 

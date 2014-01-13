@@ -38,20 +38,13 @@ class SMSEstimatecost extends GeodropRequest
     {
       throw new Exception(ErrorType::MISSING_PARAMETERS);
     }
-    
-    //check dest_msisdns
-    if(!$this->checkIfMsisdnsIsArrayOrString($dest_msisdns,true))
-    {
-      throw new Exception(ErrorType::MALFORMED_MSISDNS);
-    }
-    
+       
     //set parameters
     $this->uri = Uri::OUT_SMS_ESTIMATECOST;
     $this->httpMethod = HttpMethod::POST;
     $this->contentType = ContentType::XML;
-    $this->dest_msisdns = $dest_msisdns;
-    $this->message_text = utf8_encode($message_text);
-    $this->createParams();
+    $this->set_dest_msisdns($dest_msisdns);
+    $this->set_message_text(utf8_encode($message_text));
   } 
   
   public function __destruct()
@@ -61,7 +54,7 @@ class SMSEstimatecost extends GeodropRequest
     unset($this->dest_msisdns);
   }
   
-  protected function createParams()
+  public function createParams()
   {      
     //set body
     $this->body = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -110,6 +103,35 @@ class SMSEstimatecost extends GeodropRequest
   public function get_dest_msisdns()
   {
     return $this->dest_msisdns;
+  }
+  
+  //setters
+  /**
+   * Sets the text of the message to send
+   * 
+   * @param string message_text The text of the message to send
+   * @return void
+   */
+  public function set_message_text($message_text)
+  {
+    $this->message_text = $message_text;
+  }
+  /**
+   * Sets the msisdn of the recipient or an array of msisdns if there are many recipients;
+   * each msisdn is in E.164 format with '+'
+   * 
+   * @param string|string[] The msisdn of the recipient or an array of msisdns
+   * @return void
+   * @throws Exception If parameters are not valid
+   */
+  public function set_dest_msisdns($dest_msisdns)
+  {
+    //check dest_msisdns
+    if(!$this->checkIfMsisdnsIsArrayOrString($dest_msisdns,true))
+    {
+      throw new Exception(ErrorType::MALFORMED_MSISDNS);
+    }
+    $this->dest_msisdns = $dest_msisdns;
   }
 }
 

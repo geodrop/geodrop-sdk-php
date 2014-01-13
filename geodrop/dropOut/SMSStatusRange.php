@@ -60,32 +60,16 @@ class SMSStatusRange extends GeodropRequest
       {
 	throw new Exception(ErrorType::MISSING_PARAMETERS);
       }
-      
-      //check range_dateFrom and range_dateTo
-      if(!$this->checkDatetimeFormat($range_dateFrom) || !$this->checkDatetimeFormat($range_dateTo))
-      {
-	throw new Exception(ErrorType::MALFORMED_TIME);
-      }
-      
-      //check range_limit
-      if(isset($range_limit))
-      {
-	 if(!$this->checkLimitFormat($range_limit))
-	 {
-	    throw new Exception(ErrorType::MALFORMED_LIMIT);
-	 }
-      }
 
       //set parameters
       $this->uri = Uri::OUT_SMS_STATUS;
       $this->httpMethod = HttpMethod::PUT;
       $this->contentType = ContentType::XML;
       $this->requestType = RequestTypeOutStatus::RANGE;
-      $this->range_dateTo = date('Y-m-d H:i:s',strtotime(trim($range_dateTo)));
-      $this->range_dateFrom = date('Y-m-d H:i:s',strtotime(trim($range_dateFrom)));
-      $this->range_limit = $range_limit;
-      $this->client_id = $client_id;
-      $this->createParams();
+      $this->set_range_dateTo(date('Y-m-d H:i:s',strtotime(trim($range_dateTo))));
+      $this->set_range_dateFrom(date('Y-m-d H:i:s',strtotime(trim($range_dateFrom))));
+      $this->set_range_limit($range_limit);
+      $this->set_client_id($client_id);
    }
    
    public function __destruct()
@@ -98,7 +82,7 @@ class SMSStatusRange extends GeodropRequest
       unset($this->client_id);
    }
    
-   protected function createParams()
+   public function createParams()
    { 
       //set body
       $this->body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
@@ -150,7 +134,7 @@ class SMSStatusRange extends GeodropRequest
     */
    public function get_range_limit()
    {
-      return $this->range_limit();
+      return $this->range_limit;
    }
    /**
     * Returns the client id
@@ -160,6 +144,68 @@ class SMSStatusRange extends GeodropRequest
    public function get_client_id()
    {
       return $this->client_id;
+   }
+   
+   //setters
+   /**
+    * Sets the end date of the time interval
+    * @param date range_dateTo The end date of the time interval
+    * @return void
+    * @throws Exception If parameters are not valid
+    */
+   public function set_range_dateTo($range_dateTo)
+   {
+      //check range_dateTo
+      if(!$this->checkDatetimeFormat($range_dateTo))
+      {
+	throw new Exception(ErrorType::MALFORMED_TIME);
+      }
+      $this->range_dateTo = $range_dateTo;
+   }
+   /**
+    * Sets the start date of the time interval
+    * @param date range_dateFrom The start date of the time interval
+    * @return void
+    * @throws Exception If parameters are not valid
+    */
+   public function set_range_dateFrom($range_dateFrom)
+   {
+      //check range_dateFrom
+      if(!$this->checkDatetimeFormat($range_dateFrom))
+      {
+	throw new Exception(ErrorType::MALFORMED_TIME);
+      }
+      $this->range_dateFrom = $range_dateFrom;
+   }
+   /**
+    * Sets the limit, used to paginate the result,
+    * it consist of two integers separated by a comma,
+    * the first one indicates the position of the first required result
+    * and the second the total number of result to return
+    * @param string range_limit The limit
+    * @return void
+    * @throws Exception If parameters are not valid
+    */
+   public function set_range_limit($range_limit)
+   {
+      //check range_limit
+      if(isset($range_limit))
+      {
+	 if(!$this->checkLimitFormat($range_limit))
+	 {
+	    throw new Exception(ErrorType::MALFORMED_LIMIT);
+	 }
+      }
+      $this->range_limit = $range_limit;
+   }
+   /**
+    * Sets the client id
+    * @param string client_id The client id
+    * @return void
+    */
+   public function set_client_id($client_id)
+   {
+      $this->client_id = $client_id;
    }
  }
  

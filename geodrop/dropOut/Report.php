@@ -34,7 +34,7 @@ class Report
   /**
    * Returns a string representation of the object
    * 
-   * @return string A string rapresentation of the object
+   * @return string A string representation of the object
    */
   public function toString()
   {
