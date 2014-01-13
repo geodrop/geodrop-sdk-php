@@ -150,15 +150,7 @@ class SMSSend extends GeodropRequest
    */
   public function get_deferred()
   {
-    //check deferred
-    if(isset($deferred))
-    {
-      if(!$this->checkIfFutureDatetime($deferred))
-      {
-	throw new Exception(ErrorType::MALFORMED_OR_PAST_TIME);
-      }
-    }
-    return $this->deferred;
+     return $this->deferred;
   }
   
   //setters

@@ -174,6 +174,11 @@ class CustomerWelcome extends GeodropRequest
    */
   public function set_port($port)
   {
+    //check port
+    if(!$this->checkIfIntegerOrDigitString($port))
+    {
+      throw new Exception(ErrorType::MALFORMED_PORT);
+    }
     $this->port = $port;
   }
   /**
