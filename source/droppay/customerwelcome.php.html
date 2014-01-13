@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:30 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -102,129 +102,181 @@
 <a name="line64"></a>      throw new Exception(ErrorType::MISSING_PARAMETERS);
 <a name="line65"></a>    }
 <a name="line66"></a>    
-<a name="line67"></a>    //check port
-<a name="line68"></a>    if(!$this->checkIfIntegerOrDigitString($port))
-<a name="line69"></a>    {
-<a name="line70"></a>      throw new Exception(ErrorType::MALFORMED_PORT);
-<a name="line71"></a>    }
-<a name="line72"></a>    
-<a name="line73"></a>    //check msisdn
-<a name="line74"></a>    if(!$this->checkMsisdnE164Format($msisdn,false))
-<a name="line75"></a>    {
-<a name="line76"></a>      throw new Exception(ErrorType::MALFORMED_MSISDN);
-<a name="line77"></a>    }
-<a name="line78"></a>    
-<a name="line79"></a>    //check order
-<a name="line80"></a>    if(!$this->checkIfIntegerOrDigitString($order))
-<a name="line81"></a>    {
-<a name="line82"></a>      throw new Exception(ErrorType::MALFORMED_ORDERID);
-<a name="line83"></a>    }
-<a name="line84"></a>    
-<a name="line85"></a>    //set parameters
-<a name="line86"></a>    $this->uri = Uri::PAY_CUSTOMERS_WELCOME;
-<a name="line87"></a>    $this->httpMethod = HttpMethod::POST;
-<a name="line88"></a>    $this->contentType = ContentType::RAW;
-<a name="line89"></a>    $this->port = $port;
-<a name="line90"></a>    $this->msisdn = $msisdn;
-<a name="line91"></a>    $this->custom = $custom;
-<a name="line92"></a>    $this->text = utf8_encode($text);
-<a name="line93"></a>    $this->order = $order;
-<a name="line94"></a>    $this->pin = $pin;
-<a name="line95"></a>    $this->createParams();
-<a name="line96"></a>  }
-<a name="line97"></a>  
-<a name="line98"></a>  public function __destruct()
-<a name="line99"></a>  {
-<a name="line100"></a>    parent::__destruct();    
-<a name="line101"></a>    unset($this->port);
-<a name="line102"></a>    unset($this->msisdn);
-<a name="line103"></a>    unset($this->custom);
-<a name="line104"></a>    unset($this->text);
-<a name="line105"></a>    unset($this->pin);
-<a name="line106"></a>    unset($this->order);
-<a name="line107"></a>  }
-<a name="line108"></a>  
-<a name="line109"></a>  protected function createParams()
-<a name="line110"></a>  {
-<a name="line111"></a>    //set URI parameters
-<a name="line112"></a>    $this->params = array(
-<a name="line113"></a>      "port" 	=> $this->port,
-<a name="line114"></a>      "msisdn"	=> $this->msisdn,
-<a name="line115"></a>      "custom" => $this->custom,
-<a name="line116"></a>      "text" => $this->text,
-<a name="line117"></a>      "pin" => $this->pin,
-<a name="line118"></a>      "order" => $this->order,
-<a name="line119"></a>    );
-<a name="line120"></a>  }
-<a name="line121"></a>  
-<a name="line122"></a>  public function decodeResponse( $http_response )
-<a name="line123"></a>  {
-<a name="line124"></a>    //echo "CustomerWelcome::decodeResponse: \n".$http_response."\n";
-<a name="line125"></a>    $this->response = new CustomerWelcome_Response();
-<a name="line126"></a>    return $this->response->fillParameters($http_response);
-<a name="line127"></a>  }
-<a name="line128"></a>  
-<a name="line129"></a>  //getters
-<a name="line130"></a>  /**
-<a name="line131"></a>   * Returns the DropPay port id
-<a name="line132"></a>   * @access public
-<a name="line133"></a>   * @return int
-<a name="line134"></a>   */
-<a name="line135"></a>  public function get_port()
-<a name="line136"></a>  {
-<a name="line137"></a>    return $this->port;
-<a name="line138"></a>  }
-<a name="line139"></a>  /**
-<a name="line140"></a>   * Returns the customer phone number in E.164 format (without +)
-<a name="line141"></a>   * @access public
-<a name="line142"></a>   * @return string
-<a name="line143"></a>   */
-<a name="line144"></a>  public function get_msisdn()
-<a name="line145"></a>  {
-<a name="line146"></a>    return $this->msisdn;
-<a name="line147"></a>  }
-<a name="line148"></a>  /**
-<a name="line149"></a>   * Returns the unique CP request id
-<a name="line150"></a>   * @access public
-<a name="line151"></a>   * @return string
-<a name="line152"></a>   */
-<a name="line153"></a>  public function get_custom()
-<a name="line154"></a>  {
-<a name="line155"></a>    return $this->custom;
-<a name="line156"></a>  }
-<a name="line157"></a>  /**
-<a name="line158"></a>   * Returns the text to send, encoded in UTF-8, up to 160 characters
-<a name="line159"></a>   * @access public
-<a name="line160"></a>   * @return string
-<a name="line161"></a>   */
-<a name="line162"></a>  public function get_text()
-<a name="line163"></a>  {
-<a name="line164"></a>    return $this->text;
-<a name="line165"></a>  }
-<a name="line166"></a>  /**
-<a name="line167"></a>   * Returns the pin code sent to customer in challenge action,
-<a name="line168"></a>   * it is mandatory if transaction was initiated by provider calling challenge,
-<a name="line169"></a>   * it is not mandatory if transaction was initiated by customer sending MO
-<a name="line170"></a>   * @access public
-<a name="line171"></a>   * @return string
-<a name="line172"></a>   */
-<a name="line173"></a>  public function get_pin()
-<a name="line174"></a>  {
-<a name="line175"></a>    return $this->pin;
-<a name="line176"></a>  }
-<a name="line177"></a>  /**
-<a name="line178"></a>   * Returns the order id appended by Geodrop
-<a name="line179"></a>   * @access public
-<a name="line180"></a>   * @return int
-<a name="line181"></a>   */
-<a name="line182"></a>  public function get_order()
-<a name="line183"></a>  {
-<a name="line184"></a>    return $this->order;
-<a name="line185"></a>  }
-<a name="line186"></a>}
-<a name="line187"></a>
-<a name="line188"></a>?>
-<a name="line189"></a></pre>
+<a name="line67"></a>    //set parameters
+<a name="line68"></a>    $this->uri = Uri::PAY_CUSTOMERS_WELCOME;
+<a name="line69"></a>    $this->httpMethod = HttpMethod::POST;
+<a name="line70"></a>    $this->contentType = ContentType::RAW;
+<a name="line71"></a>    $this->set_port($port);
+<a name="line72"></a>    $this->set_msisdn($msisdn);
+<a name="line73"></a>    $this->set_custom($custom);
+<a name="line74"></a>    $this->set_text(utf8_encode($text));
+<a name="line75"></a>    $this->set_order($order);
+<a name="line76"></a>    $this->set_pin($pin);
+<a name="line77"></a>  }
+<a name="line78"></a>  
+<a name="line79"></a>  public function __destruct()
+<a name="line80"></a>  {
+<a name="line81"></a>    parent::__destruct();    
+<a name="line82"></a>    unset($this->port);
+<a name="line83"></a>    unset($this->msisdn);
+<a name="line84"></a>    unset($this->custom);
+<a name="line85"></a>    unset($this->text);
+<a name="line86"></a>    unset($this->pin);
+<a name="line87"></a>    unset($this->order);
+<a name="line88"></a>  }
+<a name="line89"></a>  
+<a name="line90"></a>  public function createParams()
+<a name="line91"></a>  {
+<a name="line92"></a>    //set URI parameters
+<a name="line93"></a>    $this->params = array(
+<a name="line94"></a>      "port" 	=> $this->port,
+<a name="line95"></a>      "msisdn"	=> $this->msisdn,
+<a name="line96"></a>      "custom" => $this->custom,
+<a name="line97"></a>      "text" => $this->text,
+<a name="line98"></a>      "pin" => $this->pin,
+<a name="line99"></a>      "order" => $this->order,
+<a name="line100"></a>    );
+<a name="line101"></a>  }
+<a name="line102"></a>  
+<a name="line103"></a>  public function decodeResponse( $http_response )
+<a name="line104"></a>  {
+<a name="line105"></a>    //echo "CustomerWelcome::decodeResponse: \n".$http_response."\n";
+<a name="line106"></a>    $this->response = new CustomerWelcome_Response();
+<a name="line107"></a>    return $this->response->fillParameters($http_response);
+<a name="line108"></a>  }
+<a name="line109"></a>  
+<a name="line110"></a>  //getters
+<a name="line111"></a>  /**
+<a name="line112"></a>   * Returns the DropPay port id
+<a name="line113"></a>   * @access public
+<a name="line114"></a>   * @return int
+<a name="line115"></a>   */
+<a name="line116"></a>  public function get_port()
+<a name="line117"></a>  {
+<a name="line118"></a>    return $this->port;
+<a name="line119"></a>  }
+<a name="line120"></a>  /**
+<a name="line121"></a>   * Returns the customer phone number in E.164 format (without +)
+<a name="line122"></a>   * @access public
+<a name="line123"></a>   * @return string
+<a name="line124"></a>   */
+<a name="line125"></a>  public function get_msisdn()
+<a name="line126"></a>  {
+<a name="line127"></a>    return $this->msisdn;
+<a name="line128"></a>  }
+<a name="line129"></a>  /**
+<a name="line130"></a>   * Returns the unique CP request id
+<a name="line131"></a>   * @access public
+<a name="line132"></a>   * @return string
+<a name="line133"></a>   */
+<a name="line134"></a>  public function get_custom()
+<a name="line135"></a>  {
+<a name="line136"></a>    return $this->custom;
+<a name="line137"></a>  }
+<a name="line138"></a>  /**
+<a name="line139"></a>   * Returns the text to send, encoded in UTF-8, up to 160 characters
+<a name="line140"></a>   * @access public
+<a name="line141"></a>   * @return string
+<a name="line142"></a>   */
+<a name="line143"></a>  public function get_text()
+<a name="line144"></a>  {
+<a name="line145"></a>    return $this->text;
+<a name="line146"></a>  }
+<a name="line147"></a>  /**
+<a name="line148"></a>   * Returns the pin code sent to customer in challenge action,
+<a name="line149"></a>   * it is mandatory if transaction was initiated by provider calling challenge,
+<a name="line150"></a>   * it is not mandatory if transaction was initiated by customer sending MO
+<a name="line151"></a>   * @access public
+<a name="line152"></a>   * @return string
+<a name="line153"></a>   */
+<a name="line154"></a>  public function get_pin()
+<a name="line155"></a>  {
+<a name="line156"></a>    return $this->pin;
+<a name="line157"></a>  }
+<a name="line158"></a>  /**
+<a name="line159"></a>   * Returns the order id appended by Geodrop
+<a name="line160"></a>   * @access public
+<a name="line161"></a>   * @return int
+<a name="line162"></a>   */
+<a name="line163"></a>  public function get_order()
+<a name="line164"></a>  {
+<a name="line165"></a>    return $this->order;
+<a name="line166"></a>  }
+<a name="line167"></a>  
+<a name="line168"></a>  //setters
+<a name="line169"></a>  /**
+<a name="line170"></a>   * Sets the DropPay port id
+<a name="line171"></a>   * @param int port The DropPay port id
+<a name="line172"></a>   * @return void
+<a name="line173"></a>   * @throws Exception If parameters are not valid
+<a name="line174"></a>   */
+<a name="line175"></a>  public function set_port($port)
+<a name="line176"></a>  {
+<a name="line177"></a>    $this->port = $port;
+<a name="line178"></a>  }
+<a name="line179"></a>  /**
+<a name="line180"></a>   * Sets the customer phone number in E.164 format (without +)
+<a name="line181"></a>   * @param string msisdn The customer phone number in E.164 format (without +)
+<a name="line182"></a>   * @return void
+<a name="line183"></a>   * @throws Exception If parameters are not valid
+<a name="line184"></a>   */
+<a name="line185"></a>  public function set_msisdn($msisdn)
+<a name="line186"></a>  {
+<a name="line187"></a>    //check msisdn
+<a name="line188"></a>    if(!$this->checkMsisdnE164Format($msisdn,false))
+<a name="line189"></a>    {
+<a name="line190"></a>      throw new Exception(ErrorType::MALFORMED_MSISDN);
+<a name="line191"></a>    }
+<a name="line192"></a>    $this->msisdn = $msisdn;
+<a name="line193"></a>  }
+<a name="line194"></a>  /**
+<a name="line195"></a>   * Sets the unique CP request id
+<a name="line196"></a>   * @param string custom The unique CP request id
+<a name="line197"></a>   * @return void
+<a name="line198"></a>   */
+<a name="line199"></a>  public function set_custom($custom)
+<a name="line200"></a>  {
+<a name="line201"></a>    $this->custom = $custom;
+<a name="line202"></a>  }
+<a name="line203"></a>  /**
+<a name="line204"></a>   * Sets the text to send, encoded in UTF-8, up to 160 characters
+<a name="line205"></a>   * @param string text The text to send
+<a name="line206"></a>   * @return void
+<a name="line207"></a>   */
+<a name="line208"></a>  public function set_text($text)
+<a name="line209"></a>  {
+<a name="line210"></a>    $this->text = $text;
+<a name="line211"></a>  }
+<a name="line212"></a>  /**
+<a name="line213"></a>   * Sets the pin code sent to customer in challenge action,
+<a name="line214"></a>   * it is mandatory if transaction was initiated by provider calling challenge,
+<a name="line215"></a>   * it is not mandatory if transaction was initiated by customer sending MO
+<a name="line216"></a>   * @param string pin The pin code sent to customer in challenge action
+<a name="line217"></a>   * @return void
+<a name="line218"></a>   */
+<a name="line219"></a>  public function set_pin($pin)
+<a name="line220"></a>  {
+<a name="line221"></a>    $this->pin = $pin;
+<a name="line222"></a>  }
+<a name="line223"></a>  /**
+<a name="line224"></a>   * Sets the order id appended by Geodrop
+<a name="line225"></a>   * @param int order The order id
+<a name="line226"></a>   * @return void
+<a name="line227"></a>   * @throws Exception If parameters are not valid
+<a name="line228"></a>   */
+<a name="line229"></a>  public function set_order($order)
+<a name="line230"></a>  {
+<a name="line231"></a>    //check order
+<a name="line232"></a>    if(!$this->checkIfIntegerOrDigitString($order))
+<a name="line233"></a>    {
+<a name="line234"></a>      throw new Exception(ErrorType::MALFORMED_ORDERID);
+<a name="line235"></a>    }
+<a name="line236"></a>    $this->order = $order;
+<a name="line237"></a>  }
+<a name="line238"></a>}
+<a name="line239"></a>
+<a name="line240"></a>?>
+<a name="line241"></a></pre>
 <div class="header">
 <h1>PHP GeodropSDK</h1>
 <ul>

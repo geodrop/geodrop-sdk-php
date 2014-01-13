@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:30 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -123,7 +123,7 @@
 <a name="line85"></a>   * in general, the toString method returns a string that "textually represents" this object;
 <a name="line86"></a>   * the result should be a concise but informative representation that is easy for a person to read
 <a name="line87"></a>   * 
-<a name="line88"></a>   * @return string a string rapresentation of the object
+<a name="line88"></a>   * @return string a string representation of the object
 <a name="line89"></a>   */
 <a name="line90"></a>  public function toString() 
 <a name="line91"></a>  {
@@ -161,182 +161,185 @@
 <a name="line123"></a>    //build http request
 <a name="line124"></a>    //body or URI parameters
 <a name="line125"></a>    //print_r ($request->getParams());
-<a name="line126"></a>    $body = $request->getBody();
-<a name="line127"></a>    if(!isset($body))
-<a name="line128"></a>    {
-<a name="line129"></a>      $body = $this->preparePostFields($request->getParams());
-<a name="line130"></a>    }
-<a name="line131"></a>    
-<a name="line132"></a>    $attempt = 0; //number of connection attempts, MAX 3
-<a name="line133"></a>    $failed = true; //set to false if the token is valid
-<a name="line134"></a>    $result = null;
-<a name="line135"></a>    do
-<a name="line136"></a>    {
-<a name="line137"></a>      if($attempt > 0)
-<a name="line138"></a>      {
-<a name="line139"></a>	if(!$this->tokenRefresh())
-<a name="line140"></a>	{
-<a name="line141"></a>	  error_log(ErrorType::TOKEN_NOT_VALID);
-<a name="line142"></a>	  return false;
-<a name="line143"></a>	}
-<a name="line144"></a>      }
-<a name="line145"></a>      
-<a name="line146"></a>      //header
-<a name="line147"></a>      $header_array = array(
-<a name="line148"></a>	'Authorization: '.$this->token_type.' '.$this->access_token,
-<a name="line149"></a>	'Content-type: '.$request->getContentType(),
-<a name="line150"></a>      );
-<a name="line151"></a>      
-<a name="line152"></a>      //open connection
-<a name="line153"></a>      $ch = curl_init();
-<a name="line154"></a>      //set options
-<a name="line155"></a>      curl_setopt($ch,CURLOPT_HTTPHEADER,$header_array);
-<a name="line156"></a>      curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-<a name="line157"></a>      curl_setopt($ch,CURLOPT_CUSTOMREQUEST, $request->getHttpMethod());
-<a name="line158"></a>      switch($request->getHttpMethod())
-<a name="line159"></a>      {
-<a name="line160"></a>	case HttpMethod::POST:
-<a name="line161"></a>	case HttpMethod::PUT:
-<a name="line162"></a>	  curl_setopt($ch,CURLOPT_POSTFIELDS,$body);
-<a name="line163"></a>	  curl_setopt($ch,CURLOPT_URL,$request->getUri());
-<a name="line164"></a>	  curl_setopt($ch,CURLOPT_HTTPGET,false);
-<a name="line165"></a>	  break;
-<a name="line166"></a>	case HttpMethod::GET:
-<a name="line167"></a>	  curl_setopt($ch,CURLOPT_URL,$request->getUri()."?".$body);
-<a name="line168"></a>	  curl_setopt($ch,CURLOPT_HTTPGET,true);
-<a name="line169"></a>	  break;
-<a name="line170"></a>	case HttpMethod::DELETE:
-<a name="line171"></a>	  break;
-<a name="line172"></a>      }
-<a name="line173"></a>      //execute post
-<a name="line174"></a>      $result = curl_exec($ch);
-<a name="line175"></a>      //print_r (curl_getinfo($ch));
-<a name="line176"></a>      //close connection
-<a name="line177"></a>      curl_close($ch);
-<a name="line178"></a>      
-<a name="line179"></a>      $attempt++;
-<a name="line180"></a>      if(isset($result))
-<a name="line181"></a>      { 
-<a name="line182"></a>	if(strstr($result,"<title>401 Authorization Required</title>") == false)
-<a name="line183"></a>	{
-<a name="line184"></a>	  $failed = false;
-<a name="line185"></a>	}
-<a name="line186"></a>      }
-<a name="line187"></a>    }
-<a name="line188"></a>    while($attempt < 3 && $failed);
-<a name="line189"></a>
-<a name="line190"></a>    if($failed)
-<a name="line191"></a>    {
-<a name="line192"></a>      error_log(ErrorType::TOKEN_NOT_VALID);
-<a name="line193"></a>      return false;
-<a name="line194"></a>    }
-<a name="line195"></a>    if(!isset($result))
-<a name="line196"></a>    {
-<a name="line197"></a>      error_log(ErrorType::INVALID_HTTP_RESPONSE);
-<a name="line198"></a>      return false;
-<a name="line199"></a>    }
-<a name="line200"></a>    return $request->decodeResponse($result);
-<a name="line201"></a>  }
-<a name="line202"></a>  /**
-<a name="line203"></a>   * Builds the post field using an array of parameters
-<a name="line204"></a>   * 
-<a name="line205"></a>   * @param array $array Array of parameters (key => value)
-<a name="line206"></a>   * @return boolean Returns <CODE>true</CODE> on success, <CODE>false</CODE> otherwise
-<a name="line207"></a>   */
-<a name="line208"></a>  private final function preparePostFields($array)
-<a name="line209"></a>  {
-<a name="line210"></a>    $params = array();
-<a name="line211"></a>    foreach ($array as $key => $value) {
-<a name="line212"></a>      $params[] = $key . '=' . urlencode($value);
-<a name="line213"></a>    }
-<a name="line214"></a>    return implode('&', $params);
-<a name="line215"></a>  }
-<a name="line216"></a>  
-<a name="line217"></a>  /**
-<a name="line218"></a>   * Refreshes the token
-<a name="line219"></a>   * 
-<a name="line220"></a>   * @return boolean Returns <CODE>true</CODE> on success, <CODE>false</CODE> otherwise
-<a name="line221"></a>   */
-<a name="line222"></a>  private function tokenRefresh() 
-<a name="line223"></a>  {
-<a name="line224"></a>    //echo "YYY access token = ".$this->access_token."\n";
-<a name="line225"></a>    //String grant_type = "refresh_token";
-<a name="line226"></a>    if(!isset($this->refresh_token))
-<a name="line227"></a>    {
-<a name="line228"></a>      error_log(ErrorType::TOKEN_NOT_VALID);
-<a name="line229"></a>      return false;
-<a name="line230"></a>    }
-<a name="line231"></a>    //build http request
-<a name="line232"></a>    $uri = Uri::TOKEN_REQUEST;
-<a name="line233"></a>    //header
-<a name="line234"></a>    $auth = base64_encode($this->client_id . ":" . $this->client_secret);
-<a name="line235"></a>    //set header array
-<a name="line236"></a>    $header_array = array(
-<a name="line237"></a>          'Authorization: Basic '.$auth,
-<a name="line238"></a>          'Content-type: '.ContentType::RAW,
-<a name="line239"></a>    );
-<a name="line240"></a>    $fields_string = 'grant_type=refresh_token&refresh_token=' . urlencode($this->refresh_token);
-<a name="line241"></a>    
-<a name="line242"></a>    //open connection
-<a name="line243"></a>    $ch = curl_init();
+<a name="line126"></a>    $request->createParams();
+<a name="line127"></a>    $body = $request->getBody();
+<a name="line128"></a>    if(!isset($body))
+<a name="line129"></a>    {
+<a name="line130"></a>      $body = $this->preparePostFields($request->getParams());
+<a name="line131"></a>    }
+<a name="line132"></a>    
+<a name="line133"></a>    $attempt = 0; //number of connection attempts, MAX 3
+<a name="line134"></a>    $failed = true; //set to false if the token is valid
+<a name="line135"></a>    $result = null;
+<a name="line136"></a>    do
+<a name="line137"></a>    {
+<a name="line138"></a>      if($attempt > 0)
+<a name="line139"></a>      {
+<a name="line140"></a>	if(!$this->tokenRefresh())
+<a name="line141"></a>	{
+<a name="line142"></a>	  error_log(ErrorType::TOKEN_NOT_VALID);
+<a name="line143"></a>	  return false;
+<a name="line144"></a>	}
+<a name="line145"></a>      }
+<a name="line146"></a>      
+<a name="line147"></a>      //header
+<a name="line148"></a>      $header_array = array(
+<a name="line149"></a>	'Authorization: '.$this->token_type.' '.$this->access_token,
+<a name="line150"></a>	'Content-type: '.$request->getContentType(),
+<a name="line151"></a>      );
+<a name="line152"></a>      
+<a name="line153"></a>      //open connection
+<a name="line154"></a>      $ch = curl_init();
+<a name="line155"></a>      //set options
+<a name="line156"></a>      curl_setopt($ch,CURLOPT_HTTPHEADER,$header_array);
+<a name="line157"></a>      curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+<a name="line158"></a>      curl_setopt($ch,CURLOPT_CUSTOMREQUEST, $request->getHttpMethod());
+<a name="line159"></a>      switch($request->getHttpMethod())
+<a name="line160"></a>      {
+<a name="line161"></a>	case HttpMethod::POST:
+<a name="line162"></a>	case HttpMethod::PUT:
+<a name="line163"></a>	  curl_setopt($ch,CURLOPT_POSTFIELDS,$body);
+<a name="line164"></a>	  curl_setopt($ch,CURLOPT_URL,$request->getUri());
+<a name="line165"></a>	  curl_setopt($ch,CURLOPT_HTTPGET,false);
+<a name="line166"></a>	  break;
+<a name="line167"></a>	case HttpMethod::GET:
+<a name="line168"></a>	  curl_setopt($ch,CURLOPT_URL,$request->getUri()."?".$body);
+<a name="line169"></a>	  curl_setopt($ch,CURLOPT_HTTPGET,true);
+<a name="line170"></a>	  break;
+<a name="line171"></a>	case HttpMethod::DELETE:
+<a name="line172"></a>	  break;
+<a name="line173"></a>      }
+<a name="line174"></a>      //execute post
+<a name="line175"></a>      $result = curl_exec($ch);
+<a name="line176"></a>      //print_r (curl_getinfo($ch));
+<a name="line177"></a>      //close connection
+<a name="line178"></a>      curl_close($ch);
+<a name="line179"></a>      
+<a name="line180"></a>      //echo "result = ".$result."\n";
+<a name="line181"></a>      
+<a name="line182"></a>      $attempt++;
+<a name="line183"></a>      if(isset($result))
+<a name="line184"></a>      { 
+<a name="line185"></a>	if(strstr($result,"<title>401 Authorization Required</title>") == false)
+<a name="line186"></a>	{
+<a name="line187"></a>	  $failed = false;
+<a name="line188"></a>	}
+<a name="line189"></a>      }
+<a name="line190"></a>    }
+<a name="line191"></a>    while($attempt < 3 && $failed);
+<a name="line192"></a>
+<a name="line193"></a>    if($failed)
+<a name="line194"></a>    {
+<a name="line195"></a>      error_log(ErrorType::TOKEN_NOT_VALID);
+<a name="line196"></a>      return false;
+<a name="line197"></a>    }
+<a name="line198"></a>    if(!isset($result))
+<a name="line199"></a>    {
+<a name="line200"></a>      error_log(ErrorType::INVALID_HTTP_RESPONSE);
+<a name="line201"></a>      return false;
+<a name="line202"></a>    }
+<a name="line203"></a>    return $request->decodeResponse($result);
+<a name="line204"></a>  }
+<a name="line205"></a>  /**
+<a name="line206"></a>   * Builds the post field using an array of parameters
+<a name="line207"></a>   * 
+<a name="line208"></a>   * @param array $array Array of parameters (key => value)
+<a name="line209"></a>   * @return boolean Returns <CODE>true</CODE> on success, <CODE>false</CODE> otherwise
+<a name="line210"></a>   */
+<a name="line211"></a>  private final function preparePostFields($array)
+<a name="line212"></a>  {
+<a name="line213"></a>    $params = array();
+<a name="line214"></a>    foreach ($array as $key => $value) {
+<a name="line215"></a>      $params[] = $key . '=' . urlencode($value);
+<a name="line216"></a>    }
+<a name="line217"></a>    return implode('&', $params);
+<a name="line218"></a>  }
+<a name="line219"></a>  
+<a name="line220"></a>  /**
+<a name="line221"></a>   * Refreshes the token
+<a name="line222"></a>   * 
+<a name="line223"></a>   * @return boolean Returns <CODE>true</CODE> on success, <CODE>false</CODE> otherwise
+<a name="line224"></a>   */
+<a name="line225"></a>  private function tokenRefresh() 
+<a name="line226"></a>  {
+<a name="line227"></a>    //echo "YYY access token = ".$this->access_token."\n";
+<a name="line228"></a>    //String grant_type = "refresh_token";
+<a name="line229"></a>    if(!isset($this->refresh_token))
+<a name="line230"></a>    {
+<a name="line231"></a>      error_log(ErrorType::TOKEN_NOT_VALID);
+<a name="line232"></a>      return false;
+<a name="line233"></a>    }
+<a name="line234"></a>    //build http request
+<a name="line235"></a>    $uri = Uri::TOKEN_REQUEST;
+<a name="line236"></a>    //header
+<a name="line237"></a>    $auth = base64_encode($this->client_id . ":" . $this->client_secret);
+<a name="line238"></a>    //set header array
+<a name="line239"></a>    $header_array = array(
+<a name="line240"></a>          'Authorization: Basic '.$auth,
+<a name="line241"></a>          'Content-type: '.ContentType::RAW,
+<a name="line242"></a>    );
+<a name="line243"></a>    $fields_string = 'grant_type=refresh_token&refresh_token=' . urlencode($this->refresh_token);
 <a name="line244"></a>    
-<a name="line245"></a>    //set the url, number of POST vars, POST data
-<a name="line246"></a>    curl_setopt($ch,CURLOPT_URL,$uri);
-<a name="line247"></a>    curl_setopt($ch,CURLOPT_POST,true);
-<a name="line248"></a>    curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
-<a name="line249"></a>    curl_setopt($ch,CURLOPT_HTTPHEADER,$header_array);
-<a name="line250"></a>    curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-<a name="line251"></a>
-<a name="line252"></a>    //execute POST
-<a name="line253"></a>    $result = curl_exec($ch);
-<a name="line254"></a>    
-<a name="line255"></a>    //close connection
-<a name="line256"></a>    curl_close($ch);
+<a name="line245"></a>    //open connection
+<a name="line246"></a>    $ch = curl_init();
+<a name="line247"></a>    
+<a name="line248"></a>    //set the url, number of POST vars, POST data
+<a name="line249"></a>    curl_setopt($ch,CURLOPT_URL,$uri);
+<a name="line250"></a>    curl_setopt($ch,CURLOPT_POST,true);
+<a name="line251"></a>    curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
+<a name="line252"></a>    curl_setopt($ch,CURLOPT_HTTPHEADER,$header_array);
+<a name="line253"></a>    curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+<a name="line254"></a>
+<a name="line255"></a>    //execute POST
+<a name="line256"></a>    $result = curl_exec($ch);
 <a name="line257"></a>    
-<a name="line258"></a>    if(!isset($result))
-<a name="line259"></a>    {
-<a name="line260"></a>      error_log(ErrorType::TOKEN_NOT_VALID);
-<a name="line261"></a>      return false;
-<a name="line262"></a>    }
-<a name="line263"></a>    
-<a name="line264"></a>    $this->parseTokenResponse($result);
-<a name="line265"></a>    
-<a name="line266"></a>    if(!isset($this->access_token))
-<a name="line267"></a>    {
-<a name="line268"></a>      error_log(ErrorType::TOKEN_NOT_VALID);
-<a name="line269"></a>      return false;
-<a name="line270"></a>    }
-<a name="line271"></a>    return true;
-<a name="line272"></a>  }
-<a name="line273"></a>  
-<a name="line274"></a>  /**
-<a name="line275"></a>   * Performs the parsing of the http response
-<a name="line276"></a>   * and fills the field of the <CODE>GeodropSession</CODE>
-<a name="line277"></a>   *
-<a name="line278"></a>   * @param string tokenResponse Response to the http request
-<a name="line279"></a>   * 
-<a name="line280"></a>   * @return void
-<a name="line281"></a>   */
-<a name="line282"></a>  private function parseTokenResponse($tokenResponse)
-<a name="line283"></a>  {
-<a name="line284"></a>    //parse the json response
-<a name="line285"></a>    //echo "\n".$tokenResponse."\n";
-<a name="line286"></a>    $result_parsed = json_decode($tokenResponse, true);
-<a name="line287"></a>    if(!isset($result_parsed['error']))
-<a name="line288"></a>    {
-<a name="line289"></a>      $this->access_token = $result_parsed['access_token'];
-<a name="line290"></a>      $this->token_type = $result_parsed['token_type'];
-<a name="line291"></a>      $this->refresh_time = $result_parsed['expire_in'];
-<a name="line292"></a>      $this->refresh_token = $result_parsed['refresh_token'];
-<a name="line293"></a>    }
-<a name="line294"></a>    else
-<a name="line295"></a>    {
-<a name="line296"></a>      throw new Exception(ErrorType::AUTHENTICATION_FAILED);
-<a name="line297"></a>    }
-<a name="line298"></a>  }
-<a name="line299"></a>}
-<a name="line300"></a>
-<a name="line301"></a>?></pre>
+<a name="line258"></a>    //close connection
+<a name="line259"></a>    curl_close($ch);
+<a name="line260"></a>    
+<a name="line261"></a>    if(!isset($result))
+<a name="line262"></a>    {
+<a name="line263"></a>      error_log(ErrorType::TOKEN_NOT_VALID);
+<a name="line264"></a>      return false;
+<a name="line265"></a>    }
+<a name="line266"></a>    
+<a name="line267"></a>    $this->parseTokenResponse($result);
+<a name="line268"></a>    
+<a name="line269"></a>    if(!isset($this->access_token))
+<a name="line270"></a>    {
+<a name="line271"></a>      error_log(ErrorType::TOKEN_NOT_VALID);
+<a name="line272"></a>      return false;
+<a name="line273"></a>    }
+<a name="line274"></a>    return true;
+<a name="line275"></a>  }
+<a name="line276"></a>  
+<a name="line277"></a>  /**
+<a name="line278"></a>   * Performs the parsing of the http response
+<a name="line279"></a>   * and fills the field of the <CODE>GeodropSession</CODE>
+<a name="line280"></a>   *
+<a name="line281"></a>   * @param string tokenResponse Response to the http request
+<a name="line282"></a>   * 
+<a name="line283"></a>   * @return void
+<a name="line284"></a>   */
+<a name="line285"></a>  private function parseTokenResponse($tokenResponse)
+<a name="line286"></a>  {
+<a name="line287"></a>    //parse the json response
+<a name="line288"></a>    //echo "\n".$tokenResponse."\n";
+<a name="line289"></a>    $result_parsed = json_decode($tokenResponse, true);
+<a name="line290"></a>    if(!isset($result_parsed['error']))
+<a name="line291"></a>    {
+<a name="line292"></a>      $this->access_token = $result_parsed['access_token'];
+<a name="line293"></a>      $this->token_type = $result_parsed['token_type'];
+<a name="line294"></a>      $this->refresh_time = $result_parsed['expire_in'];
+<a name="line295"></a>      $this->refresh_token = $result_parsed['refresh_token'];
+<a name="line296"></a>    }
+<a name="line297"></a>    else
+<a name="line298"></a>    {
+<a name="line299"></a>      throw new Exception(ErrorType::AUTHENTICATION_FAILED);
+<a name="line300"></a>    }
+<a name="line301"></a>  }
+<a name="line302"></a>}
+<a name="line303"></a>
+<a name="line304"></a>?></pre>
 <div class="header">
 <h1>PHP GeodropSDK</h1>
 <ul>

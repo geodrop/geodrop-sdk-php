@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:29 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -74,7 +74,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <table id="summary_method">
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
-<td class="type">protected  void</td>
+<td class="type"> void</td>
 <td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request.</p></td>
 </tr>
 <tr>
@@ -88,6 +88,15 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr>
 <td class="type"> string|string[]</td>
 <td class="description"><p class="name"><a href="#get_dest_msisdns()">get_dest_msisdns</a>()</p><p class="description">Returns the msisdn of the recipient or an array of msisdns if there are many recipients;
+each msisdn is in E.164 format with '+'.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_message_text()">set_message_text</a>(string message_text)</p><p class="description">Sets the text of the message to send.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_dest_msisdns()">set_dest_msisdns</a>(string|string The, mixed dest_msisdns)</p><p class="description">Sets the msisdn of the recipient or an array of msisdns if there are many recipients;
 each msisdn is in E.164 format with '+'.</p></td>
 </tr>
 </table>
@@ -114,16 +123,16 @@ each msisdn is in E.164 format with '+'.</p></td>
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../../source/dropout/smsestimatecost.php.html#line64" class="location">dropOut/SMSEstimatecost.php at line 64</a>
+<a href="../../source/dropout/smsestimatecost.php.html#line57" class="location">dropOut/SMSEstimatecost.php at line 57</a>
 
 <h3 id="createParams()">createParams</h3>
-<code class="signature">protected  void <strong>createParams</strong>()</code>
+<code class="signature">public  void <strong>createParams</strong>()</code>
 <div class="details">
 <p>Creates the parameters for the http request</p></div>
 
 <hr>
 
-<a href="../../source/dropout/smsestimatecost.php.html#line87" class="location">dropOut/SMSEstimatecost.php at line 87</a>
+<a href="../../source/dropout/smsestimatecost.php.html#line80" class="location">dropOut/SMSEstimatecost.php at line 80</a>
 
 <h3 id="decodeResponse()">decodeResponse</h3>
 <code class="signature">public  boolean <strong>decodeResponse</strong>(string http_response)</code>
@@ -138,7 +147,7 @@ each msisdn is in E.164 format with '+'.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsestimatecost.php.html#line99" class="location">dropOut/SMSEstimatecost.php at line 99</a>
+<a href="../../source/dropout/smsestimatecost.php.html#line92" class="location">dropOut/SMSEstimatecost.php at line 92</a>
 
 <h3 id="get_message_text()">get_message_text</h3>
 <code class="signature">public  string <strong>get_message_text</strong>()</code>
@@ -147,13 +156,42 @@ each msisdn is in E.164 format with '+'.</p></td>
 
 <hr>
 
-<a href="../../source/dropout/smsestimatecost.php.html#line110" class="location">dropOut/SMSEstimatecost.php at line 110</a>
+<a href="../../source/dropout/smsestimatecost.php.html#line103" class="location">dropOut/SMSEstimatecost.php at line 103</a>
 
 <h3 id="get_dest_msisdns()">get_dest_msisdns</h3>
 <code class="signature">public  string|string[] <strong>get_dest_msisdns</strong>()</code>
 <div class="details">
 <p>Returns the msisdn of the recipient or an array of msisdns if there are many recipients;
 each msisdn is in E.164 format with '+'</p></div>
+
+<hr>
+
+<a href="../../source/dropout/smsestimatecost.php.html#line115" class="location">dropOut/SMSEstimatecost.php at line 115</a>
+
+<h3 id="set_message_text()">set_message_text</h3>
+<code class="signature">public  void <strong>set_message_text</strong>(string message_text)</code>
+<div class="details">
+<p>Sets the text of the message to send</p><dl>
+<dt>Parameters:</dt>
+<dd>message_text - The text of the message to send</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/dropout/smsestimatecost.php.html#line127" class="location">dropOut/SMSEstimatecost.php at line 127</a>
+
+<h3 id="set_dest_msisdns()">set_dest_msisdns</h3>
+<code class="signature">public  void <strong>set_dest_msisdns</strong>(string|string The, mixed dest_msisdns)</code>
+<div class="details">
+<p>Sets the msisdn of the recipient or an array of msisdns if there are many recipients;
+each msisdn is in E.164 format with '+'</p><dl>
+<dt>Parameters:</dt>
+<dd>The - msisdn of the recipient or an array of msisdns</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
 
 <hr>
 

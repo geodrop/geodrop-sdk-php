@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:30 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -76,82 +76,104 @@
 <a name="line38"></a>    {
 <a name="line39"></a>      throw new Exception(ErrorType::MISSING_PARAMETERS);
 <a name="line40"></a>    }
-<a name="line41"></a>    
-<a name="line42"></a>    //check dest_msisdns
-<a name="line43"></a>    if(!$this->checkIfMsisdnsIsArrayOrString($dest_msisdns,true))
-<a name="line44"></a>    {
-<a name="line45"></a>      throw new Exception(ErrorType::MALFORMED_MSISDNS);
-<a name="line46"></a>    }
-<a name="line47"></a>    
-<a name="line48"></a>    //set parameters
-<a name="line49"></a>    $this->uri = Uri::OUT_SMS_ESTIMATECOST;
-<a name="line50"></a>    $this->httpMethod = HttpMethod::POST;
-<a name="line51"></a>    $this->contentType = ContentType::XML;
-<a name="line52"></a>    $this->dest_msisdns = $dest_msisdns;
-<a name="line53"></a>    $this->message_text = utf8_encode($message_text);
-<a name="line54"></a>    $this->createParams();
-<a name="line55"></a>  } 
+<a name="line41"></a>       
+<a name="line42"></a>    //set parameters
+<a name="line43"></a>    $this->uri = Uri::OUT_SMS_ESTIMATECOST;
+<a name="line44"></a>    $this->httpMethod = HttpMethod::POST;
+<a name="line45"></a>    $this->contentType = ContentType::XML;
+<a name="line46"></a>    $this->set_dest_msisdns($dest_msisdns);
+<a name="line47"></a>    $this->set_message_text(utf8_encode($message_text));
+<a name="line48"></a>  } 
+<a name="line49"></a>  
+<a name="line50"></a>  public function __destruct()
+<a name="line51"></a>  {
+<a name="line52"></a>    parent::__destruct();
+<a name="line53"></a>    unset($this->message_text);
+<a name="line54"></a>    unset($this->dest_msisdns);
+<a name="line55"></a>  }
 <a name="line56"></a>  
-<a name="line57"></a>  public function __destruct()
-<a name="line58"></a>  {
-<a name="line59"></a>    parent::__destruct();
-<a name="line60"></a>    unset($this->message_text);
-<a name="line61"></a>    unset($this->dest_msisdns);
-<a name="line62"></a>  }
-<a name="line63"></a>  
-<a name="line64"></a>  protected function createParams()
-<a name="line65"></a>  {      
-<a name="line66"></a>    //set body
-<a name="line67"></a>    $this->body = '<?xml version="1.0" encoding="UTF-8"?>';
-<a name="line68"></a>    $this->body.= '<GEOSMS>';
-<a name="line69"></a>    $this->body.= '<MESSAGE content="text"><TEXT><![CDATA['.$this->message_text.']]></TEXT></MESSAGE>';
-<a name="line70"></a>    $this->body.= '<LIST>';
-<a name="line71"></a>    //decode $dest_msisdns, that is an array if there are more msisdns
-<a name="line72"></a>    if(is_string($this->dest_msisdns))
-<a name="line73"></a>    {
-<a name="line74"></a>      $this->body.= '<DEST msisdn="'.$this->dest_msisdns.'" />';
+<a name="line57"></a>  public function createParams()
+<a name="line58"></a>  {      
+<a name="line59"></a>    //set body
+<a name="line60"></a>    $this->body = '<?xml version="1.0" encoding="UTF-8"?>';
+<a name="line61"></a>    $this->body.= '<GEOSMS>';
+<a name="line62"></a>    $this->body.= '<MESSAGE content="text"><TEXT><![CDATA['.$this->message_text.']]></TEXT></MESSAGE>';
+<a name="line63"></a>    $this->body.= '<LIST>';
+<a name="line64"></a>    //decode $dest_msisdns, that is an array if there are more msisdns
+<a name="line65"></a>    if(is_string($this->dest_msisdns))
+<a name="line66"></a>    {
+<a name="line67"></a>      $this->body.= '<DEST msisdn="'.$this->dest_msisdns.'" />';
+<a name="line68"></a>    }
+<a name="line69"></a>    elseif(is_array($this->dest_msisdns))
+<a name="line70"></a>    {
+<a name="line71"></a>      foreach($this->dest_msisdns as $msisdn)
+<a name="line72"></a>      {
+<a name="line73"></a>	$this->body.= '<DEST msisdn="'.$msisdn.'" />';
+<a name="line74"></a>      }
 <a name="line75"></a>    }
-<a name="line76"></a>    elseif(is_array($this->dest_msisdns))
-<a name="line77"></a>    {
-<a name="line78"></a>      foreach($this->dest_msisdns as $msisdn)
-<a name="line79"></a>      {
-<a name="line80"></a>	$this->body.= '<DEST msisdn="'.$msisdn.'" />';
-<a name="line81"></a>      }
-<a name="line82"></a>    }
-<a name="line83"></a>    $this->body.= '</LIST>';
-<a name="line84"></a>    $this->body.= '</GEOSMS>';
-<a name="line85"></a>  }
-<a name="line86"></a>
-<a name="line87"></a>  public function decodeResponse( $http_response )
-<a name="line88"></a>  {
-<a name="line89"></a>    $this->response = new SMSEstimatecost_Response(); 
-<a name="line90"></a>    return $this->response->fillParameters($http_response);
-<a name="line91"></a>  }
-<a name="line92"></a>  
-<a name="line93"></a>  //getters
-<a name="line94"></a>  /**
-<a name="line95"></a>   * Returns the text of the message to send
-<a name="line96"></a>   * @access public
-<a name="line97"></a>   * @return string
-<a name="line98"></a>   */
-<a name="line99"></a>  public function get_message_text()
-<a name="line100"></a>  {
-<a name="line101"></a>    return $this->message_text;
-<a name="line102"></a>  }
-<a name="line103"></a>  
-<a name="line104"></a>  /**
-<a name="line105"></a>   * Returns the msisdn of the recipient or an array of msisdns if there are many recipients;
-<a name="line106"></a>   * each msisdn is in E.164 format with '+'
-<a name="line107"></a>   * @access public
-<a name="line108"></a>   * @return string|string[]
-<a name="line109"></a>   */
-<a name="line110"></a>  public function get_dest_msisdns()
-<a name="line111"></a>  {
-<a name="line112"></a>    return $this->dest_msisdns;
-<a name="line113"></a>  }
-<a name="line114"></a>}
-<a name="line115"></a>
-<a name="line116"></a>?></pre>
+<a name="line76"></a>    $this->body.= '</LIST>';
+<a name="line77"></a>    $this->body.= '</GEOSMS>';
+<a name="line78"></a>  }
+<a name="line79"></a>
+<a name="line80"></a>  public function decodeResponse( $http_response )
+<a name="line81"></a>  {
+<a name="line82"></a>    $this->response = new SMSEstimatecost_Response(); 
+<a name="line83"></a>    return $this->response->fillParameters($http_response);
+<a name="line84"></a>  }
+<a name="line85"></a>  
+<a name="line86"></a>  //getters
+<a name="line87"></a>  /**
+<a name="line88"></a>   * Returns the text of the message to send
+<a name="line89"></a>   * @access public
+<a name="line90"></a>   * @return string
+<a name="line91"></a>   */
+<a name="line92"></a>  public function get_message_text()
+<a name="line93"></a>  {
+<a name="line94"></a>    return $this->message_text;
+<a name="line95"></a>  }
+<a name="line96"></a>  
+<a name="line97"></a>  /**
+<a name="line98"></a>   * Returns the msisdn of the recipient or an array of msisdns if there are many recipients;
+<a name="line99"></a>   * each msisdn is in E.164 format with '+'
+<a name="line100"></a>   * @access public
+<a name="line101"></a>   * @return string|string[]
+<a name="line102"></a>   */
+<a name="line103"></a>  public function get_dest_msisdns()
+<a name="line104"></a>  {
+<a name="line105"></a>    return $this->dest_msisdns;
+<a name="line106"></a>  }
+<a name="line107"></a>  
+<a name="line108"></a>  //setters
+<a name="line109"></a>  /**
+<a name="line110"></a>   * Sets the text of the message to send
+<a name="line111"></a>   * 
+<a name="line112"></a>   * @param string message_text The text of the message to send
+<a name="line113"></a>   * @return void
+<a name="line114"></a>   */
+<a name="line115"></a>  public function set_message_text($message_text)
+<a name="line116"></a>  {
+<a name="line117"></a>    $this->message_text = $message_text;
+<a name="line118"></a>  }
+<a name="line119"></a>  /**
+<a name="line120"></a>   * Sets the msisdn of the recipient or an array of msisdns if there are many recipients;
+<a name="line121"></a>   * each msisdn is in E.164 format with '+'
+<a name="line122"></a>   * 
+<a name="line123"></a>   * @param string|string[] The msisdn of the recipient or an array of msisdns
+<a name="line124"></a>   * @return void
+<a name="line125"></a>   * @throws Exception If parameters are not valid
+<a name="line126"></a>   */
+<a name="line127"></a>  public function set_dest_msisdns($dest_msisdns)
+<a name="line128"></a>  {
+<a name="line129"></a>    //check dest_msisdns
+<a name="line130"></a>    if(!$this->checkIfMsisdnsIsArrayOrString($dest_msisdns,true))
+<a name="line131"></a>    {
+<a name="line132"></a>      throw new Exception(ErrorType::MALFORMED_MSISDNS);
+<a name="line133"></a>    }
+<a name="line134"></a>    $this->dest_msisdns = $dest_msisdns;
+<a name="line135"></a>  }
+<a name="line136"></a>}
+<a name="line137"></a>
+<a name="line138"></a>?></pre>
 <div class="header">
 <h1>PHP GeodropSDK</h1>
 <ul>

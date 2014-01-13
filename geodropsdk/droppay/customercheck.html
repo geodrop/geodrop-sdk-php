@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:29 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -75,7 +75,7 @@ if the port type is SUBSCRIPTION</p></div>
 <table id="summary_method">
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
-<td class="type">protected  void</td>
+<td class="type"> void</td>
 <td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request.</p></td>
 </tr>
 <tr>
@@ -89,6 +89,14 @@ if the port type is SUBSCRIPTION</p></div>
 <tr>
 <td class="type"> string</td>
 <td class="description"><p class="name"><a href="#get_msisdn()">get_msisdn</a>()</p><p class="description">Returns the customer phone number in E.164 format (without +).</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_port()">set_port</a>(int port)</p><p class="description">Sets the DropPay port id.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_msisdn()">set_msisdn</a>(string msisdn)</p><p class="description">Sets the customer phone number in E.164 format (without +).</p></td>
 </tr>
 </table>
 
@@ -114,16 +122,16 @@ if the port type is SUBSCRIPTION</p></div>
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../../source/droppay/customercheck.php.html#line70" class="location">dropPay/CustomerCheck.php at line 70</a>
+<a href="../../source/droppay/customercheck.php.html#line57" class="location">dropPay/CustomerCheck.php at line 57</a>
 
 <h3 id="createParams()">createParams</h3>
-<code class="signature">protected  void <strong>createParams</strong>()</code>
+<code class="signature">public  void <strong>createParams</strong>()</code>
 <div class="details">
 <p>Creates the parameters for the http request</p></div>
 
 <hr>
 
-<a href="../../source/droppay/customercheck.php.html#line79" class="location">dropPay/CustomerCheck.php at line 79</a>
+<a href="../../source/droppay/customercheck.php.html#line66" class="location">dropPay/CustomerCheck.php at line 66</a>
 
 <h3 id="decodeResponse()">decodeResponse</h3>
 <code class="signature">public  boolean <strong>decodeResponse</strong>(string http_response)</code>
@@ -138,7 +146,7 @@ if the port type is SUBSCRIPTION</p></div>
 
 <hr>
 
-<a href="../../source/droppay/customercheck.php.html#line92" class="location">dropPay/CustomerCheck.php at line 92</a>
+<a href="../../source/droppay/customercheck.php.html#line79" class="location">dropPay/CustomerCheck.php at line 79</a>
 
 <h3 id="get_port()">get_port</h3>
 <code class="signature">public  int <strong>get_port</strong>()</code>
@@ -147,12 +155,42 @@ if the port type is SUBSCRIPTION</p></div>
 
 <hr>
 
-<a href="../../source/droppay/customercheck.php.html#line101" class="location">dropPay/CustomerCheck.php at line 101</a>
+<a href="../../source/droppay/customercheck.php.html#line93" class="location">dropPay/CustomerCheck.php at line 93</a>
 
 <h3 id="get_msisdn()">get_msisdn</h3>
 <code class="signature">public  string <strong>get_msisdn</strong>()</code>
 <div class="details">
 <p>Returns the customer phone number in E.164 format (without +)</p></div>
+
+<hr>
+
+<a href="../../source/droppay/customercheck.php.html#line105" class="location">dropPay/CustomerCheck.php at line 105</a>
+
+<h3 id="set_port()">set_port</h3>
+<code class="signature">public  void <strong>set_port</strong>(int port)</code>
+<div class="details">
+<p>Sets the DropPay port id</p><dl>
+<dt>Parameters:</dt>
+<dd>port - The DropPay port id</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/customercheck.php.html#line115" class="location">dropPay/CustomerCheck.php at line 115</a>
+
+<h3 id="set_msisdn()">set_msisdn</h3>
+<code class="signature">public  void <strong>set_msisdn</strong>(string msisdn)</code>
+<div class="details">
+<p>Sets the customer phone number in E.164 format (without +)</p><dl>
+<dt>Parameters:</dt>
+<dd>msisdn - The customer phone number in E.164 format (without +)</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
 
 <hr>
 

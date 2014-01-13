@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:30 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -84,81 +84,101 @@
 <a name="line46"></a>	throw new Exception(ErrorType::MISSING_PARAMETERS);
 <a name="line47"></a>      }
 <a name="line48"></a>      
-<a name="line49"></a>      //check dest
-<a name="line50"></a>      if(!$this->checkIfArrayOfPairOfOrderIdMsisdn($dest,true))
-<a name="line51"></a>      {
-<a name="line52"></a>	throw new Exception(ErrorType::MALFORMED_PARAMETERS);
-<a name="line53"></a>      }
-<a name="line54"></a>      
-<a name="line55"></a>      //set parameters
-<a name="line56"></a>      $this->uri = Uri::OUT_SMS_STATUS;
-<a name="line57"></a>      $this->httpMethod = HttpMethod::PUT;
-<a name="line58"></a>      $this->contentType = ContentType::XML;
-<a name="line59"></a>      $this->requestType = RequestTypeOutStatus::ADHOC;
-<a name="line60"></a>      $this->dest = $dest;
-<a name="line61"></a>      $this->client_id = $client_id;
-<a name="line62"></a>      $this->createParams();
-<a name="line63"></a>   }
-<a name="line64"></a>    
-<a name="line65"></a>   public function __destruct()
-<a name="line66"></a>   {
-<a name="line67"></a>      parent::__destruct();
-<a name="line68"></a>      unset($this->requestType);
-<a name="line69"></a>      unset($this->dest);
-<a name="line70"></a>      unset($this->client_id);
-<a name="line71"></a>   }
-<a name="line72"></a>   
-<a name="line73"></a>   protected function createParams()
-<a name="line74"></a>   { 
-<a name="line75"></a>      //set body
-<a name="line76"></a>      $this->body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
-<a name="line77"></a>      $this->body.= '<GEOSMSSTATUS>';
-<a name="line78"></a>      if(isset($this->client_id))
+<a name="line49"></a>      //set parameters
+<a name="line50"></a>      $this->uri = Uri::OUT_SMS_STATUS;
+<a name="line51"></a>      $this->httpMethod = HttpMethod::PUT;
+<a name="line52"></a>      $this->contentType = ContentType::XML;
+<a name="line53"></a>      $this->requestType = RequestTypeOutStatus::ADHOC;
+<a name="line54"></a>      $this->set_dest($dest);
+<a name="line55"></a>      $this->client_id = $client_id;
+<a name="line56"></a>   }
+<a name="line57"></a>    
+<a name="line58"></a>   public function __destruct()
+<a name="line59"></a>   {
+<a name="line60"></a>      parent::__destruct();
+<a name="line61"></a>      unset($this->requestType);
+<a name="line62"></a>      unset($this->dest);
+<a name="line63"></a>      unset($this->client_id);
+<a name="line64"></a>   }
+<a name="line65"></a>   
+<a name="line66"></a>   public function createParams()
+<a name="line67"></a>   { 
+<a name="line68"></a>      //set body
+<a name="line69"></a>      $this->body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+<a name="line70"></a>      $this->body.= '<GEOSMSSTATUS>';
+<a name="line71"></a>      if(isset($this->client_id))
+<a name="line72"></a>      {
+<a name="line73"></a>	 $this->body.= '<ID_CLIENT>'.$this->client_id.'</ID_CLIENT>';//optional
+<a name="line74"></a>      }
+<a name="line75"></a>      $this->body.= '<REQUEST_TYPE>'.$this->requestType.'</REQUEST_TYPE>';
+<a name="line76"></a>      //$dest = <orderid,msisdn>
+<a name="line77"></a>      $this->body.= '<LIST>';
+<a name="line78"></a>      foreach($this->dest as $tuple)
 <a name="line79"></a>      {
-<a name="line80"></a>	 $this->body.= '<ID_CLIENT>'.$this->client_id.'</ID_CLIENT>';//optional
+<a name="line80"></a>	 $this->body.= '<DEST msisdn="'.$tuple[1].'" orderid="'.$tuple[0].'"/>';
 <a name="line81"></a>      }
-<a name="line82"></a>      $this->body.= '<REQUEST_TYPE>'.$this->requestType.'</REQUEST_TYPE>';
-<a name="line83"></a>      //$dest = <orderid,msisdn>
-<a name="line84"></a>      $this->body.= '<LIST>';
-<a name="line85"></a>      foreach($this->dest as $tuple)
-<a name="line86"></a>      {
-<a name="line87"></a>	 $this->body.= '<DEST msisdn="'.$tuple[1].'" orderid="'.$tuple[0].'"/>';
-<a name="line88"></a>      }
-<a name="line89"></a>      $this->body.= '</LIST>';
-<a name="line90"></a>      $this->body.= '</GEOSMSSTATUS>';
+<a name="line82"></a>      $this->body.= '</LIST>';
+<a name="line83"></a>      $this->body.= '</GEOSMSSTATUS>';
+<a name="line84"></a>   }
+<a name="line85"></a>    
+<a name="line86"></a>   public function decodeResponse( $http_response )
+<a name="line87"></a>   {
+<a name="line88"></a>      //echo "SMSStatusRange::decodeResponse: ".$http_response."\n";
+<a name="line89"></a>      $this->response = new SMSStatus_Response();
+<a name="line90"></a>      return $this->response->fillParameters($http_response);
 <a name="line91"></a>   }
-<a name="line92"></a>    
-<a name="line93"></a>   public function decodeResponse( $http_response )
-<a name="line94"></a>   {
-<a name="line95"></a>      //echo "SMSStatusRange::decodeResponse: ".$http_response."\n";
-<a name="line96"></a>      $this->response = new SMSStatus_Response();
-<a name="line97"></a>      return $this->response->fillParameters($http_response);
-<a name="line98"></a>   }
-<a name="line99"></a>   
-<a name="line100"></a>   //getters
-<a name="line101"></a>   /**
-<a name="line102"></a>    * Returns the array of pair <order id, msisdn>
-<a name="line103"></a>    * that uniquely identifies a single SMS message in the Geodrop archive
-<a name="line104"></a>    * @access public
-<a name="line105"></a>    * @return string[][]
-<a name="line106"></a>    */
-<a name="line107"></a>   public function get_dest()
-<a name="line108"></a>   {
-<a name="line109"></a>      return $this->dest;
-<a name="line110"></a>   }
-<a name="line111"></a>   /**
-<a name="line112"></a>    * Returns the client id
-<a name="line113"></a>    * @access public
-<a name="line114"></a>    * @return string
-<a name="line115"></a>    */
-<a name="line116"></a>   public function get_client_id()
-<a name="line117"></a>   {
-<a name="line118"></a>      return $this->client_id;
-<a name="line119"></a>   }
-<a name="line120"></a> }
-<a name="line121"></a> 
-<a name="line122"></a> ?>
-<a name="line123"></a></pre>
+<a name="line92"></a>   
+<a name="line93"></a>   //getters
+<a name="line94"></a>   /**
+<a name="line95"></a>    * Returns the array of pair <order id, msisdn>
+<a name="line96"></a>    * that uniquely identifies a single SMS message in the Geodrop archive
+<a name="line97"></a>    * @access public
+<a name="line98"></a>    * @return string[][]
+<a name="line99"></a>    */
+<a name="line100"></a>   public function get_dest()
+<a name="line101"></a>   {
+<a name="line102"></a>      return $this->dest;
+<a name="line103"></a>   }
+<a name="line104"></a>   /**
+<a name="line105"></a>    * Returns the client id
+<a name="line106"></a>    * @access public
+<a name="line107"></a>    * @return string
+<a name="line108"></a>    */
+<a name="line109"></a>   public function get_client_id()
+<a name="line110"></a>   {
+<a name="line111"></a>      return $this->client_id;
+<a name="line112"></a>   }
+<a name="line113"></a>   
+<a name="line114"></a>   //setters
+<a name="line115"></a>   /**
+<a name="line116"></a>    * Sets the array of pair <order id, msisdn>
+<a name="line117"></a>    * that uniquely identifies a single SMS message in the Geodrop archive
+<a name="line118"></a>    * @param string[][] dest The array of pair <order id, msisdn>
+<a name="line119"></a>    * @return void
+<a name="line120"></a>    * @throws Exception If parameters are not valid
+<a name="line121"></a>    */
+<a name="line122"></a>   public function set_dest($dest)
+<a name="line123"></a>   {
+<a name="line124"></a>      //check dest
+<a name="line125"></a>      if(!$this->checkIfArrayOfPairOfOrderIdMsisdn($dest,true))
+<a name="line126"></a>      {
+<a name="line127"></a>	throw new Exception(ErrorType::MALFORMED_PARAMETERS);
+<a name="line128"></a>      }
+<a name="line129"></a>      $this->dest = $dest;
+<a name="line130"></a>   }
+<a name="line131"></a>   /**
+<a name="line132"></a>    * Sets the client id
+<a name="line133"></a>    * @param string client_id The client id
+<a name="line134"></a>    * @return void
+<a name="line135"></a>    */
+<a name="line136"></a>   public function set_client_id($client_id)
+<a name="line137"></a>   {
+<a name="line138"></a>      $this->client_id = $client_id;
+<a name="line139"></a>   }
+<a name="line140"></a> }
+<a name="line141"></a> 
+<a name="line142"></a> ?>
+<a name="line143"></a></pre>
 <div class="header">
 <h1>PHP GeodropSDK</h1>
 <ul>

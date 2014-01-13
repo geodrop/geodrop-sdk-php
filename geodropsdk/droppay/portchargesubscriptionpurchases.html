@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:29 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -75,7 +75,7 @@ if port type is SUBSCRIPTION</p></div>
 <table id="summary_method">
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
-<td class="type">protected  void</td>
+<td class="type"> void</td>
 <td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request.</p></td>
 </tr>
 <tr>
@@ -108,6 +108,32 @@ if port type is SUBSCRIPTION</p></div>
 it is mandatory if transaction was initiated by provider calling challenge,
 it is not mandatory if transaction was initiated by customer sending MO.</p></td>
 </tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_port()">set_port</a>(int port)</p><p class="description">Sets the DropPay port id.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_msisdn()">set_msisdn</a>(string msisdn)</p><p class="description">Sets the customer phone number in E.164 format (without +).</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_custom()">set_custom</a>(string custom)</p><p class="description">Sets the unique CP request id.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_text()">set_text</a>(string text)</p><p class="description">Sets the text to send, encoded in UTF-8, up to 160 characters.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_subscriber()">set_subscriber</a>(int subscriber)</p><p class="description">Sets the subscriber id required in subscription payments.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_pin()">set_pin</a>(string pin)</p><p class="description">Sets the pin code sent to customer in challenge action,
+it is mandatory if transaction was initiated by provider calling challenge,
+it is not mandatory if transaction was initiated by customer sending MO.</p></td>
+</tr>
 </table>
 
 <table class="inherit">
@@ -136,16 +162,16 @@ it is not mandatory if transaction was initiated by customer sending MO.</p></td
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line110" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 110</a>
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line91" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 91</a>
 
 <h3 id="createParams()">createParams</h3>
-<code class="signature">protected  void <strong>createParams</strong>()</code>
+<code class="signature">public  void <strong>createParams</strong>()</code>
 <div class="details">
 <p>Creates the parameters for the http request</p></div>
 
 <hr>
 
-<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line123" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 123</a>
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line104" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 104</a>
 
 <h3 id="decodeResponse()">decodeResponse</h3>
 <code class="signature">public  boolean <strong>decodeResponse</strong>(string http_response)</code>
@@ -160,7 +186,7 @@ it is not mandatory if transaction was initiated by customer sending MO.</p></td
 
 <hr>
 
-<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line136" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 136</a>
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line117" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 117</a>
 
 <h3 id="get_port()">get_port</h3>
 <code class="signature">public  int <strong>get_port</strong>()</code>
@@ -169,7 +195,7 @@ it is not mandatory if transaction was initiated by customer sending MO.</p></td
 
 <hr>
 
-<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line145" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 145</a>
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line126" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 126</a>
 
 <h3 id="get_msisdn()">get_msisdn</h3>
 <code class="signature">public  string <strong>get_msisdn</strong>()</code>
@@ -178,7 +204,7 @@ it is not mandatory if transaction was initiated by customer sending MO.</p></td
 
 <hr>
 
-<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line154" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 154</a>
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line135" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 135</a>
 
 <h3 id="get_custom()">get_custom</h3>
 <code class="signature">public  string <strong>get_custom</strong>()</code>
@@ -187,7 +213,7 @@ it is not mandatory if transaction was initiated by customer sending MO.</p></td
 
 <hr>
 
-<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line163" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 163</a>
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line144" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 144</a>
 
 <h3 id="get_text()">get_text</h3>
 <code class="signature">public  string <strong>get_text</strong>()</code>
@@ -196,7 +222,7 @@ it is not mandatory if transaction was initiated by customer sending MO.</p></td
 
 <hr>
 
-<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line172" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 172</a>
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line153" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 153</a>
 
 <h3 id="get_subscriber()">get_subscriber</h3>
 <code class="signature">public  int <strong>get_subscriber</strong>()</code>
@@ -205,7 +231,7 @@ it is not mandatory if transaction was initiated by customer sending MO.</p></td
 
 <hr>
 
-<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line183" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 183</a>
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line164" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 164</a>
 
 <h3 id="get_pin()">get_pin</h3>
 <code class="signature">public  string <strong>get_pin</strong>()</code>
@@ -213,6 +239,92 @@ it is not mandatory if transaction was initiated by customer sending MO.</p></td
 <p>Returns the pin code sent to customer in challenge action,
 it is mandatory if transaction was initiated by provider calling challenge,
 it is not mandatory if transaction was initiated by customer sending MO</p></div>
+
+<hr>
+
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line176" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 176</a>
+
+<h3 id="set_port()">set_port</h3>
+<code class="signature">public  void <strong>set_port</strong>(int port)</code>
+<div class="details">
+<p>Sets the DropPay port id</p><dl>
+<dt>Parameters:</dt>
+<dd>port - The DropPay port id</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line191" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 191</a>
+
+<h3 id="set_msisdn()">set_msisdn</h3>
+<code class="signature">public  void <strong>set_msisdn</strong>(string msisdn)</code>
+<div class="details">
+<p>Sets the customer phone number in E.164 format (without +)</p><dl>
+<dt>Parameters:</dt>
+<dd>msisdn - The customer phone number in E.164 format (without +)</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line205" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 205</a>
+
+<h3 id="set_custom()">set_custom</h3>
+<code class="signature">public  void <strong>set_custom</strong>(string custom)</code>
+<div class="details">
+<p>Sets the unique CP request id</p><dl>
+<dt>Parameters:</dt>
+<dd>custom - The unique CP request id</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line214" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 214</a>
+
+<h3 id="set_text()">set_text</h3>
+<code class="signature">public  void <strong>set_text</strong>(string text)</code>
+<div class="details">
+<p>Sets the text to send, encoded in UTF-8, up to 160 characters</p><dl>
+<dt>Parameters:</dt>
+<dd>text - The text to send</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line224" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 224</a>
+
+<h3 id="set_subscriber()">set_subscriber</h3>
+<code class="signature">public  void <strong>set_subscriber</strong>(int subscriber)</code>
+<div class="details">
+<p>Sets the subscriber id required in subscription payments</p><dl>
+<dt>Parameters:</dt>
+<dd>subscriber - The subscriber id</dd>
+<dt>Throws:</dt>
+<dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/portchargesubscriptionpurchases.php.html#line240" class="location">dropPay/PortChargeSubscriptionPurchases.php at line 240</a>
+
+<h3 id="set_pin()">set_pin</h3>
+<code class="signature">public  void <strong>set_pin</strong>(string pin)</code>
+<div class="details">
+<p>Sets the pin code sent to customer in challenge action,
+it is mandatory if transaction was initiated by provider calling challenge,
+it is not mandatory if transaction was initiated by customer sending MO</p><dl>
+<dt>Parameters:</dt>
+<dd>pin - The pin code sent to customer in challenge action</dd>
+</dl>
+</div>
 
 <hr>
 

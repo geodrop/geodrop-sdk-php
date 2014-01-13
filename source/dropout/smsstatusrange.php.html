@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 08 Jan 2014 14:24:30 +0000">
+<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -98,111 +98,157 @@
 <a name="line60"></a>      {
 <a name="line61"></a>	throw new Exception(ErrorType::MISSING_PARAMETERS);
 <a name="line62"></a>      }
-<a name="line63"></a>      
-<a name="line64"></a>      //check range_dateFrom and range_dateTo
-<a name="line65"></a>      if(!$this->checkDatetimeFormat($range_dateFrom) || !$this->checkDatetimeFormat($range_dateTo))
-<a name="line66"></a>      {
-<a name="line67"></a>	throw new Exception(ErrorType::MALFORMED_TIME);
-<a name="line68"></a>      }
-<a name="line69"></a>      
-<a name="line70"></a>      //check range_limit
-<a name="line71"></a>      if(isset($range_limit))
-<a name="line72"></a>      {
-<a name="line73"></a>	 if(!$this->checkLimitFormat($range_limit))
-<a name="line74"></a>	 {
-<a name="line75"></a>	    throw new Exception(ErrorType::MALFORMED_LIMIT);
-<a name="line76"></a>	 }
-<a name="line77"></a>      }
-<a name="line78"></a>
-<a name="line79"></a>      //set parameters
-<a name="line80"></a>      $this->uri = Uri::OUT_SMS_STATUS;
-<a name="line81"></a>      $this->httpMethod = HttpMethod::PUT;
-<a name="line82"></a>      $this->contentType = ContentType::XML;
-<a name="line83"></a>      $this->requestType = RequestTypeOutStatus::RANGE;
-<a name="line84"></a>      $this->range_dateTo = date('Y-m-d H:i:s',strtotime(trim($range_dateTo)));
-<a name="line85"></a>      $this->range_dateFrom = date('Y-m-d H:i:s',strtotime(trim($range_dateFrom)));
-<a name="line86"></a>      $this->range_limit = $range_limit;
-<a name="line87"></a>      $this->client_id = $client_id;
-<a name="line88"></a>      $this->createParams();
-<a name="line89"></a>   }
-<a name="line90"></a>   
-<a name="line91"></a>   public function __destruct()
-<a name="line92"></a>   {
-<a name="line93"></a>      parent::__destruct();      
-<a name="line94"></a>      unset($this->requestType);
-<a name="line95"></a>      unset($this->range_dateTo);
-<a name="line96"></a>      unset($this->range_dateFrom);
-<a name="line97"></a>      unset($this->range_limit);
-<a name="line98"></a>      unset($this->client_id);
+<a name="line63"></a>
+<a name="line64"></a>      //set parameters
+<a name="line65"></a>      $this->uri = Uri::OUT_SMS_STATUS;
+<a name="line66"></a>      $this->httpMethod = HttpMethod::PUT;
+<a name="line67"></a>      $this->contentType = ContentType::XML;
+<a name="line68"></a>      $this->requestType = RequestTypeOutStatus::RANGE;
+<a name="line69"></a>      $this->set_range_dateTo(date('Y-m-d H:i:s',strtotime(trim($range_dateTo))));
+<a name="line70"></a>      $this->set_range_dateFrom(date('Y-m-d H:i:s',strtotime(trim($range_dateFrom))));
+<a name="line71"></a>      $this->set_range_limit($range_limit);
+<a name="line72"></a>      $this->set_client_id($client_id);
+<a name="line73"></a>   }
+<a name="line74"></a>   
+<a name="line75"></a>   public function __destruct()
+<a name="line76"></a>   {
+<a name="line77"></a>      parent::__destruct();      
+<a name="line78"></a>      unset($this->requestType);
+<a name="line79"></a>      unset($this->range_dateTo);
+<a name="line80"></a>      unset($this->range_dateFrom);
+<a name="line81"></a>      unset($this->range_limit);
+<a name="line82"></a>      unset($this->client_id);
+<a name="line83"></a>   }
+<a name="line84"></a>   
+<a name="line85"></a>   public function createParams()
+<a name="line86"></a>   { 
+<a name="line87"></a>      //set body
+<a name="line88"></a>      $this->body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+<a name="line89"></a>      $this->body.= '<GEOSMSSTATUS>';
+<a name="line90"></a>      if(isset($this->client_id))
+<a name="line91"></a>      {
+<a name="line92"></a>	$this->body.= '<ID_CLIENT>'.$this->client_id.'</ID_CLIENT>';//optional
+<a name="line93"></a>      }
+<a name="line94"></a>      $this->body.= '<REQUEST_TYPE>'.$this->requestType.'</REQUEST_TYPE>';
+<a name="line95"></a>      $this->body.= '<RANGE date_from="'.$this->range_dateFrom;
+<a name="line96"></a>      $this->body.= '" date_to="'.$this->range_dateTo;
+<a name="line97"></a>      $this->body.= '" limit="'.$this->range_limit.'" />';
+<a name="line98"></a>      $this->body.= '</GEOSMSSTATUS>';
 <a name="line99"></a>   }
-<a name="line100"></a>   
-<a name="line101"></a>   protected function createParams()
-<a name="line102"></a>   { 
-<a name="line103"></a>      //set body
-<a name="line104"></a>      $this->body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
-<a name="line105"></a>      $this->body.= '<GEOSMSSTATUS>';
-<a name="line106"></a>      if(isset($this->client_id))
-<a name="line107"></a>      {
-<a name="line108"></a>	$this->body.= '<ID_CLIENT>'.$this->client_id.'</ID_CLIENT>';//optional
-<a name="line109"></a>      }
-<a name="line110"></a>      $this->body.= '<REQUEST_TYPE>'.$this->requestType.'</REQUEST_TYPE>';
-<a name="line111"></a>      $this->body.= '<RANGE date_from="'.$this->range_dateFrom;
-<a name="line112"></a>      $this->body.= '" date_to="'.$this->range_dateTo;
-<a name="line113"></a>      $this->body.= '" limit="'.$this->range_limit.'" />';
-<a name="line114"></a>      $this->body.= '</GEOSMSSTATUS>';
-<a name="line115"></a>   }
-<a name="line116"></a>    
-<a name="line117"></a>   public function decodeResponse( $http_response )
-<a name="line118"></a>   {
-<a name="line119"></a>     //echo "SMSStatusRange::decodeResponse: ".$http_response."\n";
-<a name="line120"></a>     $this->response = new SMSStatus_Response();
-<a name="line121"></a>     return $this->response->fillParameters($http_response);
-<a name="line122"></a>   }
-<a name="line123"></a>   
-<a name="line124"></a>   //getters
-<a name="line125"></a>   /**
-<a name="line126"></a>    * Returns the end date of the time interval
-<a name="line127"></a>    * @access public
-<a name="line128"></a>    * @return date
-<a name="line129"></a>    */
-<a name="line130"></a>   public function get_range_dateTo()
-<a name="line131"></a>   {
-<a name="line132"></a>      return $this->range_dateTo;
-<a name="line133"></a>   }
-<a name="line134"></a>   /**
-<a name="line135"></a>    * Returns the start date of the time interval
-<a name="line136"></a>    * @access public
-<a name="line137"></a>    * @return date
-<a name="line138"></a>    */
-<a name="line139"></a>   public function get_range_dateFrom()
-<a name="line140"></a>   {
-<a name="line141"></a>      return $this->range_dateFrom;
-<a name="line142"></a>   }
-<a name="line143"></a>   /**
-<a name="line144"></a>    * Returns the limit, used to paginate the result,
-<a name="line145"></a>    * it consist of two integers separated by a comma,
-<a name="line146"></a>    * the first one indicates the position of the first required result
-<a name="line147"></a>    * and the second the total number of result to return
-<a name="line148"></a>    * @access public
-<a name="line149"></a>    * @return string
-<a name="line150"></a>    */
-<a name="line151"></a>   public function get_range_limit()
-<a name="line152"></a>   {
-<a name="line153"></a>      return $this->range_limit();
-<a name="line154"></a>   }
-<a name="line155"></a>   /**
-<a name="line156"></a>    * Returns the client id
-<a name="line157"></a>    * @access public
-<a name="line158"></a>    * @return string
-<a name="line159"></a>    */
-<a name="line160"></a>   public function get_client_id()
-<a name="line161"></a>   {
-<a name="line162"></a>      return $this->client_id;
-<a name="line163"></a>   }
-<a name="line164"></a> }
-<a name="line165"></a> 
-<a name="line166"></a> ?>
-<a name="line167"></a></pre>
+<a name="line100"></a>    
+<a name="line101"></a>   public function decodeResponse( $http_response )
+<a name="line102"></a>   {
+<a name="line103"></a>     //echo "SMSStatusRange::decodeResponse: ".$http_response."\n";
+<a name="line104"></a>     $this->response = new SMSStatus_Response();
+<a name="line105"></a>     return $this->response->fillParameters($http_response);
+<a name="line106"></a>   }
+<a name="line107"></a>   
+<a name="line108"></a>   //getters
+<a name="line109"></a>   /**
+<a name="line110"></a>    * Returns the end date of the time interval
+<a name="line111"></a>    * @access public
+<a name="line112"></a>    * @return date
+<a name="line113"></a>    */
+<a name="line114"></a>   public function get_range_dateTo()
+<a name="line115"></a>   {
+<a name="line116"></a>      return $this->range_dateTo;
+<a name="line117"></a>   }
+<a name="line118"></a>   /**
+<a name="line119"></a>    * Returns the start date of the time interval
+<a name="line120"></a>    * @access public
+<a name="line121"></a>    * @return date
+<a name="line122"></a>    */
+<a name="line123"></a>   public function get_range_dateFrom()
+<a name="line124"></a>   {
+<a name="line125"></a>      return $this->range_dateFrom;
+<a name="line126"></a>   }
+<a name="line127"></a>   /**
+<a name="line128"></a>    * Returns the limit, used to paginate the result,
+<a name="line129"></a>    * it consist of two integers separated by a comma,
+<a name="line130"></a>    * the first one indicates the position of the first required result
+<a name="line131"></a>    * and the second the total number of result to return
+<a name="line132"></a>    * @access public
+<a name="line133"></a>    * @return string
+<a name="line134"></a>    */
+<a name="line135"></a>   public function get_range_limit()
+<a name="line136"></a>   {
+<a name="line137"></a>      return $this->range_limit;
+<a name="line138"></a>   }
+<a name="line139"></a>   /**
+<a name="line140"></a>    * Returns the client id
+<a name="line141"></a>    * @access public
+<a name="line142"></a>    * @return string
+<a name="line143"></a>    */
+<a name="line144"></a>   public function get_client_id()
+<a name="line145"></a>   {
+<a name="line146"></a>      return $this->client_id;
+<a name="line147"></a>   }
+<a name="line148"></a>   
+<a name="line149"></a>   //setters
+<a name="line150"></a>   /**
+<a name="line151"></a>    * Sets the end date of the time interval
+<a name="line152"></a>    * @param date range_dateTo The end date of the time interval
+<a name="line153"></a>    * @return void
+<a name="line154"></a>    * @throws Exception If parameters are not valid
+<a name="line155"></a>    */
+<a name="line156"></a>   public function set_range_dateTo($range_dateTo)
+<a name="line157"></a>   {
+<a name="line158"></a>      //check range_dateTo
+<a name="line159"></a>      if(!$this->checkDatetimeFormat($range_dateTo))
+<a name="line160"></a>      {
+<a name="line161"></a>	throw new Exception(ErrorType::MALFORMED_TIME);
+<a name="line162"></a>      }
+<a name="line163"></a>      $this->range_dateTo = $range_dateTo;
+<a name="line164"></a>   }
+<a name="line165"></a>   /**
+<a name="line166"></a>    * Sets the start date of the time interval
+<a name="line167"></a>    * @param date range_dateFrom The start date of the time interval
+<a name="line168"></a>    * @return void
+<a name="line169"></a>    * @throws Exception If parameters are not valid
+<a name="line170"></a>    */
+<a name="line171"></a>   public function set_range_dateFrom($range_dateFrom)
+<a name="line172"></a>   {
+<a name="line173"></a>      //check range_dateFrom
+<a name="line174"></a>      if(!$this->checkDatetimeFormat($range_dateFrom))
+<a name="line175"></a>      {
+<a name="line176"></a>	throw new Exception(ErrorType::MALFORMED_TIME);
+<a name="line177"></a>      }
+<a name="line178"></a>      $this->range_dateFrom = $range_dateFrom;
+<a name="line179"></a>   }
+<a name="line180"></a>   /**
+<a name="line181"></a>    * Sets the limit, used to paginate the result,
+<a name="line182"></a>    * it consist of two integers separated by a comma,
+<a name="line183"></a>    * the first one indicates the position of the first required result
+<a name="line184"></a>    * and the second the total number of result to return
+<a name="line185"></a>    * @param string range_limit The limit
+<a name="line186"></a>    * @return void
+<a name="line187"></a>    * @throws Exception If parameters are not valid
+<a name="line188"></a>    */
+<a name="line189"></a>   public function set_range_limit($range_limit)
+<a name="line190"></a>   {
+<a name="line191"></a>      //check range_limit
+<a name="line192"></a>      if(isset($range_limit))
+<a name="line193"></a>      {
+<a name="line194"></a>	 if(!$this->checkLimitFormat($range_limit))
+<a name="line195"></a>	 {
+<a name="line196"></a>	    throw new Exception(ErrorType::MALFORMED_LIMIT);
+<a name="line197"></a>	 }
+<a name="line198"></a>      }
+<a name="line199"></a>      $this->range_limit = $range_limit;
+<a name="line200"></a>   }
+<a name="line201"></a>   /**
+<a name="line202"></a>    * Sets the client id
+<a name="line203"></a>    * @param string client_id The client id
+<a name="line204"></a>    * @return void
+<a name="line205"></a>    */
+<a name="line206"></a>   public function set_client_id($client_id)
+<a name="line207"></a>   {
+<a name="line208"></a>      $this->client_id = $client_id;
+<a name="line209"></a>   }
+<a name="line210"></a> }
+<a name="line211"></a> 
+<a name="line212"></a> ?>
+<a name="line213"></a></pre>
 <div class="header">
 <h1>PHP GeodropSDK</h1>
 <ul>
