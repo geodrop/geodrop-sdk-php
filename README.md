@@ -24,7 +24,7 @@ $session = SessionFactory::buildSession_ResourceOwnerPasswordCredentials(
 ```
 To send an SMS:
 ```php
-require_once 'dropOut/SMSSend.php';
+require_once 'SMSOut/SMSSend.php';
 
 $requestSend = new SMSSend($recipient,$message,$sender);
 $session->runMethod($requestSend);

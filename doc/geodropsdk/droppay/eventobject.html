@@ -1,0 +1,288 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Tue, 28 Jan 2014 09:56:26 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>EventObject (PHP GeodropSDK)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../geodropsdk/droppay/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../geodropsdk/droppay/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../geodropsdk/droppay/eventobject.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">GeodropSDK\DropPay\EventObject</div>
+<a href="../../source/droppay/eventobject.php.html#line11" class="location">dropPay/EventObject.php at line 11</a>
+
+<h1>Class EventObject</h1>
+
+<pre class="tree"><strong>EventObject</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>EventObject</strong></p>
+
+<div class="comment" id="overview_description"><p>It is used to parser the Events.
+Events are asynchronous messages posted to the URLs you previously communicated to Geodrop.
+In order to catch an event posted by DropPay you must provide us with one or more URLs we call Listeners.</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>A-Tono s.r.l.</dd>
+<dt>Since:</dt>
+<dd>1.0</dd>
+</dl>
+<hr>
+
+<table id="summary_constructor">
+<tr><th colspan="2">Constructor Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string xmlString)</p><p class="description">Creates a new EventObject instance.</p></td>
+</tr>
+</table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#toString()">toString</a>()</p><p class="description">Returns a string representation of the object.
+</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#get_class_event()">get_class_event</a>()</p><p class="description">Returns the Event Class
+(it can be: Message, Call, Click, Billing, Customer, Kit).</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#get_type()">get_type</a>()</p><p class="description">Returns the Event type
+(it can be: MO, DLR, IN, ACK, SUBSCRIBE, UNSUBSCRIBE, SUNSPENSION, DETECT, SUBSCRIPTION, BILLING).</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#get_port()">get_port</a>()</p><p class="description">Returns the port.</p></td>
+</tr>
+<tr>
+<td class="type"> date</td>
+<td class="description"><p class="name"><a href="#get_time()">get_time</a>()</p><p class="description">Returns the time.</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#get_order()">get_order</a>()</p><p class="description">Returns the order ID.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#get_session()">get_session</a>()</p><p class="description">Returns the session ID.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../geodropsdk/droppay/message.html">Message</a></td>
+<td class="description"><p class="name"><a href="#get_message()">get_message</a>()</p><p class="description">Returns the message characteristics.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../geodropsdk/droppay/call.html">Call</a></td>
+<td class="description"><p class="name"><a href="#get_call()">get_call</a>()</p><p class="description">Returns the call characteristics.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../geodropsdk/droppay/click.html">Click</a></td>
+<td class="description"><p class="name"><a href="#get_click()">get_click</a>()</p><p class="description">Returns the click characteristics.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../geodropsdk/droppay/subscriber.html">Subscriber</a></td>
+<td class="description"><p class="name"><a href="#get_subscriber()">get_subscriber</a>()</p><p class="description">Returns the subscriber characteristics.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../geodropsdk/droppay/detection.html">Detection</a></td>
+<td class="description"><p class="name"><a href="#get_detection()">get_detection</a>()</p><p class="description">Returns the detection characteristics.</p></td>
+</tr>
+</table>
+
+<h2 id="detail_method">Constructor Detail</h2>
+<a href="../../source/droppay/eventobject.php.html#line76" class="location">dropPay/EventObject.php at line 76</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  void <strong>__construct</strong>(string xmlString)</code>
+<div class="details">
+<p>Creates a new <CODE>EventObject</CODE> instance</p><dl>
+<dt>Parameters:</dt>
+<dd>xmlString - The event to be notified encoded in XML</dd>
+</dl>
+</div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../source/droppay/eventobject.php.html#line116" class="location">dropPay/EventObject.php at line 116</a>
+
+<h3 id="toString()">toString</h3>
+<code class="signature">public  string <strong>toString</strong>()</code>
+<div class="details">
+<p>Returns a string representation of the object.
+In general, the toString method returns a string that "textually represents" this object.
+The result should be a concise but informative representation that is easy for a person to read.</p><dl>
+<dt>Returns:</dt>
+<dd>A string representation of the object</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/droppay/eventobject.php.html#line151" class="location">dropPay/EventObject.php at line 151</a>
+
+<h3 id="get_class_event()">get_class_event</h3>
+<code class="signature">public  string <strong>get_class_event</strong>()</code>
+<div class="details">
+<p>Returns the Event Class
+(it can be: Message, Call, Click, Billing, Customer, Kit)</p></div>
+
+<hr>
+
+<a href="../../source/droppay/eventobject.php.html#line160" class="location">dropPay/EventObject.php at line 160</a>
+
+<h3 id="get_type()">get_type</h3>
+<code class="signature">public  string <strong>get_type</strong>()</code>
+<div class="details">
+<p>Returns the Event type
+(it can be: MO, DLR, IN, ACK, SUBSCRIBE, UNSUBSCRIBE, SUNSPENSION, DETECT, SUBSCRIPTION, BILLING)</p></div>
+
+<hr>
+
+<a href="../../source/droppay/eventobject.php.html#line168" class="location">dropPay/EventObject.php at line 168</a>
+
+<h3 id="get_port()">get_port</h3>
+<code class="signature">public  int <strong>get_port</strong>()</code>
+<div class="details">
+<p>Returns the port</p></div>
+
+<hr>
+
+<a href="../../source/droppay/eventobject.php.html#line176" class="location">dropPay/EventObject.php at line 176</a>
+
+<h3 id="get_time()">get_time</h3>
+<code class="signature">public  date <strong>get_time</strong>()</code>
+<div class="details">
+<p>Returns the time</p></div>
+
+<hr>
+
+<a href="../../source/droppay/eventobject.php.html#line184" class="location">dropPay/EventObject.php at line 184</a>
+
+<h3 id="get_order()">get_order</h3>
+<code class="signature">public  int <strong>get_order</strong>()</code>
+<div class="details">
+<p>Returns the order ID</p></div>
+
+<hr>
+
+<a href="../../source/droppay/eventobject.php.html#line192" class="location">dropPay/EventObject.php at line 192</a>
+
+<h3 id="get_session()">get_session</h3>
+<code class="signature">public  string <strong>get_session</strong>()</code>
+<div class="details">
+<p>Returns the session ID</p></div>
+
+<hr>
+
+<a href="../../source/droppay/eventobject.php.html#line200" class="location">dropPay/EventObject.php at line 200</a>
+
+<h3 id="get_message()">get_message</h3>
+<code class="signature">public  <a href="../../geodropsdk/droppay/message.html">Message</a> <strong>get_message</strong>()</code>
+<div class="details">
+<p>Returns the message characteristics</p></div>
+
+<hr>
+
+<a href="../../source/droppay/eventobject.php.html#line208" class="location">dropPay/EventObject.php at line 208</a>
+
+<h3 id="get_call()">get_call</h3>
+<code class="signature">public  <a href="../../geodropsdk/droppay/call.html">Call</a> <strong>get_call</strong>()</code>
+<div class="details">
+<p>Returns the call characteristics</p></div>
+
+<hr>
+
+<a href="../../source/droppay/eventobject.php.html#line216" class="location">dropPay/EventObject.php at line 216</a>
+
+<h3 id="get_click()">get_click</h3>
+<code class="signature">public  <a href="../../geodropsdk/droppay/click.html">Click</a> <strong>get_click</strong>()</code>
+<div class="details">
+<p>Returns the click characteristics</p></div>
+
+<hr>
+
+<a href="../../source/droppay/eventobject.php.html#line224" class="location">dropPay/EventObject.php at line 224</a>
+
+<h3 id="get_subscriber()">get_subscriber</h3>
+<code class="signature">public  <a href="../../geodropsdk/droppay/subscriber.html">Subscriber</a> <strong>get_subscriber</strong>()</code>
+<div class="details">
+<p>Returns the subscriber characteristics</p></div>
+
+<hr>
+
+<a href="../../source/droppay/eventobject.php.html#line232" class="location">dropPay/EventObject.php at line 232</a>
+
+<h3 id="get_detection()">get_detection</h3>
+<code class="signature">public  <a href="../../geodropsdk/droppay/detection.html">Detection</a> <strong>get_detection</strong>()</code>
+<div class="details">
+<p>Returns the detection characteristics</p></div>
+
+<hr>
+
+<div class="header">
+<h1>PHP GeodropSDK</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../geodropsdk/droppay/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../geodropsdk/droppay/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../geodropsdk/droppay/eventobject.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>
