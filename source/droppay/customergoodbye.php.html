@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
+<meta name="when" content="Tue, 28 Jan 2014 09:56:26 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -190,60 +190,65 @@
 <a name="line152"></a>   */
 <a name="line153"></a>  public function set_port($port)
 <a name="line154"></a>  {
-<a name="line155"></a>    $this->port = $port;
-<a name="line156"></a>  }
-<a name="line157"></a>  /**
-<a name="line158"></a>   * Sets the customer phone number in E.164 format (without +)
-<a name="line159"></a>   * @param string msisdn The customer phone number in E.164 format (without +)
-<a name="line160"></a>   * @return void
-<a name="line161"></a>   * @throws Exception If parameters are not valid
-<a name="line162"></a>   */
-<a name="line163"></a>  public function set_msisdn($msisdn)
-<a name="line164"></a>  {
-<a name="line165"></a>    //check msisdn
-<a name="line166"></a>    if(!$this->checkMsisdnE164Format($msisdn,false))
-<a name="line167"></a>    {
-<a name="line168"></a>      throw new Exception(ErrorType::MALFORMED_MSISDN);
-<a name="line169"></a>    }
-<a name="line170"></a>    $this->msisdn = $msisdn;
-<a name="line171"></a>  }
-<a name="line172"></a>  /**
-<a name="line173"></a>   * Sets the unique CP request id
-<a name="line174"></a>   * @param string custom The unique CP request id
-<a name="line175"></a>   * @return void
-<a name="line176"></a>   */
-<a name="line177"></a>  public function set_custom($custom)
-<a name="line178"></a>  {
-<a name="line179"></a>    $this->custom = $custom;
-<a name="line180"></a>  }
-<a name="line181"></a>  /**
-<a name="line182"></a>   * Sets the text to send, encoded in UTF-8, up to 160 characters
-<a name="line183"></a>   * @param string text The text to send
-<a name="line184"></a>   * @return void
-<a name="line185"></a>   */
-<a name="line186"></a>  public function set_text($text)
-<a name="line187"></a>  {
-<a name="line188"></a>    $this->text = $text;
-<a name="line189"></a>  }
-<a name="line190"></a>  /**
-<a name="line191"></a>   * Sets the subscriber id required in subscription payments
-<a name="line192"></a>   * @param int subscriber The subscriber id
-<a name="line193"></a>   * @return void
-<a name="line194"></a>   * @throws Exception If parameters are not valid
-<a name="line195"></a>   */
-<a name="line196"></a>  public function set_subscriber($subscriber)
-<a name="line197"></a>  {
-<a name="line198"></a>    //check subscriber
-<a name="line199"></a>    if(!$this->checkIfIntegerOrDigitString($subscriber))
-<a name="line200"></a>    {
-<a name="line201"></a>      throw new Exception(ErrorType::MALFORMED_SUBSCRIBER);
-<a name="line202"></a>    }
-<a name="line203"></a>    $this->subscriber = $subscriber;
-<a name="line204"></a>  }
-<a name="line205"></a>}
-<a name="line206"></a>
-<a name="line207"></a>?>
-<a name="line208"></a></pre>
+<a name="line155"></a>    //check port
+<a name="line156"></a>    if(!$this->checkIfIntegerOrDigitString($port))
+<a name="line157"></a>    {
+<a name="line158"></a>      throw new Exception(ErrorType::MALFORMED_PORT);
+<a name="line159"></a>    }
+<a name="line160"></a>    $this->port = $port;
+<a name="line161"></a>  }
+<a name="line162"></a>  /**
+<a name="line163"></a>   * Sets the customer phone number in E.164 format (without +)
+<a name="line164"></a>   * @param string msisdn The customer phone number in E.164 format (without +)
+<a name="line165"></a>   * @return void
+<a name="line166"></a>   * @throws Exception If parameters are not valid
+<a name="line167"></a>   */
+<a name="line168"></a>  public function set_msisdn($msisdn)
+<a name="line169"></a>  {
+<a name="line170"></a>    //check msisdn
+<a name="line171"></a>    if(!$this->checkMsisdnE164Format($msisdn,false))
+<a name="line172"></a>    {
+<a name="line173"></a>      throw new Exception(ErrorType::MALFORMED_MSISDN);
+<a name="line174"></a>    }
+<a name="line175"></a>    $this->msisdn = $msisdn;
+<a name="line176"></a>  }
+<a name="line177"></a>  /**
+<a name="line178"></a>   * Sets the unique CP request id
+<a name="line179"></a>   * @param string custom The unique CP request id
+<a name="line180"></a>   * @return void
+<a name="line181"></a>   */
+<a name="line182"></a>  public function set_custom($custom)
+<a name="line183"></a>  {
+<a name="line184"></a>    $this->custom = $custom;
+<a name="line185"></a>  }
+<a name="line186"></a>  /**
+<a name="line187"></a>   * Sets the text to send, encoded in UTF-8, up to 160 characters
+<a name="line188"></a>   * @param string text The text to send
+<a name="line189"></a>   * @return void
+<a name="line190"></a>   */
+<a name="line191"></a>  public function set_text($text)
+<a name="line192"></a>  {
+<a name="line193"></a>    $this->text = $text;
+<a name="line194"></a>  }
+<a name="line195"></a>  /**
+<a name="line196"></a>   * Sets the subscriber id required in subscription payments
+<a name="line197"></a>   * @param int subscriber The subscriber id
+<a name="line198"></a>   * @return void
+<a name="line199"></a>   * @throws Exception If parameters are not valid
+<a name="line200"></a>   */
+<a name="line201"></a>  public function set_subscriber($subscriber)
+<a name="line202"></a>  {
+<a name="line203"></a>    //check subscriber
+<a name="line204"></a>    if(!$this->checkIfIntegerOrDigitString($subscriber))
+<a name="line205"></a>    {
+<a name="line206"></a>      throw new Exception(ErrorType::MALFORMED_SUBSCRIBER);
+<a name="line207"></a>    }
+<a name="line208"></a>    $this->subscriber = $subscriber;
+<a name="line209"></a>  }
+<a name="line210"></a>}
+<a name="line211"></a>
+<a name="line212"></a>?>
+<a name="line213"></a></pre>
 <div class="header">
 <h1>PHP GeodropSDK</h1>
 <ul>

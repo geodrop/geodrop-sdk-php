@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 13 Jan 2014 11:06:57 +0000">
+<meta name="when" content="Tue, 28 Jan 2014 09:56:26 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -212,71 +212,76 @@
 <a name="line174"></a>   */
 <a name="line175"></a>  public function set_port($port)
 <a name="line176"></a>  {
-<a name="line177"></a>    $this->port = $port;
-<a name="line178"></a>  }
-<a name="line179"></a>  /**
-<a name="line180"></a>   * Sets the customer phone number in E.164 format (without +)
-<a name="line181"></a>   * @param string msisdn The customer phone number in E.164 format (without +)
-<a name="line182"></a>   * @return void
-<a name="line183"></a>   * @throws Exception If parameters are not valid
-<a name="line184"></a>   */
-<a name="line185"></a>  public function set_msisdn($msisdn)
-<a name="line186"></a>  {
-<a name="line187"></a>    //check msisdn
-<a name="line188"></a>    if(!$this->checkMsisdnE164Format($msisdn,false))
-<a name="line189"></a>    {
-<a name="line190"></a>      throw new Exception(ErrorType::MALFORMED_MSISDN);
-<a name="line191"></a>    }
-<a name="line192"></a>    $this->msisdn = $msisdn;
-<a name="line193"></a>  }
-<a name="line194"></a>  /**
-<a name="line195"></a>   * Sets the unique CP request id
-<a name="line196"></a>   * @param string custom The unique CP request id
-<a name="line197"></a>   * @return void
-<a name="line198"></a>   */
-<a name="line199"></a>  public function set_custom($custom)
-<a name="line200"></a>  {
-<a name="line201"></a>    $this->custom = $custom;
-<a name="line202"></a>  }
-<a name="line203"></a>  /**
-<a name="line204"></a>   * Sets the text to send, encoded in UTF-8, up to 160 characters
-<a name="line205"></a>   * @param string text The text to send
-<a name="line206"></a>   * @return void
-<a name="line207"></a>   */
-<a name="line208"></a>  public function set_text($text)
-<a name="line209"></a>  {
-<a name="line210"></a>    $this->text = $text;
-<a name="line211"></a>  }
-<a name="line212"></a>  /**
-<a name="line213"></a>   * Sets the pin code sent to customer in challenge action,
-<a name="line214"></a>   * it is mandatory if transaction was initiated by provider calling challenge,
-<a name="line215"></a>   * it is not mandatory if transaction was initiated by customer sending MO
-<a name="line216"></a>   * @param string pin The pin code sent to customer in challenge action
-<a name="line217"></a>   * @return void
-<a name="line218"></a>   */
-<a name="line219"></a>  public function set_pin($pin)
-<a name="line220"></a>  {
-<a name="line221"></a>    $this->pin = $pin;
-<a name="line222"></a>  }
-<a name="line223"></a>  /**
-<a name="line224"></a>   * Sets the order id appended by Geodrop
-<a name="line225"></a>   * @param int order The order id
-<a name="line226"></a>   * @return void
-<a name="line227"></a>   * @throws Exception If parameters are not valid
-<a name="line228"></a>   */
-<a name="line229"></a>  public function set_order($order)
-<a name="line230"></a>  {
-<a name="line231"></a>    //check order
-<a name="line232"></a>    if(!$this->checkIfIntegerOrDigitString($order))
-<a name="line233"></a>    {
-<a name="line234"></a>      throw new Exception(ErrorType::MALFORMED_ORDERID);
-<a name="line235"></a>    }
-<a name="line236"></a>    $this->order = $order;
-<a name="line237"></a>  }
-<a name="line238"></a>}
-<a name="line239"></a>
-<a name="line240"></a>?>
-<a name="line241"></a></pre>
+<a name="line177"></a>    //check port
+<a name="line178"></a>    if(!$this->checkIfIntegerOrDigitString($port))
+<a name="line179"></a>    {
+<a name="line180"></a>      throw new Exception(ErrorType::MALFORMED_PORT);
+<a name="line181"></a>    }
+<a name="line182"></a>    $this->port = $port;
+<a name="line183"></a>  }
+<a name="line184"></a>  /**
+<a name="line185"></a>   * Sets the customer phone number in E.164 format (without +)
+<a name="line186"></a>   * @param string msisdn The customer phone number in E.164 format (without +)
+<a name="line187"></a>   * @return void
+<a name="line188"></a>   * @throws Exception If parameters are not valid
+<a name="line189"></a>   */
+<a name="line190"></a>  public function set_msisdn($msisdn)
+<a name="line191"></a>  {
+<a name="line192"></a>    //check msisdn
+<a name="line193"></a>    if(!$this->checkMsisdnE164Format($msisdn,false))
+<a name="line194"></a>    {
+<a name="line195"></a>      throw new Exception(ErrorType::MALFORMED_MSISDN);
+<a name="line196"></a>    }
+<a name="line197"></a>    $this->msisdn = $msisdn;
+<a name="line198"></a>  }
+<a name="line199"></a>  /**
+<a name="line200"></a>   * Sets the unique CP request id
+<a name="line201"></a>   * @param string custom The unique CP request id
+<a name="line202"></a>   * @return void
+<a name="line203"></a>   */
+<a name="line204"></a>  public function set_custom($custom)
+<a name="line205"></a>  {
+<a name="line206"></a>    $this->custom = $custom;
+<a name="line207"></a>  }
+<a name="line208"></a>  /**
+<a name="line209"></a>   * Sets the text to send, encoded in UTF-8, up to 160 characters
+<a name="line210"></a>   * @param string text The text to send
+<a name="line211"></a>   * @return void
+<a name="line212"></a>   */
+<a name="line213"></a>  public function set_text($text)
+<a name="line214"></a>  {
+<a name="line215"></a>    $this->text = $text;
+<a name="line216"></a>  }
+<a name="line217"></a>  /**
+<a name="line218"></a>   * Sets the pin code sent to customer in challenge action,
+<a name="line219"></a>   * it is mandatory if transaction was initiated by provider calling challenge,
+<a name="line220"></a>   * it is not mandatory if transaction was initiated by customer sending MO
+<a name="line221"></a>   * @param string pin The pin code sent to customer in challenge action
+<a name="line222"></a>   * @return void
+<a name="line223"></a>   */
+<a name="line224"></a>  public function set_pin($pin)
+<a name="line225"></a>  {
+<a name="line226"></a>    $this->pin = $pin;
+<a name="line227"></a>  }
+<a name="line228"></a>  /**
+<a name="line229"></a>   * Sets the order id appended by Geodrop
+<a name="line230"></a>   * @param int order The order id
+<a name="line231"></a>   * @return void
+<a name="line232"></a>   * @throws Exception If parameters are not valid
+<a name="line233"></a>   */
+<a name="line234"></a>  public function set_order($order)
+<a name="line235"></a>  {
+<a name="line236"></a>    //check order
+<a name="line237"></a>    if(!$this->checkIfIntegerOrDigitString($order))
+<a name="line238"></a>    {
+<a name="line239"></a>      throw new Exception(ErrorType::MALFORMED_ORDERID);
+<a name="line240"></a>    }
+<a name="line241"></a>    $this->order = $order;
+<a name="line242"></a>  }
+<a name="line243"></a>}
+<a name="line244"></a>
+<a name="line245"></a>?>
+<a name="line246"></a></pre>
 <div class="header">
 <h1>PHP GeodropSDK</h1>
 <ul>
