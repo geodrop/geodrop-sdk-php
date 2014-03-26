@@ -58,10 +58,13 @@ class SMSSend_Response extends GeodropResponse
     $result.= "posted: ";
     $result.= $this->report_posted."\n";
     $result.= "report list: \n";
-    foreach($this->report_list as $report)
+    if(isset($this->report_list))
     {
-      $result.= $report->toString();
-      $result.="\n";
+	    foreach($this->report_list as $report)
+	    {
+	      $result.= $report->toString();
+	      $result.="\n";
+	    }
     }
     return $result;
   }
