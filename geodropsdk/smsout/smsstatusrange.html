@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Tue, 28 Jan 2014 09:56:26 +0000">
+<meta name="when" content="Thu, 12 Feb 2015 09:00:32 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -64,11 +64,15 @@ the status of all SMS messages sent in a given time interval.</p></div>
 </dl>
 <hr>
 
+<table class="inherit">
+<tr><th colspan="2">Fields inherited from GeodropSDK\\GeodropRequest</th></tr>
+<tr><td><a href="../../geodropsdk//geodroprequest.html#body">body</a>, <a href="../../geodropsdk//geodroprequest.html#contentType">contentType</a>, <a href="../../geodropsdk//geodroprequest.html#httpMethod">httpMethod</a>, <a href="../../geodropsdk//geodroprequest.html#params">params</a>, <a href="../../geodropsdk//geodroprequest.html#response">response</a>, <a href="../../geodropsdk//geodroprequest.html#uri">uri</a></td></tr></table>
+
 <table id="summary_constructor">
 <tr><th colspan="2">Constructor Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#__construct()">__construct</a>(date range_dateFrom, date range_dateTo, stringORint client_id, str range_limit, float job_limit)</p><p class="description">Creates a new SMSStatusRange instance.</p></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(date range_dateFrom, date range_dateTo, stringORint client_id, str range_limit, float job_limit)</p><p class="description">Creates a new SMSStatusRange instance</p></td>
 </tr>
 </table>
 
@@ -76,49 +80,49 @@ the status of all SMS messages sent in a given time interval.</p></div>
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request.</p></td>
+<td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request</p></td>
 </tr>
 <tr>
 <td class="type"> boolean</td>
-<td class="description"><p class="name"><a href="#decodeResponse()">decodeResponse</a>(string http_response)</p><p class="description">Decodes the response.</p></td>
+<td class="description"><p class="name"><a href="#decodeResponse()">decodeResponse</a>(string http_response)</p><p class="description">Decodes the response</p></td>
 </tr>
 <tr>
 <td class="type"> date</td>
-<td class="description"><p class="name"><a href="#get_range_dateTo()">get_range_dateTo</a>()</p><p class="description">Returns the end date of the time interval.</p></td>
+<td class="description"><p class="name"><a href="#get_range_dateTo()">get_range_dateTo</a>()</p><p class="description">Returns the end date of the time interval</p></td>
 </tr>
 <tr>
 <td class="type"> date</td>
-<td class="description"><p class="name"><a href="#get_range_dateFrom()">get_range_dateFrom</a>()</p><p class="description">Returns the start date of the time interval.</p></td>
+<td class="description"><p class="name"><a href="#get_range_dateFrom()">get_range_dateFrom</a>()</p><p class="description">Returns the start date of the time interval</p></td>
 </tr>
 <tr>
 <td class="type"> string</td>
 <td class="description"><p class="name"><a href="#get_range_limit()">get_range_limit</a>()</p><p class="description">Returns the limit, used to paginate the result,
 it consist of two integers separated by a comma,
 the first one indicates the position of the first required result
-and the second the total number of result to return.</p></td>
+and the second the total number of result to return</p></td>
 </tr>
 <tr>
 <td class="type"> string</td>
-<td class="description"><p class="name"><a href="#get_client_id()">get_client_id</a>()</p><p class="description">Returns the client id.</p></td>
+<td class="description"><p class="name"><a href="#get_client_id()">get_client_id</a>()</p><p class="description">Returns the client id</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#set_range_dateTo()">set_range_dateTo</a>(date range_dateTo)</p><p class="description">Sets the end date of the time interval.</p></td>
+<td class="description"><p class="name"><a href="#set_range_dateTo()">set_range_dateTo</a>(date range_dateTo)</p><p class="description">Sets the end date of the time interval</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#set_range_dateFrom()">set_range_dateFrom</a>(date range_dateFrom)</p><p class="description">Sets the start date of the time interval.</p></td>
+<td class="description"><p class="name"><a href="#set_range_dateFrom()">set_range_dateFrom</a>(date range_dateFrom)</p><p class="description">Sets the start date of the time interval</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
 <td class="description"><p class="name"><a href="#set_range_limit()">set_range_limit</a>(string range_limit)</p><p class="description">Sets the limit, used to paginate the result,
 it consist of two integers separated by a comma,
 the first one indicates the position of the first required result
-and the second the total number of result to return.</p></td>
+and the second the total number of result to return</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#set_client_id()">set_client_id</a>(string client_id)</p><p class="description">Sets the client id.</p></td>
+<td class="description"><p class="name"><a href="#set_client_id()">set_client_id</a>(string client_id)</p><p class="description">Sets the client id</p></td>
 </tr>
 </table>
 
