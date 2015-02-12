@@ -125,6 +125,7 @@ class GeodropSession
     //print_r ($request->getParams());
     $request->createParams();
     $body = $request->getBody();
+    print($body);
     if(!isset($body))
     {
       $body = $this->preparePostFields($request->getParams());

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Tue, 28 Jan 2014 09:56:26 +0000">
+<meta name="when" content="Thu, 12 Feb 2015 09:00:32 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -66,11 +66,15 @@ its custom sender or its scheduled time</p></div>
 </dl>
 <hr>
 
+<table class="inherit">
+<tr><th colspan="2">Fields inherited from GeodropSDK\\GeodropRequest</th></tr>
+<tr><td><a href="../../geodropsdk//geodroprequest.html#body">body</a>, <a href="../../geodropsdk//geodroprequest.html#contentType">contentType</a>, <a href="../../geodropsdk//geodroprequest.html#httpMethod">httpMethod</a>, <a href="../../geodropsdk//geodroprequest.html#params">params</a>, <a href="../../geodropsdk//geodroprequest.html#response">response</a>, <a href="../../geodropsdk//geodroprequest.html#uri">uri</a></td></tr></table>
+
 <table id="summary_constructor">
 <tr><th colspan="2">Constructor Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string job_id, mixed deferred_time, string message_text, array msisdn_to_delete, array msisdn_to_add, string tpoa, string deferred)</p><p class="description">Creates a new SMSJobsScheduledModify instance.</p></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string job_id, mixed deferred_time, string message_text, array msisdn_to_delete, array msisdn_to_add, string tpoa, string deferred)</p><p class="description">Creates a new SMSJobsScheduledModify instance</p></td>
 </tr>
 </table>
 
@@ -78,63 +82,63 @@ its custom sender or its scheduled time</p></div>
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request.</p></td>
+<td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request</p></td>
 </tr>
 <tr>
 <td class="type"> boolean</td>
-<td class="description"><p class="name"><a href="#decodeResponse()">decodeResponse</a>(string http_response)</p><p class="description">Decodes the response.</p></td>
+<td class="description"><p class="name"><a href="#decodeResponse()">decodeResponse</a>(string http_response)</p><p class="description">Decodes the response</p></td>
 </tr>
 <tr>
 <td class="type"> string</td>
-<td class="description"><p class="name"><a href="#get_job_id()">get_job_id</a>()</p><p class="description">Returns the job id of the job to modify.</p></td>
+<td class="description"><p class="name"><a href="#get_job_id()">get_job_id</a>()</p><p class="description">Returns the job id of the job to modify</p></td>
 </tr>
 <tr>
 <td class="type"> string</td>
-<td class="description"><p class="name"><a href="#get_message_text()">get_message_text</a>()</p><p class="description">Returns the text of the message.</p></td>
+<td class="description"><p class="name"><a href="#get_message_text()">get_message_text</a>()</p><p class="description">Returns the text of the message</p></td>
 </tr>
 <tr>
 <td class="type"> string[]</td>
-<td class="description"><p class="name"><a href="#get_msisdn_to_delete()">get_msisdn_to_delete</a>()</p><p class="description">Returns the array of msisdns to delete; each msisdn is in E.164 format with '+'.</p></td>
+<td class="description"><p class="name"><a href="#get_msisdn_to_delete()">get_msisdn_to_delete</a>()</p><p class="description">Returns the array of msisdns to delete; each msisdn is in E.164 format with '+'</p></td>
 </tr>
 <tr>
 <td class="type"> string[]</td>
-<td class="description"><p class="name"><a href="#get_msisdn_to_add()">get_msisdn_to_add</a>()</p><p class="description">Returns the array of msisdns to add; each msisdn is in E.164 format with '+'.</p></td>
+<td class="description"><p class="name"><a href="#get_msisdn_to_add()">get_msisdn_to_add</a>()</p><p class="description">Returns the array of msisdns to add; each msisdn is in E.164 format with '+'</p></td>
 </tr>
 <tr>
 <td class="type"> string</td>
-<td class="description"><p class="name"><a href="#get_tpoa()">get_tpoa</a>()</p><p class="description">Returns the personalized sender.</p></td>
+<td class="description"><p class="name"><a href="#get_tpoa()">get_tpoa</a>()</p><p class="description">Returns the personalized sender</p></td>
 </tr>
 <tr>
 <td class="type"> date</td>
 <td class="description"><p class="name"><a href="#get_deferred_time()">get_deferred_time</a>()</p><p class="description">Returns the date and time in the format "Y-m-d H:i:s",
 used to send the message to a certain date,
-if not specified the message is sent immediately.</p></td>
+if not specified the message is sent immediately</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#set_job_id()">set_job_id</a>(string job_id)</p><p class="description">Sets the job id of the job to modify.</p></td>
+<td class="description"><p class="name"><a href="#set_job_id()">set_job_id</a>(string job_id)</p><p class="description">Sets the job id of the job to modify</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#set_message_text()">set_message_text</a>(string message_text)</p><p class="description">Sets the text of the message.</p></td>
+<td class="description"><p class="name"><a href="#set_message_text()">set_message_text</a>(string message_text)</p><p class="description">Sets the text of the message</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#set_msisdn_to_delete()">set_msisdn_to_delete</a>(string msisdn_to_delete)</p><p class="description">Sets the array of msisdns to delete; each msisdn is in E.164 format with '+'.</p></td>
+<td class="description"><p class="name"><a href="#set_msisdn_to_delete()">set_msisdn_to_delete</a>(string msisdn_to_delete)</p><p class="description">Sets the array of msisdns to delete; each msisdn is in E.164 format with '+'</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#set_msisdn_to_add()">set_msisdn_to_add</a>(string msisdn_to_add)</p><p class="description">Sets the array of msisdns to add; each msisdn is in E.164 format with '+'.</p></td>
+<td class="description"><p class="name"><a href="#set_msisdn_to_add()">set_msisdn_to_add</a>(string msisdn_to_add)</p><p class="description">Sets the array of msisdns to add; each msisdn is in E.164 format with '+'</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#set_tpoa()">set_tpoa</a>(string tpoa)</p><p class="description">Sets the personalized sender.</p></td>
+<td class="description"><p class="name"><a href="#set_tpoa()">set_tpoa</a>(string tpoa)</p><p class="description">Sets the personalized sender</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
 <td class="description"><p class="name"><a href="#set_deferred_time()">set_deferred_time</a>(date deferred_time)</p><p class="description">Sets the date and time in the format "Y-m-d H:i:s",
 used to send the message to a certain date,
-if not specified the message is sent immediately.</p></td>
+if not specified the message is sent immediately</p></td>
 </tr>
 </table>
 

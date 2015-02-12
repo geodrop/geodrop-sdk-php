@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Tue, 28 Jan 2014 09:56:26 +0000">
+<meta name="when" content="Thu, 12 Feb 2015 09:00:32 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -65,11 +65,15 @@ a list of recipients and a personalized sender</p></div>
 </dl>
 <hr>
 
+<table class="inherit">
+<tr><th colspan="2">Fields inherited from GeodropSDK\\GeodropRequest</th></tr>
+<tr><td><a href="../../geodropsdk//geodroprequest.html#body">body</a>, <a href="../../geodropsdk//geodroprequest.html#contentType">contentType</a>, <a href="../../geodropsdk//geodroprequest.html#httpMethod">httpMethod</a>, <a href="../../geodropsdk//geodroprequest.html#params">params</a>, <a href="../../geodropsdk//geodroprequest.html#response">response</a>, <a href="../../geodropsdk//geodroprequest.html#uri">uri</a></td></tr></table>
+
 <table id="summary_constructor">
 <tr><th colspan="2">Constructor Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string/array dest_msisdns, string message_text, string tpoa, string deferred)</p><p class="description">Creates a new SMSSend instance.</p></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string/array dest_msisdns, string message_text, string tpoa, string deferred, string jobnotify, string dlrnotify, string runrange_ltime, int runrange_timewindow)</p><p class="description">Creates a new SMSSend instance</p></td>
 </tr>
 </table>
 
@@ -77,49 +81,81 @@ a list of recipients and a personalized sender</p></div>
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
 <td class="type"> boolean</td>
-<td class="description"><p class="name"><a href="#decodeResponse()">decodeResponse</a>(string http_response)</p><p class="description">Decodes the response.</p></td>
+<td class="description"><p class="name"><a href="#decodeResponse()">decodeResponse</a>(string http_response)</p><p class="description">Decodes the response</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request.</p></td>
+<td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request</p></td>
 </tr>
 <tr>
 <td class="type"> string</td>
-<td class="description"><p class="name"><a href="#get_message_text()">get_message_text</a>()</p><p class="description">Returns the text of the message to send.</p></td>
+<td class="description"><p class="name"><a href="#get_message_text()">get_message_text</a>()</p><p class="description">Returns the text of the message to send</p></td>
 </tr>
 <tr>
 <td class="type"> string|string[]</td>
 <td class="description"><p class="name"><a href="#get_dest_msisdns()">get_dest_msisdns</a>()</p><p class="description">Returns the msisdn of the recipient or an array of msisdns if there are many recipients;
-each msisdn is in E.164 format with '+'.</p></td>
+each msisdn is in E.164 format with '+'</p></td>
 </tr>
 <tr>
 <td class="type"> string</td>
-<td class="description"><p class="name"><a href="#get_tpoa()">get_tpoa</a>()</p><p class="description">Returns the personalized sender.</p></td>
+<td class="description"><p class="name"><a href="#get_tpoa()">get_tpoa</a>()</p><p class="description">Returns the personalized sender</p></td>
 </tr>
 <tr>
 <td class="type"> date</td>
 <td class="description"><p class="name"><a href="#get_deferred()">get_deferred</a>()</p><p class="description">Returns date and time in the format "Y-m-d H:i:s",
 used to send the message to a certain date,
-if not specified the message is sent immediately.</p></td>
+if not specified the message is sent immediately</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#get_jobnotify()">get_jobnotify</a>()</p><p class="description">Returns the url for job notification</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#get_dlrnotify()">get_dlrnotify</a>()</p><p class="description">Returns the url for dlr notification</p></td>
+</tr>
+<tr>
+<td class="type"> date</td>
+<td class="description"><p class="name"><a href="#get_runrange_ltime()">get_runrange_ltime</a>()</p><p class="description">Returns the time from which messages are not sent</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#get_runrange_timewindow()">get_runrange_timewindow</a>()</p><p class="description">Returns the number of hours during which messages are not sent</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#set_message_text()">set_message_text</a>(string message_text)</p><p class="description">Sets the text of the message to send.</p></td>
+<td class="description"><p class="name"><a href="#set_message_text()">set_message_text</a>(string message_text)</p><p class="description">Sets the text of the message to send</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
 <td class="description"><p class="name"><a href="#set_dest_msisdns()">set_dest_msisdns</a>(string|string The, mixed dest_msisdns)</p><p class="description">Sets the msisdn of the recipient or an array of msisdns if there are many recipients;
-each msisdn is in E.164 format with '+'.</p></td>
+each msisdn is in E.164 format with '+'</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#set_tpoa()">set_tpoa</a>(string dest_msisdns, mixed tpoa)</p><p class="description">Sets the personalized sender.</p></td>
+<td class="description"><p class="name"><a href="#set_tpoa()">set_tpoa</a>(string dest_msisdns, mixed tpoa)</p><p class="description">Sets the personalized sender</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
 <td class="description"><p class="name"><a href="#set_deferred()">set_deferred</a>(date deferred)</p><p class="description">Sets date and time in the format "Y-m-d H:i:s",
 used to send the message to a certain date,
-if not specified the message is sent immediately.</p></td>
+if not specified the message is sent immediately</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_jobnotify()">set_jobnotify</a>(string jobnotify)</p><p class="description">Sets the url for job notification</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_dlrnotify()">set_dlrnotify</a>(string dlrnotify)</p><p class="description">Sets the url for dlr notification</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_runrange_ltime()">set_runrange_ltime</a>(date runrange_ltime)</p><p class="description">Sets the time from which messages are not sent (HH:MM)</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#set_runrange_timewindow()">set_runrange_timewindow</a>(int runrange_timewindow)</p><p class="description">Sets the number of hours during which messages are not sent</p></td>
 </tr>
 </table>
 
@@ -128,10 +164,10 @@ if not specified the message is sent immediately.</p></td>
 <tr><td><a href="../../geodropsdk//geodroprequest.html#checkDatetimeFormat()">checkDatetimeFormat</a>, <a href="../../geodropsdk//geodroprequest.html#checkIfArrayOfPairOfOrderIdMsisdn()">checkIfArrayOfPairOfOrderIdMsisdn</a>, <a href="../../geodropsdk//geodroprequest.html#checkIfFutureDatetime()">checkIfFutureDatetime</a>, <a href="../../geodropsdk//geodroprequest.html#checkIfIntegerOrDigitString()">checkIfIntegerOrDigitString</a>, <a href="../../geodropsdk//geodroprequest.html#checkIfMsisdnsIsArrayOrString()">checkIfMsisdnsIsArrayOrString</a>, <a href="../../geodropsdk//geodroprequest.html#checkLimitFormat()">checkLimitFormat</a>, <a href="../../geodropsdk//geodroprequest.html#checkMsisdnE164Format()">checkMsisdnE164Format</a>, <a href="../../geodropsdk//geodroprequest.html#checkMsisdnsArray()">checkMsisdnsArray</a>, <a href="../../geodropsdk//geodroprequest.html#createParams()">createParams</a>, <a href="../../geodropsdk//geodroprequest.html#decodeResponse()">decodeResponse</a>, <a href="../../geodropsdk//geodroprequest.html#getBody()">getBody</a>, <a href="../../geodropsdk//geodroprequest.html#getContentType()">getContentType</a>, <a href="../../geodropsdk//geodroprequest.html#getHttpMethod()">getHttpMethod</a>, <a href="../../geodropsdk//geodroprequest.html#getParams()">getParams</a>, <a href="../../geodropsdk//geodroprequest.html#getResponse()">getResponse</a>, <a href="../../geodropsdk//geodroprequest.html#getUri()">getUri</a></td></tr></table>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../../source/smsout/smssend.php.html#line54" class="location">SMSOut/SMSSend.php at line 54</a>
+<a href="../../source/smsout/smssend.php.html#line78" class="location">SMSOut/SMSSend.php at line 78</a>
 
 <h3 id="__construct()">__construct</h3>
-<code class="signature">public  void <strong>__construct</strong>(string/array dest_msisdns, string message_text, string tpoa, string deferred)</code>
+<code class="signature">public  void <strong>__construct</strong>(string/array dest_msisdns, string message_text, string tpoa, string deferred, string jobnotify, string dlrnotify, string runrange_ltime, int runrange_timewindow)</code>
 <div class="details">
 <p>Creates a new <CODE>SMSSend</CODE> instance</p><dl>
 <dt>Parameters:</dt>
@@ -139,6 +175,10 @@ if not specified the message is sent immediately.</p></td>
 <dd>message_text - Text of the message</dd>
 <dd>tpoa - Used to specify the personalized sender</dd>
 <dd>deferred - (optional) Date and time in the format "Y-m-d H:i:s", used to send the message to a certain date, if not specified the message is sent immediately</dd>
+<dd>jobnotify - Url for job notification</dd>
+<dd>dlrnotify - Url for dlr notification</dd>
+<dd>runrange_ltime - Time from which messages are not sent (HH:MM)</dd>
+<dd>runrange_timewindow - Number of hours during which messages are not sent</dd>
 <dt>Throws:</dt>
 <dd>Exception - If parameters are not valid</dd>
 </dl>
@@ -147,7 +187,7 @@ if not specified the message is sent immediately.</p></td>
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../../source/smsout/smssend.php.html#line81" class="location">SMSOut/SMSSend.php at line 81</a>
+<a href="../../source/smsout/smssend.php.html#line117" class="location">SMSOut/SMSSend.php at line 117</a>
 
 <h3 id="decodeResponse()">decodeResponse</h3>
 <code class="signature">public  boolean <strong>decodeResponse</strong>(string http_response)</code>
@@ -162,7 +202,7 @@ if not specified the message is sent immediately.</p></td>
 
 <hr>
 
-<a href="../../source/smsout/smssend.php.html#line88" class="location">SMSOut/SMSSend.php at line 88</a>
+<a href="../../source/smsout/smssend.php.html#line124" class="location">SMSOut/SMSSend.php at line 124</a>
 
 <h3 id="createParams()">createParams</h3>
 <code class="signature">public  void <strong>createParams</strong>()</code>
@@ -171,7 +211,7 @@ if not specified the message is sent immediately.</p></td>
 
 <hr>
 
-<a href="../../source/smsout/smssend.php.html#line120" class="location">SMSOut/SMSSend.php at line 120</a>
+<a href="../../source/smsout/smssend.php.html#line195" class="location">SMSOut/SMSSend.php at line 195</a>
 
 <h3 id="get_message_text()">get_message_text</h3>
 <code class="signature">public  string <strong>get_message_text</strong>()</code>
@@ -180,7 +220,7 @@ if not specified the message is sent immediately.</p></td>
 
 <hr>
 
-<a href="../../source/smsout/smssend.php.html#line130" class="location">SMSOut/SMSSend.php at line 130</a>
+<a href="../../source/smsout/smssend.php.html#line205" class="location">SMSOut/SMSSend.php at line 205</a>
 
 <h3 id="get_dest_msisdns()">get_dest_msisdns</h3>
 <code class="signature">public  string|string[] <strong>get_dest_msisdns</strong>()</code>
@@ -190,7 +230,7 @@ each msisdn is in E.164 format with '+'</p></div>
 
 <hr>
 
-<a href="../../source/smsout/smssend.php.html#line139" class="location">SMSOut/SMSSend.php at line 139</a>
+<a href="../../source/smsout/smssend.php.html#line214" class="location">SMSOut/SMSSend.php at line 214</a>
 
 <h3 id="get_tpoa()">get_tpoa</h3>
 <code class="signature">public  string <strong>get_tpoa</strong>()</code>
@@ -199,7 +239,7 @@ each msisdn is in E.164 format with '+'</p></div>
 
 <hr>
 
-<a href="../../source/smsout/smssend.php.html#line151" class="location">SMSOut/SMSSend.php at line 151</a>
+<a href="../../source/smsout/smssend.php.html#line226" class="location">SMSOut/SMSSend.php at line 226</a>
 
 <h3 id="get_deferred()">get_deferred</h3>
 <code class="signature">public  date <strong>get_deferred</strong>()</code>
@@ -210,7 +250,43 @@ if not specified the message is sent immediately</p></div>
 
 <hr>
 
-<a href="../../source/smsout/smssend.php.html#line163" class="location">SMSOut/SMSSend.php at line 163</a>
+<a href="../../source/smsout/smssend.php.html#line237" class="location">SMSOut/SMSSend.php at line 237</a>
+
+<h3 id="get_jobnotify()">get_jobnotify</h3>
+<code class="signature">public  string <strong>get_jobnotify</strong>()</code>
+<div class="details">
+<p>Returns the url for job notification</p></div>
+
+<hr>
+
+<a href="../../source/smsout/smssend.php.html#line248" class="location">SMSOut/SMSSend.php at line 248</a>
+
+<h3 id="get_dlrnotify()">get_dlrnotify</h3>
+<code class="signature">public  string <strong>get_dlrnotify</strong>()</code>
+<div class="details">
+<p>Returns the url for dlr notification</p></div>
+
+<hr>
+
+<a href="../../source/smsout/smssend.php.html#line259" class="location">SMSOut/SMSSend.php at line 259</a>
+
+<h3 id="get_runrange_ltime()">get_runrange_ltime</h3>
+<code class="signature">public  date <strong>get_runrange_ltime</strong>()</code>
+<div class="details">
+<p>Returns the time from which messages are not sent</p></div>
+
+<hr>
+
+<a href="../../source/smsout/smssend.php.html#line270" class="location">SMSOut/SMSSend.php at line 270</a>
+
+<h3 id="get_runrange_timewindow()">get_runrange_timewindow</h3>
+<code class="signature">public  int <strong>get_runrange_timewindow</strong>()</code>
+<div class="details">
+<p>Returns the number of hours during which messages are not sent</p></div>
+
+<hr>
+
+<a href="../../source/smsout/smssend.php.html#line282" class="location">SMSOut/SMSSend.php at line 282</a>
 
 <h3 id="set_message_text()">set_message_text</h3>
 <code class="signature">public  void <strong>set_message_text</strong>(string message_text)</code>
@@ -223,7 +299,7 @@ if not specified the message is sent immediately</p></div>
 
 <hr>
 
-<a href="../../source/smsout/smssend.php.html#line175" class="location">SMSOut/SMSSend.php at line 175</a>
+<a href="../../source/smsout/smssend.php.html#line294" class="location">SMSOut/SMSSend.php at line 294</a>
 
 <h3 id="set_dest_msisdns()">set_dest_msisdns</h3>
 <code class="signature">public  void <strong>set_dest_msisdns</strong>(string|string The, mixed dest_msisdns)</code>
@@ -239,7 +315,7 @@ each msisdn is in E.164 format with '+'</p><dl>
 
 <hr>
 
-<a href="../../source/smsout/smssend.php.html#line190" class="location">SMSOut/SMSSend.php at line 190</a>
+<a href="../../source/smsout/smssend.php.html#line309" class="location">SMSOut/SMSSend.php at line 309</a>
 
 <h3 id="set_tpoa()">set_tpoa</h3>
 <code class="signature">public  void <strong>set_tpoa</strong>(string dest_msisdns, mixed tpoa)</code>
@@ -252,7 +328,7 @@ each msisdn is in E.164 format with '+'</p><dl>
 
 <hr>
 
-<a href="../../source/smsout/smssend.php.html#line203" class="location">SMSOut/SMSSend.php at line 203</a>
+<a href="../../source/smsout/smssend.php.html#line322" class="location">SMSOut/SMSSend.php at line 322</a>
 
 <h3 id="set_deferred()">set_deferred</h3>
 <code class="signature">public  void <strong>set_deferred</strong>(date deferred)</code>
@@ -264,6 +340,58 @@ if not specified the message is sent immediately</p><dl>
 <dd>deferred - The deferred time</dd>
 <dt>Throws:</dt>
 <dd>Exception - If parameters are not valid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/smsout/smssend.php.html#line341" class="location">SMSOut/SMSSend.php at line 341</a>
+
+<h3 id="set_jobnotify()">set_jobnotify</h3>
+<code class="signature">public  void <strong>set_jobnotify</strong>(string jobnotify)</code>
+<div class="details">
+<p>Sets the url for job notification</p><dl>
+<dt>Parameters:</dt>
+<dd>jobnotify - Url for job notification</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/smsout/smssend.php.html#line352" class="location">SMSOut/SMSSend.php at line 352</a>
+
+<h3 id="set_dlrnotify()">set_dlrnotify</h3>
+<code class="signature">public  void <strong>set_dlrnotify</strong>(string dlrnotify)</code>
+<div class="details">
+<p>Sets the url for dlr notification</p><dl>
+<dt>Parameters:</dt>
+<dd>dlrnotify - Url for dlr notification</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/smsout/smssend.php.html#line363" class="location">SMSOut/SMSSend.php at line 363</a>
+
+<h3 id="set_runrange_ltime()">set_runrange_ltime</h3>
+<code class="signature">public  void <strong>set_runrange_ltime</strong>(date runrange_ltime)</code>
+<div class="details">
+<p>Sets the time from which messages are not sent (HH:MM)</p><dl>
+<dt>Parameters:</dt>
+<dd>runrange_ltime - Time from which messages are not sent (HH:MM)</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/smsout/smssend.php.html#line374" class="location">SMSOut/SMSSend.php at line 374</a>
+
+<h3 id="set_runrange_timewindow()">set_runrange_timewindow</h3>
+<code class="signature">public  void <strong>set_runrange_timewindow</strong>(int runrange_timewindow)</code>
+<div class="details">
+<p>Sets the number of hours during which messages are not sent</p><dl>
+<dt>Parameters:</dt>
+<dd>runrange_timewindow - Number of hours during which messages are not sent</dd>
 </dl>
 </div>
 

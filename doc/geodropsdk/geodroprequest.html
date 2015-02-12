@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Tue, 28 Jan 2014 09:56:26 +0000">
+<meta name="when" content="Thu, 12 Feb 2015 09:00:32 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -66,82 +66,165 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </dl>
 <hr>
 
+<table id="summary_field">
+<tr><th colspan="2">Field Summary</th></tr>
+<tr>
+<td class="type">protected  string</td>
+<td class="description"><p class="name"><a href="#body">$body</a></p><p class="description">The body of the request</p></td>
+</tr>
+<tr>
+<td class="type">protected  <a href="../../geodropsdk//contenttype.html">ContentType</a></td>
+<td class="description"><p class="name"><a href="#contentType">$contentType</a></p><p class="description">The request content type</p></td>
+</tr>
+<tr>
+<td class="type">protected  <a href="../../geodropsdk//httpmethod.html">HttpMethod</a></td>
+<td class="description"><p class="name"><a href="#httpMethod">$httpMethod</a></p><p class="description">The request method</p></td>
+</tr>
+<tr>
+<td class="type">protected  array</td>
+<td class="description"><p class="name"><a href="#params">$params</a></p><p class="description">The parameters of the request</p></td>
+</tr>
+<tr>
+<td class="type">protected  <a href="../../geodropsdk//geodropresponse.html">GeodropResponse</a></td>
+<td class="description"><p class="name"><a href="#response">$response</a></p><p class="description">The GeodropResponse to the request</p></td>
+</tr>
+<tr>
+<td class="type">protected  <a href="../../geodropsdk//uri.html">Uri</a></td>
+<td class="description"><p class="name"><a href="#uri">$uri</a></p><p class="description">The request URI</p></td>
+</tr>
+</table>
+
 <table id="summary_method">
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
 <td class="type">abstract  boolean</td>
-<td class="description"><p class="name"><a href="#decodeResponse()">decodeResponse</a>(string http_response)</p><p class="description">Decodes the response.</p></td>
+<td class="description"><p class="name"><a href="#decodeResponse()">decodeResponse</a>(string http_response)</p><p class="description">Decodes the response</p></td>
 </tr>
 <tr>
 <td class="type">abstract  void</td>
-<td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request.</p></td>
+<td class="description"><p class="name"><a href="#createParams()">createParams</a>()</p><p class="description">Creates the parameters for the http request</p></td>
 </tr>
 <tr>
 <td class="type">protected final  boolean</td>
 <td class="description"><p class="name"><a href="#checkLimitFormat()">checkLimitFormat</a>(string limit)</p><p class="description">Checks the limit format; limit is used to paginate the result,
 it consists of two integers separated by a comma,
 the first one indicates the position of the first required result
-and the second the total number of result to return.</p></td>
+and the second the total number of result to return</p></td>
 </tr>
 <tr>
 <td class="type">protected final  boolean</td>
 <td class="description"><p class="name"><a href="#checkMsisdnE164Format()">checkMsisdnE164Format</a>(string msisdn, boolean plus)</p><p class="description">Checks if the format of the msisdn is E.164;
 plan-conforming numbers are limited to a maximum of 15 digits
-usually prefixed with the character +.</p></td>
+usually prefixed with the character +</p></td>
 </tr>
 <tr>
 <td class="type">protected final  boolean</td>
 <td class="description"><p class="name"><a href="#checkIfMsisdnsIsArrayOrString()">checkIfMsisdnsIsArrayOrString</a>(string|array msisdns, boolean plus)</p><p class="description">Checks if the format is an array of msisdns (in E.164)
-or a single msisdn (in E.164).</p></td>
+or a single msisdn (in E.164)</p></td>
 </tr>
 <tr>
 <td class="type">protected final  boolean</td>
-<td class="description"><p class="name"><a href="#checkMsisdnsArray()">checkMsisdnsArray</a>(array msisdns, boolean plus)</p><p class="description">Checks if the format is an array of valid msisdns (in E.164).</p></td>
+<td class="description"><p class="name"><a href="#checkMsisdnsArray()">checkMsisdnsArray</a>(array msisdns, boolean plus)</p><p class="description">Checks if the format is an array of valid msisdns (in E.164)</p></td>
 </tr>
 <tr>
 <td class="type">protected final  boolean</td>
 <td class="description"><p class="name"><a href="#checkIfFutureDatetime()">checkIfFutureDatetime</a>(date datetime)</p><p class="description">Checks if the date is valid
-and if it is in the furure.</p></td>
+and if it is in the furure</p></td>
 </tr>
 <tr>
 <td class="type">protected final  boolean</td>
-<td class="description"><p class="name"><a href="#checkDatetimeFormat()">checkDatetimeFormat</a>(date datetime)</p><p class="description">Checks if the date valid.</p></td>
+<td class="description"><p class="name"><a href="#checkDatetimeFormat()">checkDatetimeFormat</a>(date datetime)</p><p class="description">Checks if the date valid</p></td>
 </tr>
 <tr>
 <td class="type">protected final  boolean</td>
 <td class="description"><p class="name"><a href="#checkIfArrayOfPairOfOrderIdMsisdn()">checkIfArrayOfPairOfOrderIdMsisdn</a>(array arrayToCheck, boolean plus)</p><p class="description">Checks the first parameter is an array that contains pairs of
 "order id, msisdn" that uniquely identifies a single SMS message in the Geodrop archive;
-the msisdn must be in the E.164 format.</p></td>
+the msisdn must be in the E.164 format</p></td>
 </tr>
 <tr>
 <td class="type">protected final  boolean</td>
-<td class="description"><p class="name"><a href="#checkIfIntegerOrDigitString()">checkIfIntegerOrDigitString</a>(string|int var)</p><p class="description">Checks if the parameter is an integer or a string where all characters are numerical.</p></td>
+<td class="description"><p class="name"><a href="#checkIfIntegerOrDigitString()">checkIfIntegerOrDigitString</a>(string|int var)</p><p class="description">Checks if the parameter is an integer or a string where all characters are numerical</p></td>
 </tr>
 <tr>
 <td class="type">final  array</td>
-<td class="description"><p class="name"><a href="#getParams()">getParams</a>()</p><p class="description">Returns the parameters of the GeodropRequest.</p></td>
+<td class="description"><p class="name"><a href="#getParams()">getParams</a>()</p><p class="description">Returns the parameters of the GeodropRequest</p></td>
 </tr>
 <tr>
 <td class="type">final  string</td>
-<td class="description"><p class="name"><a href="#getBody()">getBody</a>()</p><p class="description">Returns the body of the GeodropRequest.</p></td>
+<td class="description"><p class="name"><a href="#getBody()">getBody</a>()</p><p class="description">Returns the body of the GeodropRequest</p></td>
 </tr>
 <tr>
 <td class="type">final  <a href="../../geodropsdk//geodropresponse.html">GeodropResponse</a></td>
-<td class="description"><p class="name"><a href="#getResponse()">getResponse</a>()</p><p class="description">Returns the GeodropResponse.</p></td>
+<td class="description"><p class="name"><a href="#getResponse()">getResponse</a>()</p><p class="description">Returns the GeodropResponse</p></td>
 </tr>
 <tr>
 <td class="type">final  <a href="../../geodropsdk//uri.html">Uri</a></td>
-<td class="description"><p class="name"><a href="#getUri()">getUri</a>()</p><p class="description">Returns the request URI.</p></td>
+<td class="description"><p class="name"><a href="#getUri()">getUri</a>()</p><p class="description">Returns the request URI</p></td>
 </tr>
 <tr>
 <td class="type">final  <a href="../../geodropsdk//httpmethod.html">HttpMethod</a></td>
-<td class="description"><p class="name"><a href="#getHttpMethod()">getHttpMethod</a>()</p><p class="description">Returns the request method.</p></td>
+<td class="description"><p class="name"><a href="#getHttpMethod()">getHttpMethod</a>()</p><p class="description">Returns the request method</p></td>
 </tr>
 <tr>
 <td class="type">final  <a href="../../geodropsdk//contenttype.html">ContentType</a></td>
-<td class="description"><p class="name"><a href="#getContentType()">getContentType</a>()</p><p class="description">Returns the request content type.</p></td>
+<td class="description"><p class="name"><a href="#getContentType()">getContentType</a>()</p><p class="description">Returns the request content type</p></td>
 </tr>
 </table>
+
+<h2 id="detail_field">Field Detail</h2>
+<a href="../../source/geodroprequest.php.html#line55" class="location">GeodropRequest.php at line 55</a>
+
+<h3 id="body">body</h3>
+<code class="signature">protected  string <strong>$body</strong></code>
+<div class="details">
+<p>The body of the request</p></div>
+
+<hr>
+
+<a href="../../source/geodroprequest.php.html#line37" class="location">GeodropRequest.php at line 37</a>
+
+<h3 id="contentType">contentType</h3>
+<code class="signature">protected  <a href="../../geodropsdk//contenttype.html">ContentType</a> <strong>$contentType</strong></code>
+<div class="details">
+<p>The request content type</p></div>
+
+<hr>
+
+<a href="../../source/geodroprequest.php.html#line31" class="location">GeodropRequest.php at line 31</a>
+
+<h3 id="httpMethod">httpMethod</h3>
+<code class="signature">protected  <a href="../../geodropsdk//httpmethod.html">HttpMethod</a> <strong>$httpMethod</strong></code>
+<div class="details">
+<p>The request method</p></div>
+
+<hr>
+
+<a href="../../source/geodroprequest.php.html#line49" class="location">GeodropRequest.php at line 49</a>
+
+<h3 id="params">params</h3>
+<code class="signature">protected  array <strong>$params</strong></code>
+<div class="details">
+<p>The parameters of the request</p></div>
+
+<hr>
+
+<a href="../../source/geodroprequest.php.html#line43" class="location">GeodropRequest.php at line 43</a>
+
+<h3 id="response">response</h3>
+<code class="signature">protected  <a href="../../geodropsdk//geodropresponse.html">GeodropResponse</a> <strong>$response</strong></code>
+<div class="details">
+<p>The <CODE>GeodropResponse</CODE> to the request</p></div>
+
+<hr>
+
+<a href="../../source/geodroprequest.php.html#line25" class="location">GeodropRequest.php at line 25</a>
+
+<h3 id="uri">uri</h3>
+<code class="signature">protected  <a href="../../geodropsdk//uri.html">Uri</a> <strong>$uri</strong></code>
+<div class="details">
+<p>The request URI</p></div>
+
+<hr>
 
 <h2 id="detail_method">Method Detail</h2>
 <a href="../../source/geodroprequest.php.html#line64" class="location">GeodropRequest.php at line 64</a>
