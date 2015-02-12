@@ -354,7 +354,7 @@ class SMSSend extends GeodropRequest
   /**
    * Sets the url for dlr notification
    * 
-   * @param string jobnotify Url for dlr notification
+   * @param string dlrnotify Url for dlr notification
    * @return void
    */
   public function set_dlrnotify($dlrnotify)
