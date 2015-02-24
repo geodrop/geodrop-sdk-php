@@ -95,7 +95,7 @@ class SMSSend extends GeodropRequest
     $this->httpMethod = HttpMethod::POST;
     $this->contentType = ContentType::XML;
     $this->set_dest_msisdns($dest_msisdns);
-    $this->set_message_text(utf8_encode($message_text));
+    $this->set_message_text($message_text);
     $this->set_tpoa($tpoa);
     if(isset($deferred))
       $this->set_deferred(date('Y-m-d H:i:s',strtotime(trim($deferred))));
