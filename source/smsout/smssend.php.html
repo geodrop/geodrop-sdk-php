@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Thu, 12 Feb 2015 09:00:32 +0000">
+<meta name="when" content="Wed, 04 Mar 2015 14:45:07 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -133,7 +133,7 @@
 <a name="line95"></a>    $this->httpMethod = HttpMethod::POST;
 <a name="line96"></a>    $this->contentType = ContentType::XML;
 <a name="line97"></a>    $this->set_dest_msisdns($dest_msisdns);
-<a name="line98"></a>    $this->set_message_text(utf8_encode($message_text));
+<a name="line98"></a>    $this->set_message_text($message_text);
 <a name="line99"></a>    $this->set_tpoa($tpoa);
 <a name="line100"></a>    if(isset($deferred))
 <a name="line101"></a>      $this->set_deferred(date('Y-m-d H:i:s',strtotime(trim($deferred))));

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Thu, 12 Feb 2015 09:00:32 +0000">
+<meta name="when" content="Wed, 04 Mar 2015 14:45:07 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -130,28 +130,31 @@
 <a name="line92"></a>  }
 <a name="line93"></a>  
 <a name="line94"></a>  /**
-<a name="line95"></a>   * Returns the status
-<a name="line96"></a>   * 
-<a name="line97"></a>   * @return int Status
-<a name="line98"></a>   */
-<a name="line99"></a>  public function get_status()
-<a name="line100"></a>  {
-<a name="line101"></a>    return $this->status;
-<a name="line102"></a>  }
-<a name="line103"></a>  
-<a name="line104"></a>  /**
-<a name="line105"></a>   * Returns the job GUID
-<a name="line106"></a>   * @return string Job GUID
-<a name="line107"></a>   */
-<a name="line108"></a>  public function get_order_id()
-<a name="line109"></a>  {
-<a name="line110"></a>    return $this->order_id;
-<a name="line111"></a>  }
-<a name="line112"></a>  
-<a name="line113"></a>}
-<a name="line114"></a>
-<a name="line115"></a>?>
-<a name="line116"></a></pre>
+<a name="line95"></a>   * Returns the status that is:
+<a name="line96"></a>   * 0 if response is ok,
+<a name="line97"></a>   * 1 if msisdn is invalid, 
+<a name="line98"></a>   * 2 if recipient exceeds the allowed limit,
+<a name="line99"></a>   * 3 if there is a geodrop internal error
+<a name="line100"></a>   * @return int Status
+<a name="line101"></a>   */
+<a name="line102"></a>  public function get_status()
+<a name="line103"></a>  {
+<a name="line104"></a>    return $this->status;
+<a name="line105"></a>  }
+<a name="line106"></a>  
+<a name="line107"></a>  /**
+<a name="line108"></a>   * Returns the job GUID
+<a name="line109"></a>   * @return string Job GUID
+<a name="line110"></a>   */
+<a name="line111"></a>  public function get_order_id()
+<a name="line112"></a>  {
+<a name="line113"></a>    return $this->order_id;
+<a name="line114"></a>  }
+<a name="line115"></a>  
+<a name="line116"></a>}
+<a name="line117"></a>
+<a name="line118"></a>?>
+<a name="line119"></a></pre>
 <div class="header">
 <h1>PHP GeodropSDK</h1>
 <ul>
