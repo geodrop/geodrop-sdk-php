@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Thu, 12 Feb 2015 09:00:32 +0000">
+<meta name="when" content="Wed, 04 Mar 2015 14:45:07 +0000">
 
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
 <link rel="start" href="overview-summary.html">
@@ -569,7 +569,11 @@
 <dt><a href="geodropsdk/droppay/customercheck_response.html#get_status()">get_status()</a> - Method in class <a href="geodropsdk/droppay/customercheck_response.html">GeodropSDK\DropPay\CustomerCheck_Response</a></dt>
 <dd>Returns the status</dd>
 <dt><a href="geodropsdk/smsout/report.html#get_status()">get_status()</a> - Method in class <a href="geodropsdk/smsout/report.html">GeodropSDK\SMSOut\Report</a></dt>
-<dd>Returns the status</dd>
+<dd>Returns the status that is:
+ 0 if response is ok,
+ 1 if msisdn is invalid, 
+ 2 if recipient exceeds the allowed limit,
+ 3 if there is a geodrop internal error</dd>
 <dt><a href="geodropsdk/droppay/customercheck_response.html#get_subscriber()">get_subscriber()</a> - Method in class <a href="geodropsdk/droppay/customercheck_response.html">GeodropSDK\DropPay\CustomerCheck_Response</a></dt>
 <dd>Returns the subscriber id</dd>
 <dt><a href="geodropsdk/droppay/customergoodbye_response.html#get_subscriber()">get_subscriber()</a> - Method in class <a href="geodropsdk/droppay/customergoodbye_response.html">GeodropSDK\DropPay\CustomerGoodbye_Response</a></dt>

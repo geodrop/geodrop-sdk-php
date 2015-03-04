@@ -92,8 +92,11 @@ class Report
   }
   
   /**
-   * Returns the status
-   * 
+   * Returns the status that is:
+   * 0 if response is ok,
+   * 1 if msisdn is invalid, 
+   * 2 if recipient exceeds the allowed limit,
+   * 3 if there is a geodrop internal error
    * @return int Status
    */
   public function get_status()
