@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Thu, 12 Feb 2015 09:00:32 +0000">
+<meta name="when" content="Wed, 04 Mar 2015 14:45:07 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -85,7 +85,11 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type"> int</td>
-<td class="description"><p class="name"><a href="#get_status()">get_status</a>()</p><p class="description">Returns the status</p></td>
+<td class="description"><p class="name"><a href="#get_status()">get_status</a>()</p><p class="description">Returns the status that is:
+0 if response is ok,
+1 if msisdn is invalid,
+2 if recipient exceeds the allowed limit,
+3 if there is a geodrop internal error</p></td>
 </tr>
 <tr>
 <td class="type"> string</td>
@@ -155,12 +159,16 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../../source/smsout/report.php.html#line99" class="location">SMSOut/Report.php at line 99</a>
+<a href="../../source/smsout/report.php.html#line102" class="location">SMSOut/Report.php at line 102</a>
 
 <h3 id="get_status()">get_status</h3>
 <code class="signature">public  int <strong>get_status</strong>()</code>
 <div class="details">
-<p>Returns the status</p><dl>
+<p>Returns the status that is:
+0 if response is ok,
+1 if msisdn is invalid,
+2 if recipient exceeds the allowed limit,
+3 if there is a geodrop internal error</p><dl>
 <dt>Returns:</dt>
 <dd>Status</dd>
 </dl>
@@ -168,7 +176,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../../source/smsout/report.php.html#line108" class="location">SMSOut/Report.php at line 108</a>
+<a href="../../source/smsout/report.php.html#line111" class="location">SMSOut/Report.php at line 111</a>
 
 <h3 id="get_order_id()">get_order_id</h3>
 <code class="signature">public  string <strong>get_order_id</strong>()</code>
