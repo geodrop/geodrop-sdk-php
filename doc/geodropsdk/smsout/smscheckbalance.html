@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
 
-<title>SMSJobsScheduledDelete (PHP GeodropSDK)</title>
+<title>SMSCheckBalance (PHP GeodropSDK)</title>
 
 </head>
 <body id="definition" onload="parent.document.title=document.title;">
@@ -32,7 +32,7 @@
 
 <div class="small_links">
 <a href="../../index.html" target="_top">Frames</a>
-<a href="../../geodropsdk/smsout/smsjobsscheduleddelete.html" target="_top">No frames</a>
+<a href="../../geodropsdk/smsout/smscheckbalance.html" target="_top">No frames</a>
 </div>
 <div class="small_links">
 Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
@@ -40,20 +40,20 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </div>
 <hr>
 
-<div class="qualifiedName">GeodropSDK\SMSOut\SMSJobsScheduledDelete</div>
-<a href="../../source/smsout/smsjobsscheduleddelete.php.html#line15" class="location">SMSOut/SMSJobsScheduledDelete.php at line 15</a>
+<div class="qualifiedName">GeodropSDK\SMSOut\SMSCheckBalance</div>
+<a href="../../source/smsout/smscheckbalance.php.html#line13" class="location">SMSOut/SMSCheckBalance.php at line 13</a>
 
-<h1>Class SMSJobsScheduledDelete</h1>
+<h1>Class SMSCheckBalance</h1>
 
-<pre class="tree"><a href="../../geodropsdk//geodroprequest.html">GeodropRequest</a><br>    └─<strong>SMSJobsScheduledDelete</strong><br /></pre>
+<pre class="tree"><a href="../../geodropsdk//geodroprequest.html">GeodropRequest</a><br>    └─<strong>SMSCheckBalance</strong><br /></pre>
 
 <hr>
 
-<p class="signature">public  class <strong>SMSJobsScheduledDelete</strong><br>extends <a href="../../geodropsdk//geodroprequest.html">GeodropRequest</a>
+<p class="signature">public  class <strong>SMSCheckBalance</strong><br>extends <a href="../../geodropsdk//geodroprequest.html">GeodropRequest</a>
 
 </p>
 
-<div class="comment" id="overview_description"><p>Request used to delete a scheduled job</p></div>
+<div class="comment" id="overview_description"><p>Request used to get the balance of the user</p></div>
 
 <dl>
 <dt>Author:</dt>
@@ -71,7 +71,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr><th colspan="2">Constructor Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string job_id)</p><p class="description">Creates a new SMSJobsScheduledDelete instance</p></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>()</p><p class="description">Creates a new SMSCheckBalance instance</p></td>
 </tr>
 </table>
 
@@ -85,14 +85,6 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <td class="type"> boolean</td>
 <td class="description"><p class="name"><a href="#decodeResponse()">decodeResponse</a>(string http_response)</p><p class="description">Decodes the response</p></td>
 </tr>
-<tr>
-<td class="type"> string</td>
-<td class="description"><p class="name"><a href="#get_job_id()">get_job_id</a>()</p><p class="description">Returns the job id of the job to delete</p></td>
-</tr>
-<tr>
-<td class="type"> void</td>
-<td class="description"><p class="name"><a href="#set_job_id()">set_job_id</a>(string job_id)</p><p class="description">Sets the job id of the job to delete</p></td>
-</tr>
 </table>
 
 <table class="inherit">
@@ -100,14 +92,12 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr><td><a href="../../geodropsdk//geodroprequest.html#checkDatetimeFormat()">checkDatetimeFormat</a>, <a href="../../geodropsdk//geodroprequest.html#checkIfArrayOfPairOfOrderIdMsisdn()">checkIfArrayOfPairOfOrderIdMsisdn</a>, <a href="../../geodropsdk//geodroprequest.html#checkIfFutureDatetime()">checkIfFutureDatetime</a>, <a href="../../geodropsdk//geodroprequest.html#checkIfIntegerOrDigitString()">checkIfIntegerOrDigitString</a>, <a href="../../geodropsdk//geodroprequest.html#checkIfMsisdnsIsArrayOrString()">checkIfMsisdnsIsArrayOrString</a>, <a href="../../geodropsdk//geodroprequest.html#checkLimitFormat()">checkLimitFormat</a>, <a href="../../geodropsdk//geodroprequest.html#checkMsisdnE164Format()">checkMsisdnE164Format</a>, <a href="../../geodropsdk//geodroprequest.html#checkMsisdnsArray()">checkMsisdnsArray</a>, <a href="../../geodropsdk//geodroprequest.html#createParams()">createParams</a>, <a href="../../geodropsdk//geodroprequest.html#decodeResponse()">decodeResponse</a>, <a href="../../geodropsdk//geodroprequest.html#getBody()">getBody</a>, <a href="../../geodropsdk//geodroprequest.html#getContentType()">getContentType</a>, <a href="../../geodropsdk//geodroprequest.html#getHttpMethod()">getHttpMethod</a>, <a href="../../geodropsdk//geodroprequest.html#getParams()">getParams</a>, <a href="../../geodropsdk//geodroprequest.html#getResponse()">getResponse</a>, <a href="../../geodropsdk//geodroprequest.html#getUri()">getUri</a></td></tr></table>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../../source/smsout/smsjobsscheduleddelete.php.html#line35" class="location">SMSOut/SMSJobsScheduledDelete.php at line 35</a>
+<a href="../../source/smsout/smscheckbalance.php.html#line32" class="location">SMSOut/SMSCheckBalance.php at line 32</a>
 
 <h3 id="__construct()">__construct</h3>
-<code class="signature">public  void <strong>__construct</strong>(string job_id)</code>
+<code class="signature">public  void <strong>__construct</strong>()</code>
 <div class="details">
-<p>Creates a new <CODE>SMSJobsScheduledDelete</CODE> instance</p><dl>
-<dt>Parameters:</dt>
-<dd>job_id - Job id</dd>
+<p>Creates a new <CODE>SMSCheckBalance</CODE> instance</p><dl>
 <dt>Throws:</dt>
 <dd>Exception - If parameters are not valid</dd>
 </dl>
@@ -116,7 +106,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../../source/smsout/smsjobsscheduleddelete.php.html#line57" class="location">SMSOut/SMSJobsScheduledDelete.php at line 57</a>
+<a href="../../source/smsout/smscheckbalance.php.html#line51" class="location">SMSOut/SMSCheckBalance.php at line 51</a>
 
 <h3 id="createParams()">createParams</h3>
 <code class="signature">public  void <strong>createParams</strong>()</code>
@@ -125,7 +115,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../../source/smsout/smsjobsscheduleddelete.php.html#line67" class="location">SMSOut/SMSJobsScheduledDelete.php at line 67</a>
+<a href="../../source/smsout/smscheckbalance.php.html#line74" class="location">SMSOut/SMSCheckBalance.php at line 74</a>
 
 <h3 id="decodeResponse()">decodeResponse</h3>
 <code class="signature">public  boolean <strong>decodeResponse</strong>(string http_response)</code>
@@ -135,28 +125,6 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <dd>http_response - Response to the http request</dd>
 <dt>Returns:</dt>
 <dd><CODE>true</CODE> on success, <CODE>false</CODE> otherwise.</dd>
-</dl>
-</div>
-
-<hr>
-
-<a href="../../source/smsout/smsjobsscheduleddelete.php.html#line80" class="location">SMSOut/SMSJobsScheduledDelete.php at line 80</a>
-
-<h3 id="get_job_id()">get_job_id</h3>
-<code class="signature">public  string <strong>get_job_id</strong>()</code>
-<div class="details">
-<p>Returns the job id of the job to delete</p></div>
-
-<hr>
-
-<a href="../../source/smsout/smsjobsscheduleddelete.php.html#line91" class="location">SMSOut/SMSJobsScheduledDelete.php at line 91</a>
-
-<h3 id="set_job_id()">set_job_id</h3>
-<code class="signature">public  void <strong>set_job_id</strong>(string job_id)</code>
-<div class="details">
-<p>Sets the job id of the job to delete</p><dl>
-<dt>Parameters:</dt>
-<dd>job_id - The job id</dd>
 </dl>
 </div>
 
@@ -178,7 +146,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <div class="small_links">
 <a href="../../index.html" target="_top">Frames</a>
-<a href="../../geodropsdk/smsout/smsjobsscheduleddelete.html" target="_top">No frames</a>
+<a href="../../geodropsdk/smsout/smscheckbalance.html" target="_top">No frames</a>
 </div>
 <div class="small_links">
 Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
