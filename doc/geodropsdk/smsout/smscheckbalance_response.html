@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
 
-<title>PortDescriptor_Response (PHP GeodropSDK)</title>
+<title>SMSCheckBalance_Response (PHP GeodropSDK)</title>
 
 </head>
 <body id="definition" onload="parent.document.title=document.title;">
@@ -20,9 +20,9 @@
 <h1>PHP GeodropSDK</h1>
 <ul>
 <li><a href="../../overview-summary.html">Overview</a></li>
-<li><a href="../../geodropsdk/droppay/package-summary.html">Namespace</a></li>
+<li><a href="../../geodropsdk/smsout/package-summary.html">Namespace</a></li>
 <li class="active">Class</li>
-<li><a href="../../geodropsdk/droppay/package-tree.html">Tree</a></li>
+<li><a href="../../geodropsdk/smsout/package-tree.html">Tree</a></li>
 <li><a href="../../overview-files.html">Files</a></li>
 <li><a href="../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../todo-list.html">Todo</a></li>
@@ -32,7 +32,7 @@
 
 <div class="small_links">
 <a href="../../index.html" target="_top">Frames</a>
-<a href="../../geodropsdk/droppay/portdescriptor_response.html" target="_top">No frames</a>
+<a href="../../geodropsdk/smsout/smscheckbalance_response.html" target="_top">No frames</a>
 </div>
 <div class="small_links">
 Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
@@ -40,20 +40,20 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </div>
 <hr>
 
-<div class="qualifiedName">GeodropSDK\DropPay\PortDescriptor_Response</div>
-<a href="../../source/droppay/portdescriptor_response.php.html#line12" class="location">dropPay/PortDescriptor_Response.php at line 12</a>
+<div class="qualifiedName">GeodropSDK\SMSOut\SMSCheckBalance_Response</div>
+<a href="../../source/smsout/smscheckbalance_response.php.html#line12" class="location">SMSOut/SMSCheckBalance_Response.php at line 12</a>
 
-<h1>Class PortDescriptor_Response</h1>
+<h1>Class SMSCheckBalance_Response</h1>
 
-<pre class="tree"><a href="../../geodropsdk//geodropresponse.html">GeodropResponse</a><br>    └─<strong>PortDescriptor_Response</strong><br /></pre>
+<pre class="tree"><a href="../../geodropsdk//geodropresponse.html">GeodropResponse</a><br>    └─<strong>SMSCheckBalance_Response</strong><br /></pre>
 
 <hr>
 
-<p class="signature">public  class <strong>PortDescriptor_Response</strong><br>extends <a href="../../geodropsdk//geodropresponse.html">GeodropResponse</a>
+<p class="signature">public  class <strong>SMSCheckBalance_Response</strong><br>extends <a href="../../geodropsdk//geodropresponse.html">GeodropResponse</a>
 
 </p>
 
-<div class="comment" id="overview_description"><p>Response to a <CODE>PortDescriptor</CODE> request</p></div>
+<div class="comment" id="overview_description"><p>Response to a <CODE>SMSCheckBalance</CODE> request</p></div>
 
 <dl>
 <dt>Author:</dt>
@@ -66,18 +66,18 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <table id="summary_method">
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
-<td class="type"> string</td>
-<td class="description"><p class="name"><a href="#toString()">toString</a>()</p><p class="description">Returns a string representation of the object.
-</p></td>
-</tr>
-<tr>
 <td class="type"> boolean</td>
 <td class="description"><p class="name"><a href="#fillParameters()">fillParameters</a>(string http_response)</p><p class="description">Performs the parsing of the http response
 and fills the field of the GeodropResponse</p></td>
 </tr>
 <tr>
-<td class="type"> <a href="../../geodropsdk/droppay/port.html">Port[]</a></td>
-<td class="description"><p class="name"><a href="#get_ports()">get_ports</a>()</p><p class="description">Returns the ports</p></td>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#toString()">toString</a>()</p><p class="description">Returns a string representation of the object.
+</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#getBalance()">getBalance</a>()</p><p class="description">Returns the balance of the user</p></td>
 </tr>
 </table>
 
@@ -86,22 +86,7 @@ and fills the field of the GeodropResponse</p></td>
 <tr><td><a href="../../geodropsdk//geodropresponse.html#fillParameters()">fillParameters</a>, <a href="../../geodropsdk//geodropresponse.html#toString()">toString</a></td></tr></table>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../../source/droppay/portdescriptor_response.php.html#line26" class="location">dropPay/PortDescriptor_Response.php at line 26</a>
-
-<h3 id="toString()">toString</h3>
-<code class="signature">public  string <strong>toString</strong>()</code>
-<div class="details">
-<p>Returns a string representation of the object.
-In general, the toString method returns a string that "textually represents" this object.
-The result should be a concise but informative representation that is easy for a person to read.</p><dl>
-<dt>Returns:</dt>
-<dd>A string representation of the object</dd>
-</dl>
-</div>
-
-<hr>
-
-<a href="../../source/droppay/portdescriptor_response.php.html#line37" class="location">dropPay/PortDescriptor_Response.php at line 37</a>
+<a href="../../source/smsout/smscheckbalance_response.php.html#line26" class="location">SMSOut/SMSCheckBalance_Response.php at line 26</a>
 
 <h3 id="fillParameters()">fillParameters</h3>
 <code class="signature">public  boolean <strong>fillParameters</strong>(string http_response)</code>
@@ -117,16 +102,27 @@ and fills the field of the <CODE>GeodropResponse</CODE></p><dl>
 
 <hr>
 
-<a href="../../source/droppay/portdescriptor_response.php.html#line125" class="location">dropPay/PortDescriptor_Response.php at line 125</a>
+<a href="../../source/smsout/smscheckbalance_response.php.html#line42" class="location">SMSOut/SMSCheckBalance_Response.php at line 42</a>
 
-<h3 id="get_ports()">get_ports</h3>
-<code class="signature">public  <a href="../../geodropsdk/droppay/port.html">Port[]</a> <strong>get_ports</strong>()</code>
+<h3 id="toString()">toString</h3>
+<code class="signature">public  string <strong>toString</strong>()</code>
 <div class="details">
-<p>Returns the ports</p><dl>
+<p>Returns a string representation of the object.
+In general, the toString method returns a string that "textually represents" this object.
+The result should be a concise but informative representation that is easy for a person to read.</p><dl>
 <dt>Returns:</dt>
-<dd>Ports</dd>
+<dd>A string representation of the object</dd>
 </dl>
 </div>
+
+<hr>
+
+<a href="../../source/smsout/smscheckbalance_response.php.html#line54" class="location">SMSOut/SMSCheckBalance_Response.php at line 54</a>
+
+<h3 id="getBalance()">getBalance</h3>
+<code class="signature">public  int <strong>getBalance</strong>()</code>
+<div class="details">
+<p>Returns the balance of the user</p></div>
 
 <hr>
 
@@ -134,9 +130,9 @@ and fills the field of the <CODE>GeodropResponse</CODE></p><dl>
 <h1>PHP GeodropSDK</h1>
 <ul>
 <li><a href="../../overview-summary.html">Overview</a></li>
-<li><a href="../../geodropsdk/droppay/package-summary.html">Namespace</a></li>
+<li><a href="../../geodropsdk/smsout/package-summary.html">Namespace</a></li>
 <li class="active">Class</li>
-<li><a href="../../geodropsdk/droppay/package-tree.html">Tree</a></li>
+<li><a href="../../geodropsdk/smsout/package-tree.html">Tree</a></li>
 <li><a href="../../overview-files.html">Files</a></li>
 <li><a href="../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../todo-list.html">Todo</a></li>
@@ -146,7 +142,7 @@ and fills the field of the <CODE>GeodropResponse</CODE></p><dl>
 
 <div class="small_links">
 <a href="../../index.html" target="_top">Frames</a>
-<a href="../../geodropsdk/droppay/portdescriptor_response.html" target="_top">No frames</a>
+<a href="../../geodropsdk/smsout/smscheckbalance_response.html" target="_top">No frames</a>
 </div>
 <div class="small_links">
 Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>

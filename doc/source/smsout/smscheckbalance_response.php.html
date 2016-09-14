@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
 
-<title>SMSOut/SMSEstimatecost_Response.php (PHP GeodropSDK)</title>
+<title>SMSOut/SMSCheckBalance_Response.php (PHP GeodropSDK)</title>
 
 </head>
 <body id="file" onload="parent.document.title=document.title;">
@@ -29,36 +29,36 @@
 
 <div class="small_links">
 <a href="../../index.html" target="_top">Frames</a>
-<a href="../../source/smsout/smsestimatecost_response.php.html" target="_top">No frames</a>
+<a href="../../source/smsout/smscheckbalance_response.php.html" target="_top">No frames</a>
 </div>
 <hr>
 
-<h1>SMSOut/SMSEstimatecost_Response.php</h1>
+<h1>SMSOut/SMSCheckBalance_Response.php</h1>
 <hr>
 
 <a name="line1"></a><pre><?php
 <a name="line2"></a>require_once 'GeodropResponse.php';
 <a name="line3"></a>
 <a name="line4"></a>/**
-<a name="line5"></a> * Response to a <CODE>SMSEstimatecost</CODE> request
+<a name="line5"></a> * Response to a <CODE>SMSCheckBalance</CODE> request
 <a name="line6"></a> *
 <a name="line7"></a> * @author A-Tono s.r.l.
 <a name="line8"></a> * @since 1.0
 <a name="line9"></a> *
 <a name="line10"></a> *
 <a name="line11"></a> */
-<a name="line12"></a>class SMSEstimatecost_Response extends GeodropResponse
+<a name="line12"></a>class SMSCheckBalance_Response extends GeodropResponse
 <a name="line13"></a>{
 <a name="line14"></a>  /**
-<a name="line15"></a>   * Estimate of the final cost of the message
+<a name="line15"></a>   * balance of the user
 <a name="line16"></a>   * @var int
 <a name="line17"></a>   */
-<a name="line18"></a>  private $estimate_cost;
+<a name="line18"></a>  private $balance;
 <a name="line19"></a> 
 <a name="line20"></a>  public function __destruct()
 <a name="line21"></a>  {
 <a name="line22"></a>    parent::__destruct();
-<a name="line23"></a>    unset($this->estimate_cost);
+<a name="line23"></a>    unset($this->balance);
 <a name="line24"></a>  }
 <a name="line25"></a>  
 <a name="line26"></a>  public function fillParameters($http_response)
@@ -72,32 +72,31 @@
 <a name="line34"></a>      error_log(ErrorType::RESPONSE_NOT_XML);
 <a name="line35"></a>      return false;
 <a name="line36"></a>    }
-<a name="line37"></a>    
-<a name="line38"></a>    $this->estimate_cost = (int)trim($xml->ESTIMATECOST);
-<a name="line39"></a>    unset($xml);
-<a name="line40"></a>    return true;
-<a name="line41"></a>  }
-<a name="line42"></a>  
-<a name="line43"></a>  public function toString()
-<a name="line44"></a>  {
-<a name="line45"></a>    return $this->estimate_cost;
-<a name="line46"></a>  }
-<a name="line47"></a>  
-<a name="line48"></a>  //getters
-<a name="line49"></a>  /**
-<a name="line50"></a>   * Returns the estimate of the final cost of the message
-<a name="line51"></a>   *
-<a name="line52"></a>   * @access public
-<a name="line53"></a>   * @return int
-<a name="line54"></a>   */
-<a name="line55"></a>  public function getEstimateCost()
-<a name="line56"></a>  {
-<a name="line57"></a>    return $this->estimate_cost;
-<a name="line58"></a>  }
-<a name="line59"></a>}
-<a name="line60"></a>
-<a name="line61"></a>?>
-<a name="line62"></a></pre>
+<a name="line37"></a>    $this->balance = (int)trim($xml->USER['credit']);
+<a name="line38"></a>    unset($xml);
+<a name="line39"></a>    return true;
+<a name="line40"></a>  }
+<a name="line41"></a>  
+<a name="line42"></a>  public function toString()
+<a name="line43"></a>  {
+<a name="line44"></a>    return "balance: ". $this->balance;
+<a name="line45"></a>  }
+<a name="line46"></a>  
+<a name="line47"></a>  //getters
+<a name="line48"></a>  /**
+<a name="line49"></a>   * Returns the balance of the user
+<a name="line50"></a>   *
+<a name="line51"></a>   * @access public
+<a name="line52"></a>   * @return int
+<a name="line53"></a>   */
+<a name="line54"></a>  public function getBalance()
+<a name="line55"></a>  {
+<a name="line56"></a>    return $this->balance;
+<a name="line57"></a>  }
+<a name="line58"></a>}
+<a name="line59"></a>
+<a name="line60"></a>?>
+<a name="line61"></a></pre>
 <div class="header">
 <h1>PHP GeodropSDK</h1>
 <ul>
@@ -111,7 +110,7 @@
 
 <div class="small_links">
 <a href="../../index.html" target="_top">Frames</a>
-<a href="../../source/smsout/smsestimatecost_response.php.html" target="_top">No frames</a>
+<a href="../../source/smsout/smscheckbalance_response.php.html" target="_top">No frames</a>
 </div>
 <hr>
 
