@@ -12,6 +12,7 @@ class Uri
   
   const OUT_SMS_SEND            = "https://api.geodrop.net/out/1/sms/1/send";
   const OUT_SMS_ESTIMATECOST    = "https://api.geodrop.net/out/1/sms/1/estimatecost";
+  const OUT_SMS_CHECKBALANCE    = "https://api.geodrop.net/out/1/sms/1/estimatecost";
   const OUT_SMS_STATUS          = "https://api.geodrop.net/out/1/sms/1/status";
   const OUT_SMS_JOBS_SCHEDULED  = "https://api.geodrop.net/out/1/sms/1/jobs/scheduled";
   
