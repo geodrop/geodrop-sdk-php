@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 14 Sep 2016 14:57:02 +0000">
+<meta name="when" content="Fri, 16 Sep 2016 12:10:16 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
 <link rel="start" href="../../overview-summary.html">
@@ -72,7 +72,7 @@
 <a name="line34"></a>      error_log(ErrorType::RESPONSE_NOT_XML);
 <a name="line35"></a>      return false;
 <a name="line36"></a>    }
-<a name="line37"></a>    $this->balance = (int)trim($xml->USER['credit']);
+<a name="line37"></a>    $this->balance = trim($xml->USER['credit']);
 <a name="line38"></a>    unset($xml);
 <a name="line39"></a>    return true;
 <a name="line40"></a>  }
