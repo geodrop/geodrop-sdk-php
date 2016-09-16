@@ -34,7 +34,7 @@ class SMSCheckBalance_Response extends GeodropResponse
       error_log(ErrorType::RESPONSE_NOT_XML);
       return false;
     }
-    $this->balance = (int)trim($xml->USER['credit']);
+    $this->balance = trim($xml->USER['credit']);
     unset($xml);
     return true;
   }
