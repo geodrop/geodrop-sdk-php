@@ -49,7 +49,7 @@ class SMSCheckBalance_Response extends GeodropResponse
    * Returns the balance of the user
    *
    * @access public
-   * @return int
+   * @return string
    */
   public function getBalance()
   {
